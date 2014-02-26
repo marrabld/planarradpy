@@ -14,13 +14,13 @@ lg = log.logger
 lg.setLevel(DEBUG_LEVEL)
 
 
-class RunParameters(object):
+class RunParameters():
     def __init__(self):
         lg.info('============')
         lg.info('Initialising')
         lg.info('============')
 
-        self.wavelengths = scipy.asarray([440, 750])
+        self.wavelengths = scipy.linspace(410, 730, 17)
         self.a = scipy.asarray([]) # total absorption
         self.a_phi = scipy.asarray([])
         self.a_water = scipy.asarray([])
@@ -33,12 +33,12 @@ class RunParameters(object):
         self.iop_backscatter_proportion_list = scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
-        self.input_path = os.path.join('..', 'inputs')
-        self.output_path = os.path.join('..', 'outputs')
-        self.project_file = 'batch_run.txt'
-        self.attenuation_file = 'batch_c.txt'
-        self.absorption_file = 'batch_a.txt'
-        self.scattering_file = 'batch_b.txt'
+        self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
+        self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
+        self.project_file = os.path.abspath(os.path.join(self.input_path, 'batch_run.txt'))
+        self.attenuation_file = os.path.abspath(os.path.join(self.input_path, 'batch_c.txt'))
+        self.absorption_file = os.path.abspath(os.path.join(self.input_path, 'batch_a.txt'))
+        self.scattering_file = os.path.abspath(os.path.join(self.input_path, 'batch_b.txt'))
         self.sky_azimuth = 50
         self.sky_zenith = 45
         self.euler_steps_per_optical_depth = 100
@@ -54,7 +54,7 @@ class RunParameters(object):
         self.ds_name = 'HL Standard'
         self.vn = 18
         self.hn = 24
-        self.num_bands = 17
+        self.num_bands = self.wavelengths.shape[0]
         self.sky_state = 'clear'
         self.surf_state = 'flat'
         self.ds_code = 'HL_' + str(self.vn) + 'x' + str(self.hn)
@@ -101,6 +101,7 @@ class RunParameters(object):
         """
 
         """
+
         lg.info('Writing Inputs to file : ' + self.project_file)
 
         # First update the file names in case we changed the file values.  the file name includes the file values
@@ -108,21 +109,17 @@ class RunParameters(object):
 
         f = open(self.project_file, 'w')
 
-        f.write('name=' + self.project_file + '\n')
+        f.write('name = ' + self.project_file + '\n')
         f.write('band_count = ' + str(len(self.wavelengths)) + '\n')
         f.write('bs_name = ' + str(len(self.wavelengths)) + ' Bands (' + str(self.wavelengths[0]) + '-' + str(
             self.wavelengths[len(self.wavelengths) - 1]) + ' nm) \n')
         f.write('bs_code = ' + str(len(self.wavelengths)) + '\n')
         f.write('band_centres_data = ')
-        for i in range(0, len(self.wavelengths) - 1):
-            f.write(str(self.wavelengths[i]) + ',') # so we don't end with __a comma
-        f.write(str(self.wavelengths[len(self.wavelengths) - 1]) + '\n')
-
+        f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
         f.write('band_widths_data = ')
         for i in range(0, len(self.wavelengths) - 1):
             width = self.wavelengths[i + 1] - self.wavelengths[i]
             f.write(str(width) + ',')
-
         f.write('\n')
         f.write('ds_name = ' + self.ds_name + '\n')
         f.write('ds_code = ' + self.ds_code + '\n')
@@ -135,13 +132,14 @@ class RunParameters(object):
         f.write('sample_point_distance = ' + str(self.sample_point_distance) + '\n')
         f.write('sample_point_delta_distance = ' + str(self.sample_point_delta_distance) + '\n')
         f.write('\n')
-        f.write('sky_fp = ' + self.sky_file + '\n')  # need to create these files from sky tool
+        f.write('sky_fp = ' + os.path.join(self.input_path,
+                                           self.sky_file) + '\n')  # need to create these files from sky tool
         f.write('\n')
-        f.write('water_surface_fp = ' + self.water_surface_file + '\n')
+        f.write('water_surface_fp = ' + os.path.join(self.input_path, self.water_surface_file) + '\n')
         f.write('\n')
         f.write('atten_fp = ' + self.attenuation_file + '\n')
         f.write('scat_fp = ' + self.scattering_file + '\n')
-        f.write('pf_fp = ' + self.phase_function_file + '\n')
+        f.write('pf_fp = ' + os.path.join(self.input_path, self.phase_function_file) + '\n')
         f.write('\n')
         f.write('bottom_reflec_diffuse_fp = ' + self.bottom_reflectance_file + '\n')
         f.write('sky_type = ' + self.sky_type + '\n')
@@ -174,8 +172,8 @@ class RunParameters(object):
         f.write('\n')
         f.write('Ld_b_save_fp = ' + self.ld_b_save_file + '\n')
         f.write('\n')
-        f.write('report_save_fp = ' + self.project_file.partition('.')[
-            0] + '_report.txt\n')  # this should remove the .txt out of the project file name
+        f.write('report_save_fp = ' + os.path.join(self.output_path,
+                                                   'batch_run_report.txt\n'))  # this should remove the .txt out of the project file name
         f.write('\n')
         f.write('verbose = ' + str(self.verbose) + '\n')
         f.close()
@@ -185,24 +183,156 @@ class RunParameters(object):
         @brief Writes the params to file that skytool_Free needs to generate the sky radiance distribution.
         """
 
-        f = open(self.sky_file + '_params.txt', 'w')
+        inp_file = os.path.join(os.path.join(self.input_path, 'sky_files'), self.sky_file) + '_params.txt'
+        lg.info('Writing Inputs to file : ' + inp_file)
 
-        f.write('verbose=' + str(self.verbose) + '\n')
-        f.write('band_count=' + str(self.num_bands) + '\n')
-        f.write('band_centres_data=')
+        f = open(inp_file, 'w')
+
+        f.write('verbose= ' + str(self.verbose) + '\n')
+        f.write('band_count= ' + str(self.num_bands) + '\n')
+        f.write('band_centres_data= ')
         f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
-        f.write('partition=' + self.partition + '\n')
-        f.write('vn=' + str(self.vn) + '\n')
-        f.write('hn=' + str(self.hn) + '\n')
-        f.write('C=' + str(self.sky_c) + '\n')
-        f.write('rdif=' + str(self.sky_r_dif) + '\n')
-        f.write('theta_points=')
+        f.write('partition= ' + self.partition + '\n')
+        f.write('vn= ' + str(self.vn) + '\n')
+        f.write('hn= ' + str(self.hn) + '\n')
+        f.write('rdif= ' + str(self.sky_r_dif) + '\n')
+        f.write('theta_points= ')
         f.write(",".join([str(theta) for theta in self.theta_points]) + '\n')
-        f.write('type=' + self.sky_type + '\n')
-        f.write('azimuth=' + str(self.sky_azimuth) + '\n')
-        f.write('zenith=' + str(self.sky_zenith) + '\n')
-        f.write('sky_save_fp=' + os.path.join(self.output_path, self.sky_file) + '\n')
-        f.write('sky_image_save_fp=image_' + self.sky_file + '.ppm' + '\n')
-        f.write('sky_image_size=256' + '\n')
+        f.write('type= ' + self.sky_type + '\n')
+        f.write('azimuth= ' + str(self.sky_azimuth) + '\n')
+        f.write('zenith= ' + str(self.sky_zenith) + '\n')
+        f.write('sky_save_fp= ' + inp_file.strip('_params.txt') + '\n')
+        f.write('sky_image_save_fp= image_' + self.sky_file + '.ppm' + '\n')
+        f.write('sky_image_size= 256' + '\n')
+        if self.sky_type == 'hlideal':
+            f.write('C= ' + str(self.sky_c) + '\n')
+            f.write('rdif= ' + str(self.sky_r_dif) + '\n')
         f.flush()
         f.close()
+
+    def write_surf_params_to_file(self):
+        """
+        @brief Writes the params to file that surftool_Free needs to generate the surface facets
+        """
+
+        inp_file = os.path.join(os.path.join(self.input_path, 'surface_files'), self.water_surface_file) + '_params.txt'
+        lg.info('Writing Inputs to file : ' + inp_file)
+
+        if self.surf_state == 'flat':  # this is the only one that currently works.
+            lg.info('Surface Type is :: flat')
+            f = open(inp_file, 'w')
+
+            f.write('verbose= ' + str(self.verbose) + '\n')
+            f.write('band_count= ' + str(self.num_bands) + '\n')
+            f.write('band_centres_data= ')
+            f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
+            f.write('partition= ' + self.partition + '\n')
+            f.write('vn= ' + str(self.vn) + '\n')
+            f.write('hn= ' + str(self.hn) + '\n')
+            f.write('theta_points= ')
+            f.write(",".join([str(theta) for theta in self.theta_points]) + '\n')
+            f.write('type= ' + self.iface_type + '\n')
+            f.write('refrac_index_0= ' + str(self.iface_0_ri) + '\n')
+            f.write('refrac_index_1= ' + str(self.iface_1_ri) + '\n')
+            f.write('wind_speed= ' + str(self.wind_speed) + '\n')
+            f.write('wind_direc= ' + str(self.wind_direc) + '\n')
+            f.write('crosswind_vertices= ' + str(self.crosswind_vertices) + '\n')
+            f.write('upwind_vertices= ' + str(self.upwind_vertices) + '\n')
+            f.write('surface_size= ' + str(self.surface_size) + '\n')
+            f.write('surface_radius=' + str(self.surface_radius) + '\n')
+            f.write('target_size= ' + str(self.tarsize) + '\n')
+            f.write('rays_per_quad= ' + str(self.rays_per_quad) + '\n')
+            f.write('surface_count= ' + str(self.surface_count) + '\n')
+            f.write('azimuthally_average= ' + str(self.azimuthally_average) + '\n')
+            f.write('surface_save_fp= ' + inp_file.strip('_params.txt') + '\n')
+            f.flush()
+            f.close()
+
+    def write_phase_params_to_file(self):
+        """
+        @brief Writes the params to file that surftool_Free needs to generate the surface facets
+        """
+        inp_file = os.path.join(os.path.join(self.input_path, 'phase_files'), self.phase_function_file) + '_params.txt'
+        lg.info('Writing Inputs to file : ' + inp_file)
+
+        if self.iop_type == 'isotropic' or 'isotropic_integ' or 'petzold' or 'pure_water ':
+            lg.info('Iop type is :: ' + self.iop_type)
+
+            f = open(inp_file, 'w')
+
+            f.write('verbose = ' + str(self.verbose) + '\n')
+            f.write('band_count = ' + str(self.num_bands) + '\n')
+            f.write('band_centres_data = ')
+            f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
+            f.write('partition = ' + self.partition + '\n')
+            f.write('vn = ' + str(self.vn) + '\n')
+            f.write('hn = ' + str(self.hn) + '\n')
+            f.write('theta_points = ')
+            f.write(",".join([str(theta) for theta in self.theta_points]) + '\n')
+            f.write('type = ' + self.iop_type + '\n')
+            f.write('phase_func_save_fp = ' + inp_file.strip('_params.txt') + '\n')
+            f.flush()
+            f.close()
+
+
+class BatchRun():
+    def __init__(self, object):
+        self.run_params = object
+
+    def run(self):
+
+        # Check to see if the required run_params files exist, if they dont use the tools to generate them
+
+        #------------------------------------------------#
+        # Sky inputs
+        #------------------------------------------------#
+        if os.path.isfile(
+                os.path.join(os.path.join(self.run_params.input_path, 'sky_files'), self.run_params.sky_file)):
+            sky_file_exists = True
+            lg.info('Found sky_tool generated file')
+        else:
+            lg.info('No sky_tool generated file, generating one')
+            try:
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'sky_files'), self.run_params.sky_file) + '_params.txt'
+                if not os.path.isfile(inp_file):
+                    lg.error(inp_file + ' : is not a valid parameter file')
+                os.system(os.path.join(self.run_params.exec_path, 'skytool_free ') + 'params=' + os.path.join(
+                    os.path.join(self.run_params.input_path, 'sky_files'), self.run_params.sky_file) + '_params.txt')
+            except OSError:
+                lg.exception('Cannot execute PlannarRad, cannot find executable file to skytool_free')
+
+        #------------------------------------------------#
+        # Water surface inputs
+        #------------------------------------------------#
+        if os.path.isfile(os.path.join(os.path.join(self.run_params.input_path, 'surface_files'),
+                                       self.run_params.water_surface_file)):
+            surface_file_exists = True
+            lg.info('Found surf_tool generated file')
+        else:
+            lg.info('No surf_tool generated file, generating one')
+            try:
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'surface_files'), self.run_params.water_surface_file) + '_params.txt'
+                if not os.path.isfile(inp_file):
+                    lg.error(inp_file + ' : is not a valid parameter file')
+                os.system(os.path.join(self.run_params.exec_path, 'surftool_free ') + 'params=' + os.path.join(
+                    os.path.join(self.run_params.input_path, 'surface_files'), self.run_params.water_surface_file) + '_params.txt')
+            except OSError:
+                lg.exception('Cannot execute PlannarRad, cannot find executable file to surftool_free')
+
+        #------------------------------------------------#
+        # Phase functions inputs
+        #------------------------------------------------#
+        if os.path.isfile(os.path.join(os.path.join(self.run_params.input_path, 'phase_files'),
+                                       self.run_params.phase_function_file)):
+            phase_file_exists = True
+            lg.info('Found phase_tool generated file')
+        else:
+            lg.info('No sky_tool generated file, generating one')
+            try:
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'phase_files'), self.run_params.phase_function_file) + '_params.txt'
+                if not os.path.isfile(inp_file):
+                    lg.error(inp_file + ' : is not a valid parameter file')
+                os.system(os.path.join(self.run_params.exec_path, 'phasetool_free ') + 'params=' + os.path.join(
+                    os.path.join(self.run_params.input_path, 'phase_files'), self.run_params.phase_function_file) + '_params.txt')
+            except OSError:
+                lg.exception('Cannot execute PlannarRad, cannot find executable file to phasetool_free')

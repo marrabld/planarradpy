@@ -74,9 +74,9 @@ class RunParameters():
         self.runga4adap_max_steps_per_optical_depth = 40
         self.runga4adap_min_error = 0.01
         self.runga4adap_max_error = 0.1
-        self.ld_b_image_save_file = 'image_Ld_b.ppm'
+        self.ld_b_image_save_file = os.path.join(self.output_path, 'image_Ld_b.ppm')
         self.ld_b_image_sens_k = 0.0008
-        self.ld_b_save_file = 'Ld_b_data'
+        self.ld_b_save_file = os.path.join(self.output_path, 'Ld_b_data')
         self.verbose = 6
         self.num_cpus = -1
         self.wind_speed = 5
@@ -84,7 +84,7 @@ class RunParameters():
         self.upwind_vertices = 100
         self.surface_size = 1
         self.surface_radius = 0.5
-        self.tarsize = 0.2
+        self.target_size = 0.2
         self.rays_per_quad = 10
         self.surface_count = 200
         self.azimuthally_average = 'yes'
@@ -240,7 +240,7 @@ class RunParameters():
             f.write('upwind_vertices= ' + str(self.upwind_vertices) + '\n')
             f.write('surface_size= ' + str(self.surface_size) + '\n')
             f.write('surface_radius=' + str(self.surface_radius) + '\n')
-            f.write('target_size= ' + str(self.tarsize) + '\n')
+            f.write('target_size= ' + str(self.target_size) + '\n')
             f.write('rays_per_quad= ' + str(self.rays_per_quad) + '\n')
             f.write('surface_count= ' + str(self.surface_count) + '\n')
             f.write('azimuthally_average= ' + str(self.azimuthally_average) + '\n')

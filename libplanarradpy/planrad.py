@@ -21,24 +21,24 @@ class RunParameters():
         lg.info('============')
 
         self.wavelengths = scipy.linspace(410, 730, 17)
-        self.a = scipy.asarray([]) # total absorption
+        self.a = scipy.asarray([])  # total absorption
         self.a_phi = scipy.asarray([])
         self.a_water = scipy.asarray([])
-        self.a_cdom = scipy.asarray([]) # CDOM absorption
-        self.bb = scipy.asarray([]) # backscatter
-        self.bbp = scipy.asarray([]) # particulate scatter
+        self.a_cdom = scipy.asarray([])  # CDOM absorption
+        self.bb = scipy.asarray([])  # backscatter
+        self.bbp = scipy.asarray([])  # particulate scatter
         self.b_water = scipy.asarray([])
-        self.b = scipy.asarray([]) # scatter
-        self.c = scipy.asarray([]) # attenuation
-        self.iop_backscatter_proportion_list = scipy.asarray([])
+        self.b = scipy.asarray([])  # scatter
+        self.c = scipy.asarray([])  # attenuation
+        self.iop_backscatter_proportion_list = ''#scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
         self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
         self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
-        self.project_file = os.path.abspath(os.path.join(self.input_path, 'batch_run.txt'))
-        self.attenuation_file = os.path.abspath(os.path.join(self.input_path, 'batch_c.txt'))
-        self.absorption_file = os.path.abspath(os.path.join(self.input_path, 'batch_a.txt'))
-        self.scattering_file = os.path.abspath(os.path.join(self.input_path, 'batch_b.txt'))
+        self.project_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'batch_files'), 'batch_run.txt'))
+        self.attenuation_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_c17.txt'))
+        self.absorption_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'batch_a.txt'))
+        self.scattering_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_b17.txt'))
         self.sky_azimuth = 50
         self.sky_zenith = 45
         self.euler_steps_per_optical_depth = 100
@@ -46,7 +46,7 @@ class RunParameters():
         self.iop_type = 'petzold'
         self.sample_point_distance = 1
         self.sample_point_delta_distance = 0.01
-        self.bottom_reflectance_file = 'ger_sand17.txt'
+        self.bottom_reflectance_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'bottom_files'),'ger_sand17.txt'))
         self.sky_type = 'hlideal'
         self.sky_c = 1
         self.sky_r_dif = 0.3
@@ -116,10 +116,12 @@ class RunParameters():
         f.write('bs_code = ' + str(len(self.wavelengths)) + '\n')
         f.write('band_centres_data = ')
         f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
-        f.write('band_widths_data = ')
-        for i in range(0, len(self.wavelengths) - 1):
-            width = self.wavelengths[i + 1] - self.wavelengths[i]
-            f.write(str(width) + ',')
+        # f.write('band_widths_data = ')
+        # for i in range(0, len(self.wavelengths) - 1):  # Find better way to do this!
+        #     width = self.wavelengths[i + 1] - self.wavelengths[i]
+        #     f.write(str(width))
+        #     if i < len(self.wavelengths) - 2:
+        #         f.write(',')
         f.write('\n')
         f.write('ds_name = ' + self.ds_name + '\n')
         f.write('ds_code = ' + self.ds_code + '\n')
@@ -132,16 +134,13 @@ class RunParameters():
         f.write('sample_point_distance = ' + str(self.sample_point_distance) + '\n')
         f.write('sample_point_delta_distance = ' + str(self.sample_point_delta_distance) + '\n')
         f.write('\n')
-        f.write('sky_fp = ' + os.path.join(self.input_path,
-                                           self.sky_file) + '\n')  # need to create these files from sky tool
+        f.write('sky_fp = ' + os.path.join(os.path.join(self.input_path, 'sky_files'), self.sky_file) + '\n')  # need to create these files from sky tool
+        f.write('water_surface_fp =' + os.path.join(os.path.join(self.input_path, 'surface_files'), self.water_surface_file))
         f.write('\n')
-        f.write('water_surface_fp = ' + os.path.join(self.input_path, self.water_surface_file) + '\n')
-        f.write('\n')
-        f.write('atten_fp = ' + self.attenuation_file + '\n')
-        f.write('scat_fp = ' + self.scattering_file + '\n')
-        f.write('pf_fp = ' + os.path.join(self.input_path, self.phase_function_file) + '\n')
-        f.write('\n')
-        f.write('bottom_reflec_diffuse_fp = ' + self.bottom_reflectance_file + '\n')
+        f.write('atten_fp = ' +  self.attenuation_file + '\n')
+        f.write('scat_fp = ' +  self.scattering_file + '\n')
+        f.write('pf_fp = ' +  self.phase_function_file + '\n')
+        f.write('bottom_reflec_diffuse_fp = ' +  self.bottom_reflectance_file + '\n')
         f.write('sky_type = ' + self.sky_type + '\n')
         f.write('sky_azimuth = ' + str(self.sky_azimuth) + '\n')
         f.write('sky_zenith = ' + str(self.sky_zenith) + '\n')
@@ -293,7 +292,8 @@ class BatchRun():
         else:
             lg.info('No sky_tool generated file, generating one')
             try:
-                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'sky_files'), self.run_params.sky_file) + '_params.txt'
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'sky_files'),
+                                        self.run_params.sky_file) + '_params.txt'
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(self.run_params.exec_path, 'skytool_free ') + 'params=' + os.path.join(
@@ -311,11 +311,13 @@ class BatchRun():
         else:
             lg.info('No surf_tool generated file, generating one')
             try:
-                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'surface_files'), self.run_params.water_surface_file) + '_params.txt'
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'surface_files'),
+                                        self.run_params.water_surface_file) + '_params.txt'
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(self.run_params.exec_path, 'surftool_free ') + 'params=' + os.path.join(
-                    os.path.join(self.run_params.input_path, 'surface_files'), self.run_params.water_surface_file) + '_params.txt')
+                    os.path.join(self.run_params.input_path, 'surface_files'),
+                    self.run_params.water_surface_file) + '_params.txt')
             except OSError:
                 lg.exception('Cannot execute PlannarRad, cannot find executable file to surftool_free')
 
@@ -329,10 +331,29 @@ class BatchRun():
         else:
             lg.info('No sky_tool generated file, generating one')
             try:
-                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'phase_files'), self.run_params.phase_function_file) + '_params.txt'
+                inp_file = os.path.join(os.path.join(self.run_params.input_path, 'phase_files'),
+                                        self.run_params.phase_function_file) + '_params.txt'
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(self.run_params.exec_path, 'phasetool_free ') + 'params=' + os.path.join(
-                    os.path.join(self.run_params.input_path, 'phase_files'), self.run_params.phase_function_file) + '_params.txt')
+                    os.path.join(self.run_params.input_path, 'phase_files'),
+                    self.run_params.phase_function_file) + '_params.txt')
             except OSError:
                 lg.exception('Cannot execute PlannarRad, cannot find executable file to phasetool_free')
+
+        #------------------------------------------------#
+        # slabtool inputs [Run planarrad]
+        #------------------------------------------------#
+
+        inp_file = os.path.join(os.path.join(self.run_params.input_path, 'batch_files'),
+                                self.run_params.project_file)
+        self.run_params.project_file = inp_file
+        self.run_params.write_run_parameters_to_file()
+        if not os.path.isfile(inp_file):
+            lg.error(inp_file + ' : is not a valid batch file')
+
+        try:
+            os.system(os.path.join(self.run_params.exec_path, 'slabtool_free ') + 'params=' + os.path.join(
+                    os.path.join(self.run_params.input_path, 'batch_files'), self.run_params.project_file))
+        except OSError:
+                lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')

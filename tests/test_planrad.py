@@ -28,7 +28,7 @@ class TestBatchRun():
     def setUp(self):
         rp = pr.RunParameters()
         rp.exec_path = '/home/marrabld/Apps/planarRad/bin'
-        rp.verbose = 1
+        rp.verbose = 6
         self.br = pr.BatchRun(rp)
 
     def test_run(self):

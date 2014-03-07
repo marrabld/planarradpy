@@ -30,15 +30,17 @@ class RunParameters():
         self.b_water = scipy.asarray([])
         self.b = scipy.asarray([])  # scatter
         self.c = scipy.asarray([])  # attenuation
-        self.iop_backscatter_proportion_list = ''#scipy.asarray([])
+        self.iop_backscatter_proportion_list = ''  #scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
         self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
         self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
         self.project_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'batch_files'), 'batch_run.txt'))
-        self.attenuation_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_c17.txt'))
+        self.attenuation_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_c17.txt'))
         self.absorption_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'batch_a.txt'))
-        self.scattering_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_b17.txt'))
+        self.scattering_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_b17.txt'))
         self.sky_azimuth = 50
         self.sky_zenith = 45
         self.euler_steps_per_optical_depth = 100
@@ -46,7 +48,8 @@ class RunParameters():
         self.iop_type = 'petzold'
         self.sample_point_distance = 1
         self.sample_point_delta_distance = 0.01
-        self.bottom_reflectance_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'bottom_files'),'ger_sand17.txt'))
+        self.bottom_reflectance_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'bottom_files'), 'ger_sand17.txt'))
         self.sky_type = 'hlideal'
         self.sky_c = 1
         self.sky_r_dif = 0.3
@@ -59,9 +62,11 @@ class RunParameters():
         self.surf_state = 'flat'
         self.ds_code = 'HL_' + str(self.vn) + 'x' + str(self.hn)
         self.partition = 'sphere'
-        self.sky_file = 'sky_' + self.sky_state + '_z' + str(self.sky_zenith) + '_a' + str(
-            self.sky_azimuth) + '_' + str(
-            self.num_bands) + '_' + self.ds_code
+        self.sky_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'sky_files'),
+                         'sky_' + self.sky_state + '_z' + str(self.sky_zenith) + '_a' + str(
+                             self.sky_azimuth) + '_' + str(
+                             self.num_bands) + '_' + self.ds_code))
         self.iface_0_ri = 1.34
         self.iface_1_ri = 1.00
         self.bound_bottom_reflec_diffuse_data = 0
@@ -88,13 +93,16 @@ class RunParameters():
         self.rays_per_quad = 10
         self.surface_count = 200
         self.azimuthally_average = 'yes'
-        self.water_surface_file = 'sf_' + self.iface_type + '_w' + str(self.wind_speed) + '_r' + str(
-            self.rays_per_quad) + '_s' + \
-                                  str(self.surface_count) + '_' + self.azimuthally_average + '_mono_' + self.ds_code
+        self.water_surface_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'surface_files'),
+                         'sf_' + self.iface_type + '_w' + str(self.wind_speed) + '_r' + str(
+                             self.rays_per_quad) + '_s' + \
+                         str(self.surface_count) + '_' + self.azimuthally_average + '_mono_' + self.ds_code))
         self.wind_direc = 0
         self.crosswind_vertices = 100
         self.model_eqn = 'clear'
-        self.phase_function_file = 'pf_' + self.iop_type + '_mono_' + self.ds_code
+        self.phase_function_file = os.path.abspath(
+            os.path.join(os.path.join(self.input_path, 'phase_files'), 'pf_' + self.iop_type + '_mono_' + self.ds_code))
         self.exec_path = '/usr/bin/jude_test/bin/'
 
     def write_run_parameters_to_file(self):
@@ -134,13 +142,13 @@ class RunParameters():
         f.write('sample_point_distance = ' + str(self.sample_point_distance) + '\n')
         f.write('sample_point_delta_distance = ' + str(self.sample_point_delta_distance) + '\n')
         f.write('\n')
-        f.write('sky_fp = ' + os.path.join(os.path.join(self.input_path, 'sky_files'), self.sky_file) + '\n')  # need to create these files from sky tool
-        f.write('water_surface_fp =' + os.path.join(os.path.join(self.input_path, 'surface_files'), self.water_surface_file))
+        f.write('sky_fp = ' + self.sky_file + '\n')  # need to create these files from sky tool
+        f.write('water_surface_fp =' + self.water_surface_file)
         f.write('\n')
-        f.write('atten_fp = ' +  self.attenuation_file + '\n')
-        f.write('scat_fp = ' +  self.scattering_file + '\n')
-        f.write('pf_fp = ' +  self.phase_function_file + '\n')
-        f.write('bottom_reflec_diffuse_fp = ' +  self.bottom_reflectance_file + '\n')
+        f.write('atten_fp = ' + self.attenuation_file + '\n')
+        f.write('scat_fp = ' + self.scattering_file + '\n')
+        f.write('pf_fp = ' + self.phase_function_file + '\n')
+        f.write('bottom_reflec_diffuse_fp = ' + self.bottom_reflectance_file + '\n')
         f.write('sky_type = ' + self.sky_type + '\n')
         f.write('sky_azimuth = ' + str(self.sky_azimuth) + '\n')
         f.write('sky_zenith = ' + str(self.sky_zenith) + '\n')
@@ -172,7 +180,7 @@ class RunParameters():
         f.write('Ld_b_save_fp = ' + self.ld_b_save_file + '\n')
         f.write('\n')
         f.write('report_save_fp = ' + os.path.join(self.output_path,
-                                                   'batch_run_report.txt\n'))  # this should remove the .txt out of the project file name
+                                                   'batch_run_report.txt\n'))
         f.write('\n')
         f.write('verbose = ' + str(self.verbose) + '\n')
         f.close()
@@ -182,7 +190,7 @@ class RunParameters():
         @brief Writes the params to file that skytool_Free needs to generate the sky radiance distribution.
         """
 
-        inp_file = os.path.join(os.path.join(self.input_path, 'sky_files'), self.sky_file) + '_params.txt'
+        inp_file = self.sky_file + '_params.txt'
         lg.info('Writing Inputs to file : ' + inp_file)
 
         f = open(inp_file, 'w')
@@ -214,7 +222,7 @@ class RunParameters():
         @brief Writes the params to file that surftool_Free needs to generate the surface facets
         """
 
-        inp_file = os.path.join(os.path.join(self.input_path, 'surface_files'), self.water_surface_file) + '_params.txt'
+        inp_file = self.water_surface_file + '_params.txt'
         lg.info('Writing Inputs to file : ' + inp_file)
 
         if self.surf_state == 'flat':  # this is the only one that currently works.
@@ -354,6 +362,6 @@ class BatchRun():
 
         try:
             os.system(os.path.join(self.run_params.exec_path, 'slabtool_free ') + 'params=' + os.path.join(
-                    os.path.join(self.run_params.input_path, 'batch_files'), self.run_params.project_file))
+                os.path.join(self.run_params.input_path, 'batch_files'), self.run_params.project_file))
         except OSError:
-                lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')
+            lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')

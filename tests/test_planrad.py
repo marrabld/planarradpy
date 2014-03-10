@@ -29,7 +29,36 @@ class TestBatchRun():
         rp = pr.RunParameters()
         rp.exec_path = '/home/marrabld/Apps/planarRad/bin'
         rp.verbose = 6
-        self.br = pr.BatchRun(rp)
+        rp.num_cpus = 1
+        self.br = pr.BatchRun(rp, 'unit_test')
+        self.br.batch_parameters([1, 0.5], [2, 2.3], [3], [4], [5], [30, 35])
+
 
     def test_run(self):
         self.br.run()
+
+
+    #def test_generate_directories(self):
+
+    #    self.br.generate_directories(overwrite=False)
+
+
+class TestBioOpticalParameters(unittest.TestCase):
+    def setUp(self):
+        wavelengths = [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0, 670.0,
+                       690.0, 710.0, 730.0]
+        self.bio = pr.BioOpticalParameters(wavelengths)
+
+    def test_build_bbp(self):
+        x = 1
+        y = 2
+
+        self.bio.build_bbp(x, y)
+        print(self.bio.b_bp)
+
+    def test_build_a_cdom(self):
+        g = 1
+        s = 2
+
+        self.bio.build_a_cdom(g, s)
+        print(self.bio.a_cdom)

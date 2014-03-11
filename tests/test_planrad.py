@@ -24,7 +24,7 @@ class TestRunParameters(unittest.TestCase):
         self.rp.write_phase_params_to_file()
 
 
-class TestBatchRun():
+class TestBatchRun(unittest.TestCase):
     def setUp(self):
         rp = pr.RunParameters()
         rp.exec_path = '/home/marrabld/Apps/planarRad/bin'

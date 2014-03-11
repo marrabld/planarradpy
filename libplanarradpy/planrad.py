@@ -11,7 +11,6 @@ import libplanarradpy
 import libplanarradpy.state
 import csv
 from multiprocessing import Process
-import getopt
 
 __author__ = 'marrabld'
 
@@ -27,7 +26,7 @@ class RunParameters():
         lg.info('============')
 
         self.wavelengths = scipy.linspace(410, 730, 17)
-        print(self.wavelengths.shape)
+        #print(self.wavelengths.shape)
         self.a = scipy.zeros_like(self.wavelengths)  # total absorption
         self.a_phi = scipy.zeros_like(self.wavelengths)
         self.a_water = scipy.zeros_like(self.wavelengths)
@@ -718,6 +717,25 @@ class FileTools():
     def dict_to_object(data_object, data_dict):
         data_object.__dict__ = data_dict
         return data_object
+
+class HelperMethods():
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def string_to_float_list(string_var):
+
+        return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
+
+
+
+
+
+
+
+
+
+
 
 
 

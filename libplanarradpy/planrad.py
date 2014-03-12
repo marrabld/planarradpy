@@ -533,6 +533,7 @@ class BatchRun():
             lg.info('No sky_tool generated file, generating one')
             try:
                 inp_file = run_dict['sky_fp'] + '_params.txt'
+                self.run_params.write_sky_params_to_file()
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
@@ -549,6 +550,7 @@ class BatchRun():
             lg.info('No surf_tool generated file, generating one')
             try:
                 inp_file = run_dict['water_surface_fp'] + '_params.txt'
+                self.run_params.write_surf_params_to_file()
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(exec_path, 'surftool_free') + ' params=' + inp_file)
@@ -565,6 +567,7 @@ class BatchRun():
             lg.info('No sky_tool generated file, generating one')
             try:
                 inp_file = run_dict['pf_fp'] + '_params.txt'
+                self.run_params.write_phase_params_to_file()
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(exec_path, 'phasetool_free') + ' params=' + inp_file)

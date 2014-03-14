@@ -116,6 +116,7 @@ class RunParameters():
         self.phase_function_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'phase_files'), 'pf_' + self.iop_type + '_mono_' + self.ds_code))
         self.exec_path = '/usr/bin/jude_test/bin/'
+        self.report_file = os.path.join(self.output_path, 'batch_run_report.txt\n')
 
     def write_run_parameters_to_file(self):
         """
@@ -195,8 +196,7 @@ class RunParameters():
         f.write('Ld_b_save_fp = ' + os.path.join(self.output_path,
                                                  'Ld_b_data') + '\n')
         f.write('\n')
-        f.write('report_save_fp = ' + os.path.join(self.output_path,
-                                                   'batch_run_report.txt\n'))
+        f.write('report_save_fp = ' + self.report_file)
         f.write('\n')
         f.write('verbose = ' + str(self.verbose) + '\n')
         f.close()
@@ -469,7 +469,6 @@ class BatchRun():
             dir_list.append(os.path.join(self.batch_output, direc))
 
         num_dirs = len(dir_list)
-        #lg.debug(os.listdir(self.batch_output))
         lg.info('Found ' + str(num_dirs) + ' directories to process in ' + self.batch_output)
 
         sub = scipy.floor(num_dirs / self.run_params.num_cpus)
@@ -484,9 +483,32 @@ class BatchRun():
                 lg.info('Starting processing block of :: ' + str(self.run_params.num_cpus) + ' processes')
 
                 for m in range(0, self.run_params.num_cpus):
-                    row = (m * sub) + l
+                    #row = (m * sub) + l
                     _dir = dir_list.pop()
-                    p = Process(target=self._run, args=(_dir,))
+
+                    #--------------------------------------------------#
+                    # CHECK TO SEE IF REPORT HAS BEEN GENERATED AND DON'T
+                    # BOTHER RUNNING AGAIN IF THEY DO EXIST
+                    #--------------------------------------------------#
+
+                    report_dir, report_file_name = os.path.split(self.run_params.report_file)
+                    lg.debug(report_file_name)
+                    lg.debug(os.path.join(_dir, report_file_name))
+
+                    try:
+                        rep_size = os.path.getsize(os.path.join(_dir, report_file_name.strip('\n')))
+                        lg.debug('report size is :: ' + str(rep_size))
+                    except:
+                        rep_size = 0
+
+
+                    if rep_size < 1.0:   # TODO this is a spoof!
+                        lg.info('No report file found, running process')
+                        p = Process(target=self._run, args=(_dir,))
+                    else:
+                        lg.warning('Report file found :: ' + os.path.join(_dir, report_file_name.strip(
+                            '\n')) + ' not redoing run ')
+                        p = Process(target=self._dummy, args=(_dir,))
 
                     # !! for testing
                     #p = Process(target=self._dummy, args=(_dir,))
@@ -721,13 +743,13 @@ class FileTools():
         data_object.__dict__ = data_dict
         return data_object
 
+
 class HelperMethods():
     def __init__(self):
         pass
 
     @staticmethod
     def string_to_float_list(string_var):
-
         return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
 
 

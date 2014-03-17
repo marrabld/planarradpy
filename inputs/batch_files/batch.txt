@@ -41,4 +41,4 @@ verbose = 6
 # Use absolute paths
 #----------------------------------------#
 phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/iop_files/all_zeros17.txt
+bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/all_zeros17.txt

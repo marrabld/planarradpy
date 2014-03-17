@@ -43,7 +43,7 @@ def main(argv):
     rp.num_cpus = int(input_parameters['num_cpus'])
     rp.exec_path = input_parameters['exec_path']
     rp.phytoplankton_absorption_file = input_parameters['phytoplankton_absorption_file']
-    rp.bottom_reflectance_file = input_parameters['phytoplankton_absorption_file']
+    rp.bottom_reflectance_file = input_parameters['bottom_reflectance_file']
 
     p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])  # map(float, input_parameters['p_list'])
     x_list = pr.HelperMethods.string_to_float_list(input_parameters['x_list'])

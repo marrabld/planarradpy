@@ -572,7 +572,7 @@ class BatchRun():
             self.run_params.write_sky_params_to_file()
             #if not os.path.isfile(inp_file):
             #    lg.error(inp_file + ' : is not a valid parameter file')
-            lg.debug('Runing skytool!!!!!')
+            lg.debug('Runing skytool!!!!! @ ' + os.path.join(exec_path, 'skytool_free') + '#')
             lg.debug(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
             os.system(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
             #except OSError:

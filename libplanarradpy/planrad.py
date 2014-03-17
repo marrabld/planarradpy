@@ -568,9 +568,10 @@ class BatchRun():
             lg.info('No sky_tool generated file, generating one')
             try:
                 inp_file = run_dict['sky_fp'] + '_params.txt'
+                self.run_params.sky_file = inp_file
                 self.run_params.write_sky_params_to_file()
-                if not os.path.isfile(inp_file):
-                    lg.error(inp_file + ' : is not a valid parameter file')
+                #if not os.path.isfile(inp_file):
+                #    lg.error(inp_file + ' : is not a valid parameter file')
                 os.system(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
             except OSError:
                 lg.exception('Cannot execute PlannarRad, cannot find executable file to skytool_free')

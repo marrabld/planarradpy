@@ -560,19 +560,20 @@ class BatchRun():
         # Sky inputs
         #------------------------------------------------#
         #lg.debug(run_dict.keys())
+        lg.debug('!!!!!!!!!' + run_dict['sky_fp'])
         if os.path.isfile(run_dict['sky_fp']):
             sky_file_exists = True
             lg.info('Found sky_tool generated file' + run_dict['sky_fp'])
         else:
             lg.info('No sky_tool generated file, generating one')
-            inp_file = run_dict['sky_fp'] + '_params.txt'
-            self.run_params.write_sky_params_to_file()
-            if not os.path.isfile(inp_file):
-                lg.error(inp_file + ' : is not a valid parameter file')
-        try:
-            os.system(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
-        except OSError:
-            lg.exception('Cannot execute PlannarRad, cannot find executable file to skytool_free')
+            try:
+                inp_file = run_dict['sky_fp'] + '_params.txt'
+                self.run_params.write_sky_params_to_file()
+                if not os.path.isfile(inp_file):
+                    lg.error(inp_file + ' : is not a valid parameter file')
+                os.system(os.path.join(exec_path, 'skytool_free') + 'params=' + inp_file)
+            except OSError:
+                lg.exception('Cannot execute PlannarRad, cannot find executable file to skytool_free')
 
         #------------------------------------------------#
         # Water surface inputs

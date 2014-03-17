@@ -314,8 +314,8 @@ class BioOpticalParameters():
 
 
     def build_bbp(self, x, y, wave_const=550):
-        """
-        Builds the particle backscattering function :: @f$ X(\frac{550}{\lambda})^Y @f$
+        r"""
+        Builds the particle backscattering function  :math:`X(\frac{550}{\lambda})^Y`
         param: x function coefficient
         param: y order of the power function
         param: waveConst wave constant Default 550 nm
@@ -325,8 +325,8 @@ class BioOpticalParameters():
         self.b_bp = x * (wave_const / self.wavelengths) ** y
 
     def build_a_cdom(self, g, s, wave_const=400):
-        """
-        Builds the CDOM absorption function :: @f$ G \exp (-S(\lambda - 400))  @f$
+        r"""
+        Builds the CDOM absorption function :: :math:`G \exp (-S(\lambda - 400))`
         param: g function coefficient
         param: s slope factor
         param: wave constant
@@ -439,7 +439,13 @@ class BioOpticalParameters():
 
 
 class BatchRun():
+    """
+
+    """
     def __init__(self, object, batch_name='batch'):
+        """
+
+        """
         self.run_params = object
         self.p_list = []  # Phyto scaling param
         self.x_list = []
@@ -452,6 +458,9 @@ class BatchRun():
         self.bio_params = BioOpticalParameters(self.run_params.wavelengths)
 
     def run(self):
+        """
+
+        """
         done = False
         dir_list = []
         tic = time.clock()
@@ -533,6 +542,9 @@ class BatchRun():
         lg.debug(run_dir)
 
     def _run(self, run_dir, exec_path='/home/marrabld/Apps/planarRad/bin'):
+        """
+
+        """
 
         # Check to see if the required run_params files exist, if they dont use the tools to generate them
 
@@ -550,7 +562,7 @@ class BatchRun():
         lg.debug(run_dict.keys())
         if os.path.isfile(run_dict['sky_fp']):
             sky_file_exists = True
-            lg.info('Found sky_tool generated file')
+            lg.info('Found sky_tool generated file' + run_dict['sky_fp'])
         else:
             lg.info('No sky_tool generated file, generating one')
             try:
@@ -567,7 +579,7 @@ class BatchRun():
         #------------------------------------------------#
         if os.path.isfile(run_dict['water_surface_fp']):
             surface_file_exists = True
-            lg.info('Found surf_tool generated file')
+            lg.info('Found surf_tool generated file' + run_dict['water_surface_fp'])
         else:
             lg.info('No surf_tool generated file, generating one')
             try:
@@ -584,7 +596,7 @@ class BatchRun():
         #------------------------------------------------#
         if os.path.isfile(run_dict['pf_fp']):
             phase_file_exists = True
-            lg.info('Found phase_tool generated file')
+            lg.info('Found phase_tool generated file' + run_dict['pf_fp'])
         else:
             lg.info('No sky_tool generated file, generating one')
             try:
@@ -611,6 +623,9 @@ class BatchRun():
             lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')
 
     def generate_directories(self, overwrite=False):
+        """
+
+        """
         if not os.path.exists(self.batch_output):
             try:
                 lg.info('Creating batch project directory')
@@ -724,11 +739,17 @@ class BatchRun():
 
 
 class FileTools():
+    """
+
+    """
     def __init__(self):
         pass
 
     @staticmethod
     def read_param_file_to_dict(file_name):
+        """
+
+        """
         data = loadtxt(file_name, delimiter='=', dtype=scipy.string0)
         data_dict = dict(data)
         for key in data_dict.keys():
@@ -740,16 +761,25 @@ class FileTools():
 
     @staticmethod
     def dict_to_object(data_object, data_dict):
+        """
+
+        """
         data_object.__dict__ = data_dict
         return data_object
 
 
 class HelperMethods():
+    """
+
+    """
     def __init__(self):
         pass
 
     @staticmethod
     def string_to_float_list(string_var):
+        """
+
+        """
         return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
 
 

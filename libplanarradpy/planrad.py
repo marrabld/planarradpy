@@ -797,6 +797,7 @@ class ReportTools():
         pass
 
     def write_batch_report(self):
+        pass
 
 
 

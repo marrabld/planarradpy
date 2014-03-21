@@ -787,7 +787,16 @@ class HelperMethods():
         return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
 
 
+class ReportTools():
+    def __init__(self):
+        pass
+    def read_pr_report(self, filename):
+        pass
 
+    def get_parameter(self, parameter):
+        pass
+
+    def write_batch_report(self):
 
 
 

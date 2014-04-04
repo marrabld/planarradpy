@@ -1,4 +1,4 @@
-from numpy import loadtxt
+from scipy import loadtxt
 import os
 import sys
 import time
@@ -442,6 +442,7 @@ class BatchRun():
     """
 
     """
+
     def __init__(self, object, batch_name='batch'):
         """
 
@@ -510,8 +511,7 @@ class BatchRun():
                     except:
                         rep_size = 0
 
-
-                    if rep_size < 1.0:   # TODO this is a spoof!
+                    if rep_size < 1.0:  # TODO this is a spoof!
                         lg.info('No report file found, running process')
                         p = Process(target=self._run, args=(_dir,))
                     else:
@@ -567,7 +567,7 @@ class BatchRun():
         else:
             lg.info('No sky_tool generated file, generating one')
             #try:
-            inp_file = run_dict['sky_fp']  + '_params.txt'
+            inp_file = run_dict['sky_fp'] + '_params.txt'
             #self.run_params.sky_file = inp_file
             self.run_params.write_sky_params_to_file()
             #if not os.path.isfile(inp_file):
@@ -747,6 +747,7 @@ class FileTools():
     """
 
     """
+
     def __init__(self):
         pass
 
@@ -777,6 +778,7 @@ class HelperMethods():
     """
 
     """
+
     def __init__(self):
         pass
 
@@ -789,10 +791,21 @@ class HelperMethods():
 
 
 class ReportTools():
+    """
+    Load the report in to a dictionary
+
+    """
+
     def __init__(self):
-        pass
+        self.data_dictionary = {}
+
     def read_pr_report(self, filename):
-        pass
+        for line in open(filename):
+            if '#' not in line or not line.strip():
+                element = line.split(',')
+                self.data_dictionary[element[0]] = element[1:]
+
+        return self.data_dictionary
 
     def get_parameter(self, parameter):
         pass

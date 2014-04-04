@@ -38,9 +38,9 @@ class TestBatchRun(unittest.TestCase):
         self.br.run()
 
 
-    #def test_generate_directories(self):
+        #def test_generate_directories(self):
 
-    #    self.br.generate_directories(overwrite=False)
+        #    self.br.generate_directories(overwrite=False)
 
 
 class TestBioOpticalParameters(unittest.TestCase):
@@ -62,3 +62,12 @@ class TestBioOpticalParameters(unittest.TestCase):
 
         self.bio.build_a_cdom(g, s)
         print(self.bio.a_cdom)
+
+
+class TestReportTools(unittest.TestCase):
+    def setUp(self):
+        self.rt = pr.ReportTools()
+
+    def test_read_pr_report(self):
+        rep_dict = self.rt.read_pr_report('./test_data/report.txt')
+        print(rep_dict['Rrs'])

@@ -702,6 +702,7 @@ class BatchRun():
                                 self.bio_params.write_c_to_file(self.run_params.attenuation_file)
 
                                 self.run_params.project_file = os.path.join(dir_name, 'batch.txt')
+                                self.run_params.report_file = os.path.join(dir_name, 'report.txt')
 
                                 if not os.path.exists(dir_name):
                                     try:
@@ -798,15 +799,4 @@ class ReportTools():
 
     def write_batch_report(self):
         pass
-
-
-
-
-
-
-
-
-
-
-
 

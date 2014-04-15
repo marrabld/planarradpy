@@ -541,7 +541,7 @@ class BatchRun():
     def _dummy(self, run_dir):
         lg.debug(run_dir)
 
-    def _run(self, run_dir, exec_path='/home/marrabld/Apps/planarRad/bin'):
+    def _run(self, run_dir): #, exec_path='/home/marrabld/Apps/planarRad/bin'):
         """
 
         """
@@ -572,9 +572,9 @@ class BatchRun():
             self.run_params.write_sky_params_to_file()
             #if not os.path.isfile(inp_file):
             #    lg.error(inp_file + ' : is not a valid parameter file')
-            lg.debug('Runing skytool!!!!! @ ' + os.path.join(exec_path, 'skytool_free') + '#')
-            lg.debug(os.path.join(exec_path, 'skytool_free') + ' params=' + inp_file)
-            os.system(os.path.join(exec_path, 'skytool_free') + ' params=' + inp_file)
+            lg.debug('Runing skytool' + os.path.join(self.run_params.exec_path, 'skytool_free') + '#')
+            lg.debug(os.path.join(self.run_params.exec_path, 'skytool_free') + ' params=' + inp_file)
+            os.system(os.path.join(self.run_params.exec_path, 'skytool_free') + ' params=' + inp_file)
             #except OSError:
             #    lg.exception('Cannot execute PlannarRad, cannot find executable file to skytool_free')
 
@@ -591,7 +591,7 @@ class BatchRun():
                 self.run_params.write_surf_params_to_file()
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
-                os.system(os.path.join(exec_path, 'surftool_free') + ' params=' + inp_file)
+                os.system(os.path.join(self.run_params.exec_path, 'surftool_free') + ' params=' + inp_file)
             except OSError:
                 lg.exception('Cannot execute PlannarRad, cannot find executable file to surftool_free')
 
@@ -608,7 +608,7 @@ class BatchRun():
                 self.run_params.write_phase_params_to_file()
                 if not os.path.isfile(inp_file):
                     lg.error(inp_file + ' : is not a valid parameter file')
-                os.system(os.path.join(exec_path, 'phasetool_free') + ' params=' + inp_file)
+                os.system(os.path.join(self.run_params.exec_path, 'phasetool_free') + ' params=' + inp_file)
             except OSError:
                 lg.exception('Cannot execute PlannarRad, cannot find executable file to phasetool_free')
 
@@ -622,7 +622,7 @@ class BatchRun():
             lg.error(inp_file + ' : is not a valid batch file')
 
         try:
-            os.system(os.path.join(exec_path, 'slabtool_free') + ' params=' + inp_file)
+            os.system(os.path.join(self.run_params.exec_path, 'slabtool_free') + ' params=' + inp_file)
         except OSError:
             lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')
 

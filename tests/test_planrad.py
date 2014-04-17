@@ -27,7 +27,7 @@ class TestRunParameters(unittest.TestCase):
 class TestBatchRun(unittest.TestCase):
     def setUp(self):
         rp = pr.RunParameters()
-        rp.exec_path = '/home/marrabld/Apps/planarRad/bin'
+        rp.exec_path = '/home/boulefi/jude2_install/bin'
         rp.verbose = 6
         rp.num_cpus = 1
         self.br = pr.BatchRun(rp, 'unit_test')

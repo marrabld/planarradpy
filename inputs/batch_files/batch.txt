@@ -29,7 +29,7 @@ num_cpus = -1
 #----------------------------------------#
 # Set the path of Planarrad
 #----------------------------------------#
-exec_path = /home/marrabld/Apps/planarRad/bin
+exec_path = /home/boulefi/jude2_install/bin
 
 #----------------------------------------#
 # Set the logging level
@@ -40,5 +40,5 @@ verbose = 6
 # Set the file paths
 # Use absolute paths
 #----------------------------------------#
-phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/all_zeros17.txt
+phytoplankton_absorption_file = /home/boulefi/PycharmProjects/planarradpy/inputs/iop_files/a_phi.csv
+bottom_reflectance_file = /home/boulefi/PycharmProjects/planarradpy/inputs/bottom_files/all_zeros17.txt

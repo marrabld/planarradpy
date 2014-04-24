@@ -50,15 +50,15 @@ class TestBioOpticalParameters(unittest.TestCase):
         self.bio = pr.BioOpticalParameters(wavelengths)
 
     def test_build_bbp(self):
-        x = 1
-        y = 2
+        x = 0.11
+        y = 1
 
         self.bio.build_bbp(x, y)
         print(self.bio.b_bp)
 
     def test_build_a_cdom(self):
-        g = 1
-        s = 2
+        g = 0.1
+        s = 0.014
 
         self.bio.build_a_cdom(g, s)
         print(self.bio.a_cdom)
@@ -71,3 +71,6 @@ class TestReportTools(unittest.TestCase):
     def test_read_pr_report(self):
         rep_dict = self.rt.read_pr_report('./test_data/report.txt')
         print(rep_dict['Rrs'])
+
+    def test_write_batch_report(self):
+        print(self.rt.write_batch_report('../outputs/unit_test_3', 'Rrs'))

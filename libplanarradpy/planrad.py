@@ -1,4 +1,3 @@
-
 import os
 import sys
 import time
@@ -828,21 +827,67 @@ class ReportTools():
         """
 
         #--------------------------------------------------#
+        # we put the batch report one directory up in the tree
+        #--------------------------------------------------#
+        batch_report_file = 'batch_report.txt'
+        batch_report_file = os.path.join(input_directory, batch_report_file)
+        f = open(batch_report_file, 'w')
+        w = csv.writer(f, delimiter=',')
+
+        #--------------------------------------------------#
+        # Read in the report from planarrad and pull out the parameter that we want
+        #--------------------------------------------------#
+        dir_list = os.listdir(input_directory)
+
+        report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+
+        try:
+            wave_val = report['band_centres']
+            param_val = report[parameter]
+        except:
+            lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
+
+        wave_str = str(wave_val)
+        wave_str = wave_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '').replace(' -,', '').replace(',','\",\"')
+
+        f.write(
+                '\"Sun Azimuth (deg)\",\"Sun Zenith (deg)\",\"Phytoplankton\",\"Scattering X\",\"Scattering Y\",\"CDOM G\",\"CDOM S\",\"Depth (m)\",\"#wave length (nm) ->\",\"' + wave_str + '\"\n')
+
+        #--------------------------------------------------#
         # Get all of the directories under the batch directories
         # The directory names have the IOP parameters in the names
         #--------------------------------------------------#
-        for dir in os.listdir(input_directory):
-            #print(dir)
-            tmp_str_list = dir.split('_')
-            #for tmp_str in tmp_str_list:
-            saa = ''.join(c for c in tmp_str_list[0] if not c.isalpha())
-            sza = ''.join(c for c in tmp_str_list[1] if not c.isalpha())
-            p = ''.join(c for c in tmp_str_list[2] if not c.isalpha())
-            x = ''.join(c for c in tmp_str_list[3] if not c.isalpha())
-            y = ''.join(c for c in tmp_str_list[4] if not c.isalpha())
-            g = ''.join(c for c in tmp_str_list[5] if not c.isalpha())
-            s = ''.join(c for c in tmp_str_list[6] if not c.isalpha())
-            z = ''.join(c for c in tmp_str_list[7] if not c.isalpha())
+
+        for dir in dir_list:
+            if os.path.isdir(os.path.abspath(os.path.join(input_directory, dir))):
+                tmp_str_list = dir.split('_')
+                #for tmp_str in tmp_str_list:
+                saa = ''.join(c for c in tmp_str_list[0] if not c.isalpha())
+                sza = ''.join(c for c in tmp_str_list[1] if not c.isalpha())
+                p = ''.join(c for c in tmp_str_list[2] if not c.isalpha())
+                x = ''.join(c for c in tmp_str_list[3] if not c.isalpha())
+                y = ''.join(c for c in tmp_str_list[4] if not c.isalpha())
+                g = ''.join(c for c in tmp_str_list[5] if not c.isalpha())
+                s = ''.join(c for c in tmp_str_list[6] if not c.isalpha())
+                z = ''.join(c for c in tmp_str_list[7] if not c.isalpha())
+
+
+
+                #--------------------------------------------------#
+                # Write the report header and then the values above in the columns
+                #--------------------------------------------------#
+
+                f.write(saa + ',' + sza + ',' + p + ',' + x + ',' + y + ',' + g + ',' + s + ',' + z + ',')
+
+                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+                try:
+                    param_val = report[parameter]
+                except:
+                    lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
+
+                param_str = str(param_val)
+                param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
+                f.write(param_str + '\n')
 
 
 

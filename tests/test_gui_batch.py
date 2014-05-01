@@ -12,6 +12,7 @@ sys.path.append("../")
 import unittest
 import gui.gui_batch
 
+
 class TestBatchFile(unittest.TestCase):
     def setUp(self):
         """
@@ -25,16 +26,16 @@ class TestBatchFile(unittest.TestCase):
         g_value = 4
         s_value = 4
         z_value = 2
-        waveL_values = [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0, 670.0, 690.0, 710.0, 730.0]
+        wavelength_values = [410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0,
+                             670.0, 690.0, 710.0, 730.0]
         verbose_value = 6
         phyto_path = '/home/boulefi/PycharmProjects/planarradpy/inputs/iop_files/a_phi.csv'
         bottom_path = '/home/boulefi/PycharmProjects/planarradpy/inputs/bottom_files/all_zeros17.txt'
         nb_cpu = -1
         exec_path = '/home/boulefi/jude2_install/bin'
 
-        self.gui_batch = gui.gui_batch.BatchFile(p_values, x_value, y_value, g_value, s_value, z_value, waveL_values, verbose_value, phyto_path,
-                 bottom_path, nb_cpu, exec_path)
-
+        self.gui_batch = gui.gui_batch.BatchFile(p_values, x_value, y_value, g_value, s_value, z_value,
+                                                 wavelength_values, verbose_value, phyto_path, bottom_path, nb_cpu, exec_path)
 
     def test_write_batch_to_file(self):
         """
@@ -56,9 +57,9 @@ class TestBatchFile(unittest.TestCase):
         #------------------------------------------------------------------------------------#
         #The following will read the file back in and check the different values are the same.
         #-------------------------------------------------------------------------------------#
-        self.batch_file = open(path,'r')
+        self.batch_file = open(path, 'r')
 
-        items = ['p_list','x_list','y_list','g_list','s_list','z_list','num_cpus','verbose']
+        items = ['p_list', 'x_list', 'y_list', 'g_list', 's_list', 'z_list', 'num_cpus', 'verbose']
         for line in self.batch_file:
             if '=' in line:
                 key, val = line.split('= ')
@@ -102,15 +103,17 @@ class TestBatchFile(unittest.TestCase):
                     self.assertEqual(val, self.gui_batch.phyto_path)
                 elif 'bottom_reflectance_file' in key:
                     self.assertEqual(val, self.gui_batch.bottom_path)
-                # do something
+                    # do something
             else:
                 # don't
                 continue
 
         self.batch_file.close()
 
+
 def main():
     unittest.main()
 
+
 if __name__ == '__main__':
-   main()
+    main()

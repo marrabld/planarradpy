@@ -2,13 +2,14 @@
 
 import os
 
+
 class BatchFile():
     """
     This class create the batch file which will be used by Planarrad.
     The constructor receive data that the user typed and transmitted thanks to files, concerning the environment.
     """
 
-    def __init__(self, p_values, x_value, y_value, g_value, s_value, z_value, waveL_values, verbose_value, phyto_path,
+    def __init__(self, p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values, verbose_value, phyto_path,
                  bottom_path, nb_cpu, exec_path):
         self.p_values = p_values
         self.x_value = x_value
@@ -16,7 +17,7 @@ class BatchFile():
         self.g_value = g_value
         self.s_value = s_value
         self.z_value = z_value
-        self.waveL_values = waveL_values
+        self.wavelength_values = wavelength_values
         self.verbose_value = verbose_value
         self.phyto_path = phyto_path
         self.bottom_path = bottom_path
@@ -24,7 +25,7 @@ class BatchFile():
         self.nb_cpu = nb_cpu
         self.exec_path = exec_path
 
-    def write_batch_to_file(self, filename='batch_test.txt'):  # p_values, x_value, y_value, g_value, s_value, z_value, waveL_values, verbose_value, phyto_path, bottom_path, nb_cpu, exec_path):
+    def write_batch_to_file(self, filename='batch_test.txt'):  # p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values, verbose_value, phyto_path, bottom_path, nb_cpu, exec_path):
         """
         This function create a new file if he doesn't exist already, move it to 'inputs/batch_file' folder and write data and comments associated to them.
         Inputs: p_values :
@@ -45,7 +46,6 @@ class BatchFile():
         # The following is the file that is passed to planarradpy.
         #--------------------------------------------------------#
         self.batch_file = open(str(filename), 'w')
-
 
         self.batch_file.write("""#----------------------------------------#
 # Name of the batch run
@@ -82,7 +82,7 @@ z_list = """)
 # Wavelengths
 #----------------------------------------#
 wavelengths = """)
-        self.batch_file.write(str(self.waveL_values))
+        self.batch_file.write(str(self.wavelength_values))
         self.batch_file.write("""
 
 #----------------------------------------#

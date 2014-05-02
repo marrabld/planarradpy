@@ -45,7 +45,9 @@ def main(argv):
     rp.phytoplankton_absorption_file = input_parameters['phytoplankton_absorption_file']
     rp.bottom_reflectance_file = input_parameters['bottom_reflectance_file']
 
-    p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])  # map(float, input_parameters['p_list'])
+    saa_list = pr.HelperMethods.string_to_float_list(input_parameters['saa_list'])
+    sza_list = pr.HelperMethods.string_to_float_list(input_parameters['sza_list'])
+    p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])
     x_list = pr.HelperMethods.string_to_float_list(input_parameters['x_list'])
     y_list = pr.HelperMethods.string_to_float_list(input_parameters['y_list'])
     g_list = pr.HelperMethods.string_to_float_list(input_parameters['g_list'])
@@ -55,7 +57,9 @@ def main(argv):
     batch_name = input_parameters['batch_name']
 
     br = pr.BatchRun(rp, batch_name)
-    br.batch_parameters(p_list,
+    br.batch_parameters(saa_list,
+                        sza_list,
+                        p_list,
                         x_list,
                         y_list,
                         g_list,

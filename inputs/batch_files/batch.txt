@@ -1,17 +1,19 @@
 #----------------------------------------#
 # Give the batch run a name
 #----------------------------------------#
-batch_name = unit_test_3
+batch_name = unit_test_4
 
 #----------------------------------------#
 # Set the Bio-optical parameters list
 #----------------------------------------#
-p_list = 0.5, 1, 5, 10
-x_list = 2
-y_list = 3
-g_list = 4
-s_list = 4
-z_list = 2
+saa_list = 90.0, 130.0
+sza_list = 40
+p_list = 0.01, 0.1
+x_list = 0.1
+y_list = 1.0
+g_list = 0.1
+s_list = 0.014
+z_list = 20
 
 #----------------------------------------#
 # Wavelengths must be defined

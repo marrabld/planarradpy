@@ -1,4 +1,3 @@
-from scipy import loadtxt
 import os
 import sys
 import time
@@ -7,6 +6,7 @@ sys.path.append("../..")
 
 import logger as log
 import scipy
+from scipy import loadtxt
 import libplanarradpy
 import libplanarradpy.state
 import csv
@@ -448,6 +448,8 @@ class BatchRun():
 
         """
         self.run_params = object
+        self.saa_list = []
+        self.sza_list = []
         self.p_list = []  # Phyto scaling param
         self.x_list = []
         self.y_list = []
@@ -541,7 +543,7 @@ class BatchRun():
     def _dummy(self, run_dir):
         lg.debug(run_dir)
 
-    def _run(self, run_dir): #, exec_path='/home/marrabld/Apps/planarRad/bin'):
+    def _run(self, run_dir):
         """
 
         """
@@ -675,66 +677,72 @@ class BatchRun():
             self.run_params.pure_water_scattering_file)
         self.bio_params.read_aphi_from_file(self.run_params.phytoplankton_absorption_file)
 
-        for p in self.p_list:
-            for x in self.x_list:
-                for y in self.y_list:
-                    for g in self.g_list:
-                        for s in self.s_list:
-                            for z in self.z_list:
-                                file_name = 'P' + str(p) + '_X' + str(x) + '_Y' + str(y) + '_G' + str(g) + '_S' + str(
-                                    s) + '_Z' + str(z)
-                                dir_name = os.path.join(self.batch_output, file_name)
-                                self.run_params.output_path = dir_name
-                                #--------------------------------------------------#
-                                # UPDATE THE IOP PARAMETERS FOR THE RUN FILE
-                                #--------------------------------------------------#
-                                self.run_params.depth = z
-                                self.bio_params.build_bbp(x, y)  # todo add wave const as a kwarg
-                                self.bio_params.build_a_cdom(g, s)
-
-                                self.bio_params.build_all_iop()
-                                self.run_params.scattering_file = os.path.join(
-                                    os.path.join(self.run_params.input_path, 'iop_files'), 'b_' + file_name)
-                                self.bio_params.write_b_to_file(self.run_params.scattering_file)
-
-                                self.run_params.attenuation_file = os.path.join(
-                                    os.path.join(self.run_params.input_path, 'iop_files'), 'c_' + file_name)
-                                self.bio_params.write_c_to_file(self.run_params.attenuation_file)
-
-                                self.run_params.project_file = os.path.join(dir_name, 'batch.txt')
-                                self.run_params.report_file = os.path.join(dir_name, 'report.txt')
-
-                                if not os.path.exists(dir_name):
-                                    try:
-                                        lg.info('Creating run directory')
-                                        os.makedirs(dir_name)
-                                        self.run_params.write_run_parameters_to_file()
-                                    except OSError:
-                                        lg.exception('Could not create run directory')
-
-                                elif os.path.exists(dir_name) and overwrite == True:
-                                    try:
-                                        lg.info('Creating run directory')
-                                        lg.warning('Overwriting existing directories')
-                                        os.makedirs(dir_name)
-                                        self.run_params.write_run_parameters_to_file()
-                                    except OSError:
-                                        lg.exception('Could not create run directory')
+        for saa in self.saa_list:
+            for sza in self.sza_list:
+                for p in self.p_list:
+                    for x in self.x_list:
+                        for y in self.y_list:
+                            for g in self.g_list:
+                                for s in self.s_list:
+                                    for z in self.z_list:
+                                        file_name = 'SAA' + str(saa) + '_SZA' + str(sza) + '_P' + str(p) + '_X' + str(
+                                            x) + '_Y' + str(y) + '_G' + str(g) + '_S' + str(s) + '_Z' + str(z)
+                                        dir_name = os.path.join(self.batch_output, file_name)
+                                        self.run_params.output_path = dir_name
                                         #--------------------------------------------------#
-                                        # FIGURE OUT WHICH IOP TO USE FROM THE DIRECTORY NAME
-                                        # WRITE THE PARAM FILE IN TO THE DIRECTORY
+                                        # UPDATE THE IOP PARAMETERS FOR THE RUN FILE
                                         #--------------------------------------------------#
+                                        self.run_params.sky_azimuth = saa
+                                        self.run_params.sky_zenith = sza
+                                        self.run_params.depth = z
+                                        self.bio_params.build_bbp(x, y)  # todo add wave const as a kwarg
+                                        self.bio_params.build_a_cdom(g, s)
 
-                                        #--------------------------------------------------#
-                                        # MAKE A LIST OF ALL THE DIRECTORIES AND CHECK
-                                        # IF THEY HAVE ANY OUTPUTS IN THEM, IF THEY DO THEY
-                                        # HAVE BEEN RUN ALREADY.  IF NOT PARSE THAT RUN FILE
-                                        # TO PLANARRAD.  THIS MEANS IF IT FALLS OVER THEN THE
-                                        # BATCH CAN BE STARTED AGAIN WITHOUT
-                                        #--------------------------------------------------#
+                                        self.bio_params.build_all_iop()
+                                        self.run_params.scattering_file = os.path.join(
+                                            os.path.join(self.run_params.input_path, 'iop_files'), 'b_' + file_name)
+                                        self.bio_params.write_b_to_file(self.run_params.scattering_file)
+
+                                        self.run_params.attenuation_file = os.path.join(
+                                            os.path.join(self.run_params.input_path, 'iop_files'), 'c_' + file_name)
+                                        self.bio_params.write_c_to_file(self.run_params.attenuation_file)
+
+                                        self.run_params.project_file = os.path.join(dir_name, 'batch.txt')
+                                        self.run_params.report_file = os.path.join(dir_name, 'report.txt')
+
+                                        if not os.path.exists(dir_name):
+                                            try:
+                                                lg.info('Creating run directory')
+                                                os.makedirs(dir_name)
+                                                self.run_params.write_run_parameters_to_file()
+                                            except OSError:
+                                                lg.exception('Could not create run directory')
+
+                                        elif os.path.exists(dir_name) and overwrite == True:
+                                            try:
+                                                lg.info('Creating run directory')
+                                                lg.warning('Overwriting existing directories')
+                                                os.makedirs(dir_name)
+                                                self.run_params.write_run_parameters_to_file()
+                                            except OSError:
+                                                lg.exception('Could not create run directory')
+                                                #--------------------------------------------------#
+                                                # FIGURE OUT WHICH IOP TO USE FROM THE DIRECTORY NAME
+                                                # WRITE THE PARAM FILE IN TO THE DIRECTORY
+                                                #--------------------------------------------------#
+
+                                                #--------------------------------------------------#
+                                                # MAKE A LIST OF ALL THE DIRECTORIES AND CHECK
+                                                # IF THEY HAVE ANY OUTPUTS IN THEM, IF THEY DO THEY
+                                                # HAVE BEEN RUN ALREADY.  IF NOT PARSE THAT RUN FILE
+                                                # TO PLANARRAD.  THIS MEANS IF IT FALLS OVER THEN THE
+                                                # BATCH CAN BE STARTED AGAIN WITHOUT
+                                                #--------------------------------------------------#
 
 
-    def batch_parameters(self, p, x, y, g, s, z):
+    def batch_parameters(self, saa, sza, p, x, y, g, s, z):
+        self.saa_list = saa
+        self.sza_list = sza
         self.p_list = p
         self.x_list = x
         self.y_list = y
@@ -810,6 +818,77 @@ class ReportTools():
     def get_parameter(self, parameter):
         pass
 
-    def write_batch_report(self):
-        pass
+    def write_batch_report(self, input_directory, parameter):
+        """
+        Collect all of the batch reports and concatenate the results.  The report should be :
+
+        :param input_directory:
+        :param parameter: This is the parameter in which to report.
+        """
+
+        #--------------------------------------------------#
+        # we put the batch report one directory up in the tree
+        #--------------------------------------------------#
+        batch_report_file = 'batch_report.txt'
+        batch_report_file = os.path.join(input_directory, batch_report_file)
+        f = open(batch_report_file, 'w')
+        w = csv.writer(f, delimiter=',')
+
+        #--------------------------------------------------#
+        # Read in the report from planarrad and pull out the parameter that we want
+        #--------------------------------------------------#
+        dir_list = os.listdir(input_directory)
+
+        report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+
+        try:
+            wave_val = report['band_centres']
+            param_val = report[parameter]
+        except:
+            lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
+
+        wave_str = str(wave_val)
+        wave_str = wave_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '').replace(' -,', '').replace(',','\",\"')
+
+        f.write(
+                '\"Sun Azimuth (deg)\",\"Sun Zenith (deg)\",\"Phytoplankton\",\"Scattering X\",\"Scattering Y\",\"CDOM G\",\"CDOM S\",\"Depth (m)\",\"#wave length (nm) ->\",\"' + wave_str + '\"\n')
+
+        #--------------------------------------------------#
+        # Get all of the directories under the batch directories
+        # The directory names have the IOP parameters in the names
+        #--------------------------------------------------#
+
+        for dir in dir_list:
+            if os.path.isdir(os.path.abspath(os.path.join(input_directory, dir))):
+                tmp_str_list = dir.split('_')
+                #for tmp_str in tmp_str_list:
+                saa = ''.join(c for c in tmp_str_list[0] if not c.isalpha())
+                sza = ''.join(c for c in tmp_str_list[1] if not c.isalpha())
+                p = ''.join(c for c in tmp_str_list[2] if not c.isalpha())
+                x = ''.join(c for c in tmp_str_list[3] if not c.isalpha())
+                y = ''.join(c for c in tmp_str_list[4] if not c.isalpha())
+                g = ''.join(c for c in tmp_str_list[5] if not c.isalpha())
+                s = ''.join(c for c in tmp_str_list[6] if not c.isalpha())
+                z = ''.join(c for c in tmp_str_list[7] if not c.isalpha())
+
+
+
+                #--------------------------------------------------#
+                # Write the report header and then the values above in the columns
+                #--------------------------------------------------#
+
+                f.write(saa + ',' + sza + ',' + p + ',' + x + ',' + y + ',' + g + ',' + s + ',' + z + ',')
+
+                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+                try:
+                    param_val = report[parameter]
+                except:
+                    lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
+
+                param_str = str(param_val)
+                param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
+                f.write(param_str + '\n')
+
+
+
 

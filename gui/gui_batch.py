@@ -25,7 +25,7 @@ class BatchFile():
         self.nb_cpu = nb_cpu
         self.exec_path = exec_path
 
-    def write_batch_to_file(self, filename='batch_test.txt'):  # p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values, verbose_value, phyto_path, bottom_path, nb_cpu, exec_path):
+    def write_batch_to_file(self, filename='batch_test_boulefi.txt'):  # p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values, verbose_value, phyto_path, bottom_path, nb_cpu, exec_path):
         """
         This function create a new file if he doesn't exist already, move it to 'inputs/batch_file' folder and write data and comments associated to them.
         Inputs: p_values :
@@ -51,7 +51,7 @@ class BatchFile():
 # Name of the batch run
 #----------------------------------------#
 batch_name = """)
-        self.batch_file.write("unity_test_4")
+        self.batch_file.write("unity_test_boulefi")
         self.batch_file.write("""
 
 #----------------------------------------#

@@ -124,6 +124,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.p_label.setStyleSheet('color: black')
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.p_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -133,6 +134,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.waveL_label.setStyleSheet('color: black')
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.waveL_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -156,7 +158,7 @@ class FormEvents():
                 else:
                     self.ui.particules_label.setStyleSheet('color: black')
                     self.ui.x_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.particules_label.setStyleSheet('color: red')
                 self.ui.x_label.setStyleSheet('color: red')
@@ -169,7 +171,7 @@ class FormEvents():
                 else:
                     self.ui.particules_label.setStyleSheet('color: black')
                     self.ui.y_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.particules_label.setStyleSheet('color: red')
                 self.ui.y_label.setStyleSheet('color: red')
@@ -182,7 +184,7 @@ class FormEvents():
                 else:
                     self.ui.organic_label.setStyleSheet('color: black')
                     self.ui.g_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
                 self.ui.g_label.setStyleSheet('color: red')
@@ -195,7 +197,7 @@ class FormEvents():
                 else:
                     self.ui.organic_label.setStyleSheet('color: black')
                     self.ui.s_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
                 self.ui.s_label.setStyleSheet('color: red')
@@ -206,7 +208,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.z_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.z_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -221,7 +223,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.verbose_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.verbose_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -242,7 +244,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.phyto_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.phyto_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -252,7 +254,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.bottom_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.bottom_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -262,7 +264,7 @@ class FormEvents():
                     self.nb_errors += 1
                 else:
                     self.ui.execPath_label.setStyleSheet('color: black')
-                    self.nb_errors -= 0
+                    self.nb_errors -= 1
             except AttributeError:
                 self.ui.execPath_label.setStyleSheet('color: red')
                 self.nb_errors += 1
@@ -300,13 +302,16 @@ class FormEvents():
             """
             This function execute planarrad using the batch file.
             """
-
+            #VERIFIER L'AJOUT/SUPPRESSION D'ERREUR CAR FONCTIONNE MAL. DECREMENTE SIMPLEMENT QUAND PAS D'ERREUR (passage negatif)
+            #ET INCREMENTE SIMPLEMENT QUAND ERREUR. NE S'ARRETE PAS A 0 OU 8.
             if self.nb_errors > 0:
                 display_error_message()
             elif self.nb_errors == 0:
                 hide_error_message(self)
-                os.chdir('../')
-                os.system('./planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt')
+                #PLACER ICI,REECRIT LE FICHIER BATCH ou pas? Appeller la fonction seulement plutot?
+                self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), write_to_file)
+                #os.chdir('../')
+                #os.system('./planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt')
 
         def cancel_planarrad():
             """
@@ -373,8 +378,7 @@ class FormEvents():
             self.ui.widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
             self.ui.widget.canvas.picture.set_title('Rrs.csv')
             self.ui.widget.canvas.print_figure('Rrs.png') #Save the graphic in a file in the current repository
-            #pyplot.legend() #display in a legend curves's labels.
-            self.legend = self.ui.widget.canvas.picture.legend()
+            self.legend = self.ui.widget.canvas.picture.legend() #display in a legend curves's labels.
             self.legend.figure.canvas.draw()
 
             csv_file.close()
@@ -389,11 +393,10 @@ class FormEvents():
         self.ui.exec_path_button.connect(self.ui.exec_path_button, PyQt4.QtCore.SIGNAL('clicked()'),
                                          search_directory_exec_path)
         self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), data)
-        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'),
-                            progress_bar)  #A METTRE DANS 'EXECUTE_PLANARRAD' LORSQUE CELA FONCTIONNERA
+        #self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'),
+        #                    progress_bar)  #A METTRE DANS 'EXECUTE_PLANARRAD' LORSQUE CELA FONCTIONNERA
         self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), check_values)
-        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), write_to_file)
-        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'),execute_planarrad)
+        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), execute_planarrad)
 
         #if self.can_run:
         #    self.ui.run.connect(self.ui.run,PyQt4.QtCore.SIGNAL('clicked()'),execute_planarrad)

@@ -6,14 +6,14 @@ batch_name = bug_test
 #----------------------------------------#
 # Set the Bio-optical parameters list
 #----------------------------------------#
-saa_list = 90.0, 130.0
+saa_list = 130.0
 sza_list = 40
-p_list = 0.01, 0.1
+p_list = 0.01, 0.1, 1
 x_list = 0.1
 y_list = 1.0
 g_list = 0.1
 s_list = 0.014
-z_list = 20
+z_list = 10
 
 #----------------------------------------#
 # Wavelengths must be defined
@@ -43,4 +43,4 @@ verbose = 1
 # Use absolute paths
 #----------------------------------------#
 phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/all_zeros17.txt
+bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/ger_sand17.txt

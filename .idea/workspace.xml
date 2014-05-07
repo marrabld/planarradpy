@@ -1,7 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6cf19d2c-c657-4a9e-bdd9-3c91cd0452c7" name="Default" comment="" />
+    <list default="true" id="6cf19d2c-c657-4a9e-bdd9-3c91cd0452c7" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.idx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.pdf" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/ajax-loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/ajax-loader.gif" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment-bright.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment-bright.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment-close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment-close.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/down-pressed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/down-pressed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/down.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/down.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/file.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/file.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/minus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/minus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/objects.inv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/plus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/plus.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/up-pressed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/up-pressed.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/up.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/up.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/.buildinfo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/.buildinfo" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Makefile" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.aux" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.log" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.out" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.tex" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.toc" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/basic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/basic.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/conf.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/default.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/default.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/doctools.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/doctools.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/fncychap.sty" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/genindex/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/search/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/index.rst" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_sources/index.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/jquery.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/make.bat" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/pygments.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/pygments.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/python.ist" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/searchindex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/searchtools.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/searchtools.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/sidebar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/sidebar.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinx.sty" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinxhowto.cls" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinxmanual.cls" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/tabulary.sty" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/underscore.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/underscore.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/websupport.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/websupport.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inputs/batch_files/batch.txt" afterPath="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="planarradpy.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,13 +103,22 @@
     <splitter split-orientation="horizontal" split-proportion="0.60692215">
       <split-first>
         <leaf>
-          <file leaf-file-name="planrad.py" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="planrad.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="495" column="8" selection-start="22130" selection-end="22130" vertical-scroll-proportion="1.1109511" vertical-offset="8139" max-vertical-offset="17478">
+                <state line="14" column="23" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.rst" pinned="false" current="true" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/docs/index.rst">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="614">
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -70,7 +157,7 @@
           <file leaf-file-name="test_planrad.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="76" column="0" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.8184438" vertical-offset="800" max-vertical-offset="1494">
+                <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.016639" vertical-offset="577" max-vertical-offset="1494">
                   <folding />
                 </state>
               </provider>
@@ -93,13 +180,13 @@
       <list>
         <option value="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
         <option value="$PROJECT_DIR$/planarrad.py" />
-        <option value="$PROJECT_DIR$/tests/test_planrad.py" />
         <option value="$PROJECT_DIR$/libplanarradpy/planrad.py" />
+        <option value="$PROJECT_DIR$/tests/test_planrad.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="1104" />
+    <option name="y" value="24" />
     <option name="width" value="1920" />
     <option name="height" value="1056" />
   </component>
@@ -117,7 +204,7 @@
     <option name="STATE" value="0" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1" splitterProportion="0.5">
+    <navigator currentView="ProjectPane" proportions="" version="1" splitterProportion="0.5">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -128,12 +215,48 @@
       <autoscrollFromSource />
       <sortByType />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="docs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/planarrad.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/docs" />
     <property name="restartRequiresConfirmation" value="true" />
   </component>
   <component name="PyConsoleOptionsProvider">
@@ -141,7 +264,7 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python.run_commandline">
+  <component name="RunManager" selected="Python docs.planarradpydocs">
     <configuration default="false" name="Unittests in TestBatchRun" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -157,6 +280,30 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_CLASS" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in test_planrad" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="planarradpy" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/tests/test_planrad.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -227,6 +374,23 @@
       <option name="PARAMETERS" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="docs" factoryName="Sphinx task">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="planarradpy" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="$PROJECT_DIR$/docs" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="html" />
+      <option name="docutils_open_in_browser" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -287,6 +451,26 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
+    <configuration default="false" name="run_commandline" type="PythonConfigurationType" factoryName="Python">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/bin/python2.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="planarradpy" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/planarrad.py" />
+      <option name="PARAMETERS" value="-i $PROJECT_DIR$/inputs/batch_files/batch.txt" />
+      <RunnerSettings RunnerId="PyDebugRunner" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PyDebugRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="false" name="Unittest TestReportTools.test_write_batch_report" type="tests" factoryName="Unittests" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -339,35 +523,37 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="run_commandline" type="PythonConfigurationType" factoryName="Python">
+    <configuration default="false" name="planarradpydocs" type="docs" factoryName="Sphinx task">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
+      <envs />
       <option name="SDK_HOME" value="/usr/bin/python2.7" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="planarradpy" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/planarrad.py" />
-      <option name="PARAMETERS" value="-i $PROJECT_DIR$/inputs/batch_files/batch.txt" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
+      <option name="docutils_input_file" value="" />
+      <option name="docutils_output_file" value="$PROJECT_DIR$/docs" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="html" />
+      <option name="docutils_open_in_browser" value="false" />
       <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest TestReportTools.test_write_batch_report" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestReportTools" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TestBatchRun" />
-      <item index="3" class="java.lang.String" itemvalue="Python.run_commandline" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Python.run_commandline" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest TestReportTools.test_write_batch_report" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in TestReportTools" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in TestBatchRun" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in test_planrad" />
+      <item index="5" class="java.lang.String" itemvalue="Python docs.planarradpydocs" />
     </list>
     <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in TestBatchRun" />
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in test_planrad" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in TestBatchRun" />
       </list>
     </recent_temporary>
   </component>
@@ -423,24 +609,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="1104" width="1920" height="1056" extended-state="6" />
+    <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14707433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17501318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14707433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17501318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.303125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16710596" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5002636" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23229167" sideWeight="0.49973643" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23125" sideWeight="0.49973643" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -472,6 +658,43 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="495" column="8" selection-start="22130" selection-end="22130" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/planarrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="7" selection-start="2711" selection-end="2711" vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="1602">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_planarrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1026">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputs/batch_files/batch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="21" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="936">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="0" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.0" vertical-offset="1368" max-vertical-offset="1494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="12456" max-vertical-offset="16524">
@@ -746,9 +969,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="9" selection-start="5314" selection-end="5314" vertical-scroll-proportion="0.33224756" vertical-offset="1650" max-vertical-offset="6210">
-          <folding />
-        </state>
+        <state line="103" column="9" selection-start="5314" selection-end="5314" vertical-scroll-proportion="0.33224756" vertical-offset="1650" max-vertical-offset="6210" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/planarrad.py">
@@ -760,17 +981,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="0" selection-start="1980" selection-end="1980" vertical-scroll-proportion="0.8184438" vertical-offset="800" max-vertical-offset="1494">
+        <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.016639" vertical-offset="577" max-vertical-offset="1494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="695">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="495" column="8" selection-start="22130" selection-end="22130" vertical-scroll-proportion="1.1109511" vertical-offset="8139" max-vertical-offset="17478">
+        <state line="14" column="23" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="614">
+          <folding />
         </state>
       </provider>
     </entry>

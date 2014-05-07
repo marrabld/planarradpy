@@ -6,13 +6,17 @@
 Welcome to Planarradpy's documentation!
 =======================================
 
+.. warning:: Pre-Alpha  Not ready for any one to use except for testers!
+
 Planarradpy
 ===========
 
-Planarradpy is a tool written in python that can execute Planarrad
+Planarradpy is a tool written in python that can execute `Planarrad <http://www.planarrad.com/index.php?title=PlanarRad>`_
+
+.. image:: ./images/1_main_screen.png
 
 Example Use
-===========
+-----------
 
 python planarradpy.py -i <input_parameter_file>
 
@@ -66,8 +70,14 @@ Example input parameters file
     phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
     bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/all_zeros17.txt
 
+Source code
+-----------
+
+`Planarradpy <https://github.com/marrabld/planarradpy>`_
+
 
 Contents:
+---------
 
 .. toctree::
    :maxdepth: 2

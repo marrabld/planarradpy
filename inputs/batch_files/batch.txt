@@ -8,7 +8,7 @@ batch_name = bug_test
 #----------------------------------------#
 saa_list = 130.0
 sza_list = 40
-p_list = 0.01, 0.1, 1
+p_list = 0.01, 0.1, 1, 10
 x_list = 0.1
 y_list = 1.0
 g_list = 0.1
@@ -44,3 +44,8 @@ verbose = 1
 #----------------------------------------#
 phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
 bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/ger_sand17.txt
+
+#--------------------------------------------------#
+# Set the parameter to report
+#--------------------------------------------------#
+report_parameter = Rrs

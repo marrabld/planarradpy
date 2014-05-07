@@ -41,7 +41,7 @@ class RunParameters():
         self.b_water = scipy.zeros_like(self.wavelengths)
         self.b = scipy.zeros_like(self.wavelengths)  # scatter
         self.c = scipy.zeros_like(self.wavelengths)  # attenuation
-        self.iop_backscatter_proportion_list = ''  #scipy.asarray([])
+        self.iop_backscatter_proportion_list = ''  # scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
         self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
@@ -786,6 +786,7 @@ class BatchRun():
                                         self.run_params.depth = z
                                         self.bio_params.build_bbp(x, y)  # todo add wave const as a kwarg
                                         self.bio_params.build_a_cdom(g, s)
+                                        self.bio_params.scale_aphi(p)
 
                                         self.bio_params.build_all_iop()
                                         self.run_params.scattering_file = os.path.join(

@@ -74,7 +74,10 @@ def main(argv):
                         z_list)
 
     br.generate_directories()
-    br.run()
+    #br.run()
+
+    rt = pr.ReportTools()
+    rt.write_batch_report(os.path.abspath(os.path.join('../outputs', batch_name)), input_parameters['report_parameter'])
 
 
 if __name__ == "__main__":

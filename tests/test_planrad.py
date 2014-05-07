@@ -73,4 +73,5 @@ class TestReportTools(unittest.TestCase):
         print(rep_dict['Rrs'])
 
     def test_write_batch_report(self):
-        print(self.rt.write_batch_report('../outputs/unit_test_4', 'Rrs'))
+        #print(self.rt.write_batch_report('../outputs/unit_test_5', 'Rrs'))
+        print(self.rt.write_batch_report('../outputs/bug_test', 'Rrs'))

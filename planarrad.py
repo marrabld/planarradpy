@@ -45,6 +45,13 @@ def main(argv):
     rp.phytoplankton_absorption_file = input_parameters['phytoplankton_absorption_file']
     rp.bottom_reflectance_file = input_parameters['bottom_reflectance_file']
 
+    #--------------------------------------------------#
+    # update the file names ?
+    #--------------------------------------------------#
+
+    #--------------------------------------------------#
+    # rebuild the iop files ?
+    #--------------------------------------------------#
     saa_list = pr.HelperMethods.string_to_float_list(input_parameters['saa_list'])
     sza_list = pr.HelperMethods.string_to_float_list(input_parameters['sza_list'])
     p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])

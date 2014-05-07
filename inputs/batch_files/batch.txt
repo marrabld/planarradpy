@@ -1,7 +1,7 @@
 #----------------------------------------#
 # Give the batch run a name
 #----------------------------------------#
-batch_name = unit_test_4
+batch_name = bug_test
 
 #----------------------------------------#
 # Set the Bio-optical parameters list
@@ -26,7 +26,7 @@ wavelengths = 410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590
 # Choose the number of CPUs
 # -1 means query the number of CPUs
 #----------------------------------------#
-num_cpus = -1
+num_cpus = 2
 
 #----------------------------------------#
 # Set the path of Planarrad
@@ -36,7 +36,7 @@ exec_path = /home/marrabld/Apps/planarRad/bin
 #----------------------------------------#
 # Set the logging level
 #----------------------------------------#
-verbose = 6
+verbose = 1
 
 #----------------------------------------#
 # Set the file paths

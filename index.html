@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Welcome to planarradpy’s documentation! &mdash; planarradpy 0.0.1 documentation</title>
+    <title>Welcome to Planarradpy’s documentation! &mdash; Planarradpy 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="planarradpy 0.0.1 documentation" href="#" /> 
+    <link rel="top" title="Planarradpy 0.0.1 documentation" href="#" /> 
   </head>
   <body>
     <div class="related">
@@ -38,7 +38,7 @@
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">planarradpy 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">Planarradpy 0.0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -48,18 +48,17 @@
           <div class="body">
             
   <div class="section" id="welcome-to-planarradpy-s-documentation">
-<h1>Welcome to planarradpy&#8217;s documentation!<a class="headerlink" href="#welcome-to-planarradpy-s-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Contents:</p>
-<div class="toctree-wrapper compound">
-<ul class="simple">
-</ul>
+<h1>Welcome to Planarradpy&#8217;s documentation!<a class="headerlink" href="#welcome-to-planarradpy-s-documentation" title="Permalink to this headline">¶</a></h1>
 </div>
+<div class="section" id="planarradpy">
+<h1>Planarradpy<a class="headerlink" href="#planarradpy" title="Permalink to this headline">¶</a></h1>
+<p>Planarradpy is a tool written in python that can execute Planarrad</p>
 </div>
 <div class="section" id="example-use">
 <h1>Example Use<a class="headerlink" href="#example-use" title="Permalink to this headline">¶</a></h1>
 <p>python planarradpy.py -i &lt;input_parameter_file&gt;</p>
-<div class="section" id="example-input-parameter-file">
-<h2>Example input parameter file<a class="headerlink" href="#example-input-parameter-file" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-input-parameters-file">
+<h2>Example input parameters file<a class="headerlink" href="#example-input-parameters-file" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="c">#----------------------------------------#</span>
 <span class="c"># Give the batch run a name</span>
 <span class="c">#----------------------------------------#</span>
@@ -106,6 +105,383 @@
 <span class="n">bottom_reflectance_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">marrabld</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">planarradpy</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">bottom_files</span><span class="o">/</span><span class="n">all_zeros17</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 </div>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-libplanarradpy"></span><span class="target" id="module-libplanarradpy.planrad"></span><dl class="class">
+<dt id="libplanarradpy.planrad.BatchRun">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">BatchRun</tt><big>(</big><em>object</em>, <em>batch_name='batch'</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BatchRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BatchRun" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is used for batch running PlanarRad for many different IOPs.</p>
+<p>It will also distribute the work over many CPUs.  It will run an single instance for PlanarRad on each available
+cores or the number of cores defined in the batchrun file.</p>
+<p>Available &#8216;batchable&#8217; parameters are:</p>
+<p>Sun Azimuth Angle (deg) [saa]</p>
+<p>Sun Zenith Angle (deg) [sza]</p>
+<p>Phytoplankton scaling parameter [p]</p>
+<p>particulate scattering parameters [x, y] see BioOpticalParameters</p>
+<p>CDOM absorption parameters [g, s]</p>
+<p>depth (m) [z]</p>
+<dl class="method">
+<dt id="libplanarradpy.planrad.BatchRun.batch_parameters">
+<tt class="descname">batch_parameters</tt><big>(</big><em>saa</em>, <em>sza</em>, <em>p</em>, <em>x</em>, <em>y</em>, <em>g</em>, <em>s</em>, <em>z</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BatchRun.batch_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BatchRun.batch_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes lists for parameters and saves them as class properties</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>saa</strong> &#8211; &lt;list&gt; Sun Azimuth Angle (deg)</li>
+<li><strong>sza</strong> &#8211; &lt;list&gt; Sun Zenith Angle (deg)</li>
+<li><strong>p</strong> &#8211; &lt;list&gt; Phytoplankton linear scalling factor</li>
+<li><strong>x</strong> &#8211; &lt;list&gt; Scattering scaling factor</li>
+<li><strong>y</strong> &#8211; &lt;list&gt; Scattering slope factor</li>
+<li><strong>g</strong> &#8211; &lt;list&gt; CDOM absorption scaling factor</li>
+<li><strong>s</strong> &#8211; &lt;list&gt; CDOM absorption slope factor</li>
+<li><strong>z</strong> &#8211; &lt;list&gt; depth (m)</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BatchRun.generate_directories">
+<tt class="descname">generate_directories</tt><big>(</big><em>overwrite=False</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BatchRun.generate_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BatchRun.generate_directories" title="Permalink to this definition">¶</a></dt>
+<dd><p>For all possible combinations of &#8216;batchable&#8217; parameters. create a unique directory to story outputs</p>
+<p>Each directory name is unique and contains the run parameters in the directory name</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>overwrite</strong> &#8211; If set to True will over write all files default = False</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BatchRun.run">
+<tt class="descname">run</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BatchRun.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BatchRun.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distributes the work across the CPUs.  It actually uses _run()</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="libplanarradpy.planrad.BioOpticalParameters">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">BioOpticalParameters</tt><big>(</big><em>wavelengths</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Contains useful parameters and methods for modelling IOPs using bio-optical models</p>
+<p>Constructor takes wavelengths.  This is a common wavelength that all IOPs will be interpolated to</p>
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_a">
+<tt class="descname">build_a</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_a"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total absorption from water, phytoplankton and CDOM</p>
+<p>a = awater + acdom + aphi</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_a_cdom">
+<tt class="descname">build_a_cdom</tt><big>(</big><em>g</em>, <em>s</em>, <em>wave_const=400</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_a_cdom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_a_cdom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the CDOM absorption function :: <span class="math">\(G \exp (-S(\lambda - 400))\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>g</strong> &#8211; function coefficient</li>
+<li><strong>s</strong> &#8211; slope factor</li>
+<li><strong>wave_const</strong> &#8211; wave constant default = 400 (nm)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns null:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_all_iop">
+<tt class="descname">build_all_iop</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_all_iop"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_all_iop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Meta method that calls all of the build methods in the correct order</p>
+<p>self.build_a()
+self.build_bb()
+self.build_b()
+self.build_c()</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_b">
+<tt class="descname">build_b</tt><big>(</big><em>scattering_fraction=0.2</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_b"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_b" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the backscattering from total scattering</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scattering_fraction</strong> &#8211; the fraction of backscattering to total scattering default = 0.2</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_bb">
+<tt class="descname">build_bb</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_bb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_bb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total scattering fro water and particulate scattering</p>
+<p>b = bbp + bwater</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_bbp">
+<tt class="descname">build_bbp</tt><big>(</big><em>x</em>, <em>y</em>, <em>wave_const=550</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_bbp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_bbp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds the particle backscattering function  <span class="math">\(X(\frac{550}{\lambda})^Y\)</span></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>x</strong> &#8211; function coefficient</li>
+<li><strong>y</strong> &#8211; order of the power function</li>
+<li><strong>wave_const</strong> &#8211; wave constant default 550 (nm)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns null:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.build_c">
+<tt class="descname">build_c</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.build_c"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.build_c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the total attenuation from the total absorption and total scattering</p>
+<p>c = a + b</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.read_aphi_from_file">
+<tt class="descname">read_aphi_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.read_aphi_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.read_aphi_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the phytoplankton absorption file from a csv formatted file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; filename and path of the csv file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.read_pure_water_absorption_from_file">
+<tt class="descname">read_pure_water_absorption_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.read_pure_water_absorption_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.read_pure_water_absorption_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the pure water absorption from a csv formatted file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; filename and path of the csv file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.read_pure_water_scattering_from_file">
+<tt class="descname">read_pure_water_scattering_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.read_pure_water_scattering_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.read_pure_water_scattering_from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the pure water scattering from a csv formatted file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; filename and path of the csv file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.scale_aphi">
+<tt class="descname">scale_aphi</tt><big>(</big><em>scale_parameter</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.scale_aphi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.scale_aphi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scale the spectra by multiplying by linear scaling factor</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>scale_parameter</strong> &#8211; Linear scaling factor</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.write_b_to_file">
+<tt class="descname">write_b_to_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.write_b_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.write_b_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the total scattering to csv file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; filename and path of the csv file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.BioOpticalParameters.write_c_to_file">
+<tt class="descname">write_c_to_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#BioOpticalParameters.write_c_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.BioOpticalParameters.write_c_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the total attentuation to file</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; filename and path of the csv file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="libplanarradpy.planrad.FileTools">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">FileTools</tt><a class="reference internal" href="_modules/libplanarradpy/planrad.html#FileTools"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.FileTools" title="Permalink to this definition">¶</a></dt>
+<dd><p>Useful static methods for file mangling</p>
+<dl class="staticmethod">
+<dt id="libplanarradpy.planrad.FileTools.dict_to_object">
+<em class="property">static </em><tt class="descname">dict_to_object</tt><big>(</big><em>data_object</em>, <em>data_dict</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#FileTools.dict_to_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.FileTools.dict_to_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps a dictionary to an object.  Variable names become the key in the dict</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data_object</strong> &#8211; Is an instantiated class</li>
+<li><strong>data_dict</strong> &#8211; is the python dictionary</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Returns data_object:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="libplanarradpy.planrad.FileTools.read_param_file_to_dict">
+<em class="property">static </em><tt class="descname">read_param_file_to_dict</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#FileTools.read_param_file_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.FileTools.read_param_file_to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a text file to a python dictionary using &#8216;=&#8217; as the delimiter</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_name</strong> &#8211; the name and path of the text file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="libplanarradpy.planrad.HelperMethods">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">HelperMethods</tt><a class="reference internal" href="_modules/libplanarradpy/planrad.html#HelperMethods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.HelperMethods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Useful static methods</p>
+<dl class="staticmethod">
+<dt id="libplanarradpy.planrad.HelperMethods.string_to_float_list">
+<em class="property">static </em><tt class="descname">string_to_float_list</tt><big>(</big><em>string_var</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#HelperMethods.string_to_float_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.HelperMethods.string_to_float_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pull comma separated string values out of a text file and converts them to float list</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="libplanarradpy.planrad.ReportTools">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">ReportTools</tt><a class="reference internal" href="_modules/libplanarradpy/planrad.html#ReportTools"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.ReportTools" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load the report in to a dictionary</p>
+<dl class="method">
+<dt id="libplanarradpy.planrad.ReportTools.read_pr_report">
+<tt class="descname">read_pr_report</tt><big>(</big><em>filename</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#ReportTools.read_pr_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.ReportTools.read_pr_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads in a PlanarRad generated report</p>
+<p>Saves the single line reported parameters as a python dictionary</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> &#8211; The name and path of the PlanarRad generated file</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2">Returns self.data_dictionary:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">python dictionary with the key and values from the report</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.ReportTools.write_batch_report">
+<tt class="descname">write_batch_report</tt><big>(</big><em>input_directory</em>, <em>parameter</em><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#ReportTools.write_batch_report"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.ReportTools.write_batch_report" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collect all of the batch reports and concatenate the results.  The report should be :</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>input_directory</strong> &#8211; </li>
+<li><strong>parameter</strong> &#8211; This is the parameter in which to report.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="libplanarradpy.planrad.RunParameters">
+<em class="property">class </em><tt class="descclassname">libplanarradpy.planrad.</tt><tt class="descname">RunParameters</tt><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run parameters required by PlanarRad</p>
+<p>All parameters are properties of this class</p>
+<dl class="method">
+<dt id="libplanarradpy.planrad.RunParameters.update_filenames">
+<tt class="descname">update_filenames</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters.update_filenames"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters.update_filenames" title="Permalink to this definition">¶</a></dt>
+<dd><p>Does nothing currently.  May not need this method</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.RunParameters.write_phase_params_to_file">
+<tt class="descname">write_phase_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters.write_phase_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters.write_phase_params_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the params to file that surftool_Free needs to generate the surface facets</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.RunParameters.write_run_parameters_to_file">
+<tt class="descname">write_run_parameters_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters.write_run_parameters_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters.write_run_parameters_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>All of the class properties are written to a text file</p>
+<p>Each property is on a new line with the key and value sperated with an equals sign &#8216;=&#8217;
+This is the mane planarrad properties file used by slabtool</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.RunParameters.write_sky_params_to_file">
+<tt class="descname">write_sky_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters.write_sky_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters.write_sky_params_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the params to file that skytool_Free needs to generate the sky radiance distribution.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="libplanarradpy.planrad.RunParameters.write_surf_params_to_file">
+<tt class="descname">write_surf_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/libplanarradpy/planrad.html#RunParameters.write_surf_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#libplanarradpy.planrad.RunParameters.write_surf_params_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write the params to file that surftool_Free needs to generate the surface facets</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 <div class="section" id="indices-and-tables">
@@ -115,159 +491,6 @@
 <li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
-<span class="target" id="module-planarradpy"></span><span class="target" id="module-planarradpy.libplanarradpy"></span><span class="target" id="module-planarradpy.libplanarradpy.planrad"></span><dl class="class">
-<dt id="planarradpy.libplanarradpy.planrad.BatchRun">
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">BatchRun</tt><big>(</big><em>object</em>, <em>batch_name='batch'</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BatchRun" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BatchRun.generate_directories">
-<tt class="descname">generate_directories</tt><big>(</big><em>overwrite=False</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun.generate_directories"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BatchRun.generate_directories" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BatchRun.run">
-<tt class="descname">run</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun.run"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BatchRun.run" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="planarradpy.libplanarradpy.planrad.FileTools">
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">FileTools</tt><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.FileTools" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="staticmethod">
-<dt id="planarradpy.libplanarradpy.planrad.FileTools.dict_to_object">
-<em class="property">static </em><tt class="descname">dict_to_object</tt><big>(</big><em>data_object</em>, <em>data_dict</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools.dict_to_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.FileTools.dict_to_object" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="staticmethod">
-<dt id="planarradpy.libplanarradpy.planrad.FileTools.read_param_file_to_dict">
-<em class="property">static </em><tt class="descname">read_param_file_to_dict</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools.read_param_file_to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.FileTools.read_param_file_to_dict" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="planarradpy.libplanarradpy.planrad.HelperMethods">
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">HelperMethods</tt><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#HelperMethods"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.HelperMethods" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="staticmethod">
-<dt id="planarradpy.libplanarradpy.planrad.HelperMethods.string_to_float_list">
-<em class="property">static </em><tt class="descname">string_to_float_list</tt><big>(</big><em>string_var</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#HelperMethods.string_to_float_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.HelperMethods.string_to_float_list" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="planarradpy.libplanarradpy.planrad.RunParameters">
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">RunParameters</tt><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#RunParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.RunParameters" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.RunParameters.write_phase_params_to_file">
-<tt class="descname">write_phase_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#RunParameters.write_phase_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.RunParameters.write_phase_params_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;brief Writes the params to file that surftool_Free needs to generate the surface facets</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.RunParameters.write_run_parameters_to_file">
-<tt class="descname">write_run_parameters_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#RunParameters.write_run_parameters_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.RunParameters.write_run_parameters_to_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.RunParameters.write_sky_params_to_file">
-<tt class="descname">write_sky_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#RunParameters.write_sky_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.RunParameters.write_sky_params_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;brief Writes the params to file that skytool_Free needs to generate the sky radiance distribution.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.RunParameters.write_surf_params_to_file">
-<tt class="descname">write_surf_params_to_file</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#RunParameters.write_surf_params_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.RunParameters.write_surf_params_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>&#64;brief Writes the params to file that surftool_Free needs to generate the surface facets</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters">
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">BioOpticalParameters</tt><big>(</big><em>wavelengths</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.build_a_cdom">
-<tt class="descname">build_a_cdom</tt><big>(</big><em>g</em>, <em>s</em>, <em>wave_const=400</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.build_a_cdom"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.build_a_cdom" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds the CDOM absorption function :: <span class="math">\(G \exp (-S(\lambda - 400))\)</span>
-param: g function coefficient
-param: s slope factor
-param: wave constant
-retval null</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.build_bbp">
-<tt class="descname">build_bbp</tt><big>(</big><em>x</em>, <em>y</em>, <em>wave_const=550</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.build_bbp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.build_bbp" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds the particle backscattering function  <span class="math">\(X(\frac{550}{\lambda})^Y\)</span>
-param: x function coefficient
-param: y order of the power function
-param: waveConst wave constant Default 550 nm
-retval: null</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_aphi_from_file">
-<tt class="descname">read_aphi_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.read_aphi_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_aphi_from_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_pure_water_absorption_from_file">
-<tt class="descname">read_pure_water_absorption_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.read_pure_water_absorption_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_pure_water_absorption_from_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_pure_water_scattering_from_file">
-<tt class="descname">read_pure_water_scattering_from_file</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.read_pure_water_scattering_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.read_pure_water_scattering_from_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="planarradpy.libplanarradpy.planrad.BioOpticalParameters.scale_aphi">
-<tt class="descname">scale_aphi</tt><big>(</big><em>scale_paraemter</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BioOpticalParameters.scale_aphi"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#planarradpy.libplanarradpy.planrad.BioOpticalParameters.scale_aphi" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">BatchRun</tt><big>(</big><em>object</em>, <em>batch_name='batch'</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun"><span class="viewcode-link">[source]</span></a></dt>
-<dd><dl class="method">
-<dt>
-<tt class="descname">generate_directories</tt><big>(</big><em>overwrite=False</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun.generate_directories"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt>
-<tt class="descname">run</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#BatchRun.run"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">FileTools</tt><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools"><span class="viewcode-link">[source]</span></a></dt>
-<dd><dl class="staticmethod">
-<dt>
-<em class="property">static </em><tt class="descname">dict_to_object</tt><big>(</big><em>data_object</em>, <em>data_dict</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools.dict_to_object"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-<dl class="staticmethod">
-<dt>
-<em class="property">static </em><tt class="descname">read_param_file_to_dict</tt><big>(</big><em>file_name</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#FileTools.read_param_file_to_dict"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="class">
-<dt>
-<em class="property">class </em><tt class="descclassname">planarradpy.libplanarradpy.planrad.</tt><tt class="descname">HelperMethods</tt><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#HelperMethods"><span class="viewcode-link">[source]</span></a></dt>
-<dd><dl class="staticmethod">
-<dt>
-<em class="property">static </em><tt class="descname">string_to_float_list</tt><big>(</big><em>string_var</em><big>)</big><a class="reference internal" href="_modules/planarradpy/libplanarradpy/planrad.html#HelperMethods.string_to_float_list"><span class="viewcode-link">[source]</span></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
 </div>
 
 
@@ -278,11 +501,12 @@ retval: null</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="#">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to planarradpy&#8217;s documentation!</a><ul>
+<li><a class="reference internal" href="#">Welcome to Planarradpy&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#planarradpy">Planarradpy</a></li>
+<li><a class="reference internal" href="#example-use">Example Use</a><ul>
+<li><a class="reference internal" href="#example-input-parameters-file">Example input parameters file</a><ul>
 </ul>
 </li>
-<li><a class="reference internal" href="#example-use">Example Use</a><ul>
-<li><a class="reference internal" href="#example-input-parameter-file">Example input parameter file</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
@@ -319,11 +543,11 @@ retval: null</p>
         <li class="right" >
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
-        <li><a href="#">planarradpy 0.0.1 documentation</a> &raquo;</li> 
+        <li><a href="#">Planarradpy 0.0.1 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
-        &copy; Copyright 2014, Daniel Marrable.
+        &copy; Copyright 2014, Dan Marrable, Frederic Boule.
       Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
   </body>

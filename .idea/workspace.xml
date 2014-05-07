@@ -2,82 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf19d2c-c657-4a9e-bdd9-3c91cd0452c7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.idx" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.pdf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/ajax-loader.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/ajax-loader.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment-bright.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment-bright.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment-close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment-close.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/comment.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/comment.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/down-pressed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/down-pressed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/down.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/file.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/file.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/minus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/minus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/objects.inv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/plus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/plus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/up-pressed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/up-pressed.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/up.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/.buildinfo" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/.buildinfo" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Makefile" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.aux" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.log" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.out" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.tex" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/Planarradpy.toc" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/basic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/basic.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/conf.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/default.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/doctools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/doctools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/fncychap.sty" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/genindex/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/search/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/index.rst" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_sources/index.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/jquery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/make.bat" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/pygments.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/pygments.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/python.ist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/searchindex.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/searchtools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/searchtools.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/sidebar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/sidebar.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinx.sty" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinxhowto.cls" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/sphinxmanual.cls" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/latex/tabulary.sty" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/underscore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/underscore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/dirhtml/_static/websupport.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/docs/_build/html/_static/websupport.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/inputs/batch_files/batch.txt" afterPath="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" afterPath="$PROJECT_DIR$/docs/_build/html/objects.inv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/conf.py" afterPath="$PROJECT_DIR$/docs/conf.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/index.html" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="$PROJECT_DIR$/docs/index.rst" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libplanarradpy/planrad.py" afterPath="$PROJECT_DIR$/libplanarradpy/planrad.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/search.html" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="planarradpy.iws" />
@@ -103,21 +38,32 @@
     <splitter split-orientation="horizontal" split-proportion="0.60692215">
       <split-first>
         <leaf>
-          <file leaf-file-name="planrad.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="planrad.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="23" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
+                <state line="866" column="60" selection-start="40606" selection-end="40606" vertical-scroll-proportion="0.45257902" vertical-offset="11482" max-vertical-offset="14292">
                   <folding>
                     <element signature="e#0#9#0" expanded="true" />
+                    <element signature="e#26992#31194#0" expanded="false" />
+                    <element signature="e#31257#39546#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.rst" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="index.rst" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/docs/index.rst">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="614">
+                <state line="74" column="30" selection-start="2257" selection-end="2257" vertical-scroll-proportion="0.0" vertical-offset="1001" max-vertical-offset="1674">
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="conf.py" pinned="false" current="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/docs/conf.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state line="18" column="38" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4464">
                   <folding />
                 </state>
               </provider>
@@ -157,7 +103,7 @@
           <file leaf-file-name="test_planrad.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.016639" vertical-offset="577" max-vertical-offset="1494">
+                <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.9767054" vertical-offset="0" max-vertical-offset="1494">
                   <folding />
                 </state>
               </provider>
@@ -180,8 +126,10 @@
       <list>
         <option value="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
         <option value="$PROJECT_DIR$/planarrad.py" />
-        <option value="$PROJECT_DIR$/libplanarradpy/planrad.py" />
         <option value="$PROJECT_DIR$/tests/test_planrad.py" />
+        <option value="$PROJECT_DIR$/docs/conf.py" />
+        <option value="$PROJECT_DIR$/docs/index.rst" />
+        <option value="$PROJECT_DIR$/libplanarradpy/planrad.py" />
       </list>
     </option>
   </component>
@@ -232,6 +180,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="planarradpy" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libplanarradpy" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -605,18 +567,23 @@
       <created>1399467871336</created>
       <updated>1399467871336</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added a setup file and some files for generating the docs">
+      <created>1399470287916</created>
+      <updated>1399470287916</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.14707433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17501318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14707433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17501318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.303125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16710596" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5002636" order="7" side_tool="true" content_ui="tabs" />
@@ -626,7 +593,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -650,7 +616,8 @@
     <MESSAGE value="started batch report" />
     <MESSAGE value="batch report seems to be working" />
     <MESSAGE value="fixed filename bug github issue #6" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed filename bug github issue #6" />
+    <MESSAGE value="Added a setup file and some files for generating the docs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a setup file and some files for generating the docs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -663,6 +630,8 @@
         <state line="495" column="8" selection-start="22130" selection-end="22130" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -700,6 +669,8 @@
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="12456" max-vertical-offset="16524">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -730,6 +701,8 @@
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="12456" max-vertical-offset="16524">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,6 +740,8 @@
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="7650" max-vertical-offset="7650">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -797,6 +772,8 @@
         <state line="845" column="0" selection-start="37093" selection-end="37093" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15390">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -834,6 +811,8 @@
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -857,6 +836,8 @@
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -880,6 +861,8 @@
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="1170">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -896,6 +879,8 @@
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="1170">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -912,6 +897,8 @@
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -921,6 +908,8 @@
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -930,6 +919,8 @@
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9810">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -939,6 +930,8 @@
         <state line="807" column="35" selection-start="34944" selection-end="34944" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
             <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -981,7 +974,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.016639" vertical-offset="577" max-vertical-offset="1494">
+        <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.9767054" vertical-offset="0" max-vertical-offset="1494">
           <folding />
         </state>
       </provider>
@@ -993,19 +986,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
+    <entry file="file://$PROJECT_DIR$/docs/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="23" selection-start="241" selection-end="241" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state line="18" column="38" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4464">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="614">
+        <state line="74" column="30" selection-start="2257" selection-end="2257" vertical-scroll-proportion="0.0" vertical-offset="1001" max-vertical-offset="1674">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="866" column="60" selection-start="40606" selection-end="40606" vertical-scroll-proportion="0.45257902" vertical-offset="11482" max-vertical-offset="14292">
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#26992#31194#0" expanded="false" />
+            <element signature="e#31257#39546#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

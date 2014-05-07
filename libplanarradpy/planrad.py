@@ -310,9 +310,16 @@ class RunParameters():
 
 
 class BioOpticalParameters():
-    """Contains useful parameters and methods for modelling IOPs using bio-optical models"""
+    """Contains useful parameters and methods for modelling IOPs using bio-optical models
+
+    Constructor takes wavelengths.  This is a common wavelength that all IOPs will be interpolated to
+    """
 
     def __init__(self, wavelengths):
+        """Constructor
+
+        :param wavelengths: list of wavelengths all IOPs will be interpolated to
+        """
         self.wavelengths = scipy.asarray([wavelengths])
         self.b_bp = scipy.asarray([])
         self.a_cdom = scipy.asarray([])
@@ -327,29 +334,34 @@ class BioOpticalParameters():
 
 
     def build_bbp(self, x, y, wave_const=550):
-        r"""
-        Builds the particle backscattering function  :math:`X(\frac{550}{\lambda})^Y`
-        :param x function coefficient
-        :param y order of the power function
-        :param waveConst wave constant Default 550 nm
-        :returns: null
+        """
+        Builds the particle backscattering function  :math:`X(\\frac{550}{\\lambda})^Y`
+
+        :param x: function coefficient
+        :param y: order of the power function
+        :param wave_const: wave constant default 550 (nm)
+        :returns null:
         """
         lg.info('Building b_bp spectra')
         self.b_bp = x * (wave_const / self.wavelengths) ** y
 
     def build_a_cdom(self, g, s, wave_const=400):
-        r"""
+        """
         Builds the CDOM absorption function :: :math:`G \exp (-S(\lambda - 400))`
-        :param g function coefficient
-        :param s slope factor
-        :param wave_constant
-        :returns null
+
+        :param g: function coefficient
+        :param s: slope factor
+        :param wave_const: wave constant default = 400 (nm)
+        :returns null:
         """
         lg.info('building CDOM absorption')
         self.a_cdom = g * scipy.exp(-s * (self.wavelengths - wave_const))
 
     def read_aphi_from_file(self, file_name):
-        """Read the phytoplankton absorption file from a csv formatted file"""
+        """Read the phytoplankton absorption file from a csv formatted file
+
+        :param file_name: filename and path of the csv file
+        """
         lg.info('Reading ahpi absorption')
         try:
             self.a_phi = self._read_iop_from_file(file_name)
@@ -360,7 +372,7 @@ class BioOpticalParameters():
     def scale_aphi(self, scale_parameter):
         """Scale the spectra by multiplying by linear scaling factor
 
-        :param scale_parameter Linear scaling factor
+        :param scale_parameter: Linear scaling factor
         """
         lg.info('Scaling a_phi by :: ' + str(scale_parameter))
         try:
@@ -371,7 +383,7 @@ class BioOpticalParameters():
     def read_pure_water_absorption_from_file(self, file_name):
         """Read the pure water absorption from a csv formatted file
 
-        :param file_name filename and path of the csv file
+        :param file_name: filename and path of the csv file
         """
         lg.info('Reading water absorption from file')
         try:
@@ -383,7 +395,7 @@ class BioOpticalParameters():
     def read_pure_water_scattering_from_file(self, file_name):
         """Read the pure water scattering from a csv formatted file
 
-        :param file_name filename and path of the csv file
+        :param file_name: filename and path of the csv file
         """
         lg.info('Reading water scattering from file')
         try:
@@ -396,7 +408,7 @@ class BioOpticalParameters():
         """
         Generic IOP reader that interpolates the iop to the common wavelengths defined in the constructor
 
-        :param file_name filename and path of the csv file
+        :param file_name: filename and path of the csv file
         :returns interpolated iop
         """
         lg.info('Reading :: ' + file_name + ' :: and interpolating to ' + str(self.wavelengths))
@@ -416,11 +428,17 @@ class BioOpticalParameters():
             return -1
 
     def write_b_to_file(self, file_name):
-        """Write the total scattering to csv file"""
+        """Write the total scattering to csv file
+
+        :param file_name: filename and path of the csv file
+        """
         self._write_iop_to_file(self.b, file_name)
 
     def write_c_to_file(self, file_name):
-        """Write the total attentuation to file"""
+        """Write the total attentuation to file
+
+        :param file_name: filename and path of the csv file
+        """
         self._write_iop_to_file(self.c, file_name)
 
     def _write_iop_to_file(self, iop, file_name):
@@ -445,7 +463,7 @@ class BioOpticalParameters():
     def build_b(self, scattering_fraction=0.2):
         """Calculates the backscattering from total scattering
 
-        :param scattering_fraction the fraction of backscattering to total scattering default = 0.2
+        :param scattering_fraction: the fraction of backscattering to total scattering default = 0.2
         """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
         self.b = self.b_b / scattering_fraction
@@ -488,17 +506,20 @@ class BatchRun():
     It will also distribute the work over many CPUs.  It will run an single instance for PlanarRad on each available
     cores or the number of cores defined in the batchrun file.
 
-    Available 'batchable' parameters are:
-    Sun Azimuth Angle (deg) [saa]
-    Sun Zenith Angle (deg) [sza]
-    Phytoplankton scaling parameter [p]
-    particulate scattering parameters [x, y] see BioOpticalParameters
-    CDOM absorption parameters [g, s]
+    Available 'batchable' parameters are: \n
+    Sun Azimuth Angle (deg) [saa] \n
+    Sun Zenith Angle (deg) [sza] \n
+    Phytoplankton scaling parameter [p] \n
+    particulate scattering parameters [x, y] see BioOpticalParameters \n
+    CDOM absorption parameters [g, s] \n
     depth (m) [z]
     """
 
     def __init__(self, object, batch_name='batch'):
-        """Construcuter that sets the up batch run with 'batchable' parameters"""
+        """Construcuter that sets the up batch run with 'batchable' parameters
+
+        :param batch_name: the name of the project.  All outputs will be put in a directory of the same name
+        """
         self.run_params = object
         self.saa_list = []
         self.sza_list = []
@@ -682,6 +703,8 @@ class BatchRun():
         """For all possible combinations of 'batchable' parameters. create a unique directory to story outputs
 
         Each directory name is unique and contains the run parameters in the directory name
+
+        :param overwrite: If set to True will over write all files default = False
         """
         if not os.path.exists(self.batch_output):
             try:
@@ -811,7 +834,16 @@ class BatchRun():
 
 
     def batch_parameters(self, saa, sza, p, x, y, g, s, z):
-        """Takes lists for parameters and saves them as class properties"""
+        """Takes lists for parameters and saves them as class properties
+
+        :param saa: <list> Sun Azimuth Angle (deg)
+        :param sza: <list> Sun Zenith Angle (deg)
+        :param p: <list> Phytoplankton linear scalling factor
+        :param x: <list> Scattering scaling factor
+        :param y: <list> Scattering slope factor
+        :param g: <list> CDOM absorption scaling factor
+        :param s: <list> CDOM absorption slope factor
+        :param z: <list> depth (m)"""
         self.saa_list = saa
         self.sza_list = sza
         self.p_list = p
@@ -830,8 +862,9 @@ class FileTools():
 
     @staticmethod
     def read_param_file_to_dict(file_name):
-        """
+        """Loads a text file to a python dictionary using '=' as the delimiter
 
+        :param file_name: the name and path of the text file
         """
         data = loadtxt(file_name, delimiter='=', dtype=scipy.string0)
         data_dict = dict(data)
@@ -844,8 +877,11 @@ class FileTools():
 
     @staticmethod
     def dict_to_object(data_object, data_dict):
-        """
+        """Maps a dictionary to an object.  Variable names become the key in the dict
 
+        :param data_object: Is an instantiated class
+        :param data_dict: is the python dictionary
+        :returns data_object:
         """
         data_object.__dict__ = data_dict
         return data_object
@@ -859,7 +895,7 @@ class HelperMethods():
 
     @staticmethod
     def string_to_float_list(string_var):
-        """Pull comma seperated string values out of a text file and converts them to float list"""
+        """Pull comma separated string values out of a text file and converts them to float list"""
         return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
 
 
@@ -874,8 +910,8 @@ class ReportTools():
 
         Saves the single line reported parameters as a python dictionary
 
-        :param filename The name and path of the PlanarRad generated file
-        :returns self.data_dictionary python dictionary with the key and values from the report
+        :param filename: The name and path of the PlanarRad generated file
+        :returns self.data_dictionary: python dictionary with the key and values from the report
         """
         for line in open(filename):
             if '#' not in line or not line.strip():

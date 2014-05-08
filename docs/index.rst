@@ -25,7 +25,7 @@ Example input parameters file
 
 .. code-block:: python
 
-    #----------------------------------------#
+#----------------------------------------#
 # Give the batch run a name
 #----------------------------------------#
 batch_name = bug_test

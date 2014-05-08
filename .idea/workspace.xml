@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cf19d2c-c657-4a9e-bdd9-3c91cd0452c7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" afterPath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" afterPath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/index.html" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/index.rst" afterPath="$PROJECT_DIR$/docs/index.rst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/planarrad.py" afterPath="$PROJECT_DIR$/planarrad.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/libplanarradpy/planrad.py" afterPath="$PROJECT_DIR$/libplanarradpy/planrad.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="planarradpy.iws" />
@@ -30,44 +27,40 @@
     <favorites_list name="planarradpy" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.60692215">
+    <splitter split-orientation="horizontal" split-proportion="0.6897404">
       <split-first>
         <leaf>
           <file leaf-file-name="planrad.py" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="866" column="60" selection-start="40606" selection-end="40606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14292">
+                <state line="790" column="67" selection-start="36386" selection-end="36386" vertical-scroll-proportion="0.0" vertical-offset="10052" max-vertical-offset="14310">
                   <folding>
-                    <element signature="e#0#9#0" expanded="true" />
-                    <element signature="e#26992#31194#0" expanded="false" />
-                    <element signature="e#31257#39546#0" expanded="false" />
+                    <element signature="e#5662#10570#0" expanded="false" />
+                    <element signature="e#10620#11951#0" expanded="false" />
+                    <element signature="e#12002#13947#0" expanded="false" />
+                    <element signature="e#13999#15162#0" expanded="false" />
+                    <element signature="e#15999#16505#0" expanded="false" />
+                    <element signature="e#16563#16935#0" expanded="false" />
+                    <element signature="e#16995#17364#0" expanded="false" />
+                    <element signature="e#17420#17786#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.rst" pinned="false" current="true" current-in-tab="true">
+          <file leaf-file-name="index.rst" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/docs/index.rst">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="11" selection-start="588" selection-end="588" vertical-scroll-proportion="-1.545757" vertical-offset="1253" max-vertical-offset="1854">
+                <state line="40" column="12" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="1980">
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="conf.py" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/docs/conf.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="18" column="38" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0" vertical-offset="324" max-vertical-offset="4464">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="planarrad.py" pinned="false" current="false" current-in-tab="false">
+          <file leaf-file-name="planarrad.py" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/planarrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="76" column="7" selection-start="2711" selection-end="2711" vertical-scroll-proportion="0.0" vertical-offset="1368" max-vertical-offset="1602">
+                <state line="86" column="0" selection-start="2919" selection-end="2919" vertical-scroll-proportion="1.466187" vertical-offset="529" max-vertical-offset="1656">
                   <folding />
                 </state>
               </provider>
@@ -85,7 +78,7 @@
           <file leaf-file-name="batch.txt" pinned="false" current="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/inputs/batch_files/batch.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="21" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="936">
+                <state line="1" column="2" selection-start="0" selection-end="1613" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="1008">
                   <folding />
                 </state>
               </provider>
@@ -98,7 +91,7 @@
           <file leaf-file-name="test_planrad.py" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.0549085" vertical-offset="554" max-vertical-offset="1494">
+                <state line="66" column="12" selection-start="1643" selection-end="1643" vertical-scroll-proportion="0.55971223" vertical-offset="799" max-vertical-offset="1494">
                   <folding />
                 </state>
               </provider>
@@ -119,12 +112,12 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
-        <option value="$PROJECT_DIR$/planarrad.py" />
         <option value="$PROJECT_DIR$/tests/test_planrad.py" />
         <option value="$PROJECT_DIR$/docs/conf.py" />
-        <option value="$PROJECT_DIR$/libplanarradpy/planrad.py" />
+        <option value="$PROJECT_DIR$/inputs/batch_files/batch.txt" />
         <option value="$PROJECT_DIR$/docs/index.rst" />
+        <option value="$PROJECT_DIR$/libplanarradpy/planrad.py" />
+        <option value="$PROJECT_DIR$/planarrad.py" />
       </list>
     </option>
   </component>
@@ -132,6 +125,25 @@
     <option name="y" value="24" />
     <option name="width" value="1920" />
     <option name="height" value="1056" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>Python</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>PyPep8Inspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -188,7 +200,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="libplanarradpy" />
+              <option name="myItemId" value="inputs" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -202,7 +214,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="docs" />
+              <option name="myItemId" value="inputs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="batch_files" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -221,7 +237,7 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python docs.planarradpydocs">
+  <component name="RunManager" selected="Python.run_commandline">
     <configuration default="false" name="Unittests in TestBatchRun" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -566,31 +582,55 @@
       <created>1399470287916</created>
       <updated>1399470287916</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added a setup file and some files for generating the docs">
+      <created>1399480596595</created>
+      <updated>1399480596595</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
+  </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="24" width="1920" height="1056" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.128125" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14707433" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17501318" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.303125" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16710596" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5002636" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23125" sideWeight="0.49973643" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23125" sideWeight="0.49973643" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32916668" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -616,7 +656,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <breakpoints>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/libplanarradpy/planrad.py</url>
+          <line>791</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="19" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -645,9 +692,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="495" column="8" selection-start="22130" selection-end="22130" vertical-scroll-proportion="0.0" vertical-offset="36" max-vertical-offset="17478">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -684,9 +736,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="12456" max-vertical-offset="16524">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -716,9 +773,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="12456" max-vertical-offset="16524">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -755,9 +817,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="692" column="18" selection-start="30312" selection-end="30313" vertical-scroll-proportion="0.0" vertical-offset="7650" max-vertical-offset="7650">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -787,9 +854,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="845" column="0" selection-start="37093" selection-end="37093" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="15390">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -826,9 +898,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -851,9 +928,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -876,9 +958,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="1170">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -894,9 +981,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="440" column="17" selection-start="19323" selection-end="19323" vertical-scroll-proportion="0.0" vertical-offset="1170" max-vertical-offset="1170">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -912,9 +1004,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -923,9 +1020,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="792">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -934,9 +1036,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="332" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9810">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -945,9 +1052,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="807" column="35" selection-start="34944" selection-end="34944" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14778">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -962,37 +1074,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_planarrad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="1008">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/inputs/batch_files/batch.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="21" selection-start="135" selection-end="135" vertical-scroll-proportion="0.0" vertical-offset="54" max-vertical-offset="936">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
         <state line="103" column="9" selection-start="5314" selection-end="5314" vertical-scroll-proportion="0.33224756" vertical-offset="1650" max-vertical-offset="6210" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/planarrad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="7" selection-start="2711" selection-end="2711" vertical-scroll-proportion="0.0" vertical-offset="934" max-vertical-offset="1602">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="66" column="13" selection-start="1644" selection-end="1644" vertical-scroll-proportion="1.0549085" vertical-offset="554" max-vertical-offset="1494">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
@@ -1004,25 +1088,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="38" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4464">
+        <state line="18" column="38" selection-start="714" selection-end="714" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4464" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/inputs/batch_files/batch.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="2" selection-start="0" selection-end="1613" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1008">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/test_planarrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="78" max-vertical-offset="1008">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="12" selection-start="1080" selection-end="1080" vertical-scroll-proportion="0.0" vertical-offset="43" max-vertical-offset="1980">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/libplanarradpy/planrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="866" column="60" selection-start="40606" selection-end="40606" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="14292">
+        <state line="790" column="67" selection-start="36386" selection-end="36386" vertical-scroll-proportion="0.0" vertical-offset="10052" max-vertical-offset="14310">
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#26992#31194#0" expanded="false" />
-            <element signature="e#31257#39546#0" expanded="false" />
+            <element signature="e#5662#10570#0" expanded="false" />
+            <element signature="e#10620#11951#0" expanded="false" />
+            <element signature="e#12002#13947#0" expanded="false" />
+            <element signature="e#13999#15162#0" expanded="false" />
+            <element signature="e#15999#16505#0" expanded="false" />
+            <element signature="e#16563#16935#0" expanded="false" />
+            <element signature="e#16995#17364#0" expanded="false" />
+            <element signature="e#17420#17786#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+    <entry file="file://$PROJECT_DIR$/tests/test_planrad.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="11" selection-start="588" selection-end="588" vertical-scroll-proportion="-1.545757" vertical-offset="1253" max-vertical-offset="1854">
+        <state line="66" column="12" selection-start="1643" selection-end="1643" vertical-scroll-proportion="0.55971223" vertical-offset="799" max-vertical-offset="1494">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/planarrad.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="86" column="0" selection-start="2919" selection-end="2919" vertical-scroll-proportion="1.466187" vertical-offset="529" max-vertical-offset="1656">
           <folding />
         </state>
       </provider>

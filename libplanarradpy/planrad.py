@@ -786,6 +786,9 @@ class BatchRun():
                                         self.run_params.depth = z
                                         self.bio_params.build_bbp(x, y)  # todo add wave const as a kwarg
                                         self.bio_params.build_a_cdom(g, s)
+                                        # Need to re-read the file as it was scaled in a the other run!
+                                        self.bio_params.read_aphi_from_file(
+                                            self.run_params.phytoplankton_absorption_file)
                                         self.bio_params.scale_aphi(p)
 
                                         self.bio_params.build_all_iop()
@@ -987,7 +990,7 @@ class ReportTools():
 
                 f.write(saa + ',' + sza + ',' + p + ',' + x + ',' + y + ',' + g + ',' + s + ',' + z + ',')
 
-                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
                 try:
                     param_val = report[parameter]
                 except:

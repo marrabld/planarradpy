@@ -1,0 +1,44 @@
+#----------------------------------------#
+# Name of the batch run
+#----------------------------------------#
+batch_name = unity_test_4
+
+#----------------------------------------#
+# Bio-optical parameters list
+#----------------------------------------#
+p_list = 
+x_list = 
+y_list = 
+g_list = 
+s_list = 
+z_list = 
+
+#----------------------------------------#
+# Wavelengths
+# All IOPs are interpolated to these 
+# Wavelengths
+#----------------------------------------#
+wavelengths = 
+
+#----------------------------------------#
+# Number of CPUs
+# -1 means query the number of CPUs
+#----------------------------------------#
+num_cpus = -1
+
+#----------------------------------------#
+# Path of Planarrad
+#----------------------------------------#
+exec_path = /home/boulefi/jude2_install/bin
+
+#----------------------------------------#
+# Logging level
+#----------------------------------------#
+verbose = 
+
+#----------------------------------------#
+# File paths
+# Using absolute paths
+#----------------------------------------#
+phytoplankton_absorption_file =/home/boulefi/jude2_install/bin
+bottom_reflectance_file = /home/boulefi/jude2_install/bin

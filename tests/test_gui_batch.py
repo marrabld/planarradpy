@@ -16,7 +16,7 @@ import gui.gui_batch
 class TestBatchFile(unittest.TestCase):
     def setUp(self):
         """
-        The following defines default values to check if the script transmit them well.
+        The following defines defaults values to check if the script transmit them well.
         """
         # Here you set up what you need for your tests.
 

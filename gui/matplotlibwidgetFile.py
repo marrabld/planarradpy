@@ -8,6 +8,9 @@ from matplotlib.figure import Figure
 class MplCanvas(FigureCanvas):
 
     def __init__(self):
+        """
+        This function initializes the figure.
+        """
         self.fig = Figure()
         self.picture = self.fig.add_subplot(111)
 
@@ -16,6 +19,9 @@ class MplCanvas(FigureCanvas):
 class matplotlibWidget(QtGui.QWidget):
 
     def __init__(self, parent = None):
+        """
+        This function initializes the place where the figure will be display.
+        """
         QtGui.QWidget.__init__(self, parent)
         self.canvas = MplCanvas()
         self.vbl = QtGui.QVBoxLayout()

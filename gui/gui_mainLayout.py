@@ -2,14 +2,14 @@
 
 import PyQt4
 from PyQt4 import QtGui
+from time import sleep
+from timeit import Timer
 import PyQt4.QtCore
 import sys
 import os
 import multiprocessing
 import re
-import pylab
 import scipy
-import matplotlib.pyplot as pyplot
 
 from gui_batch import BatchFile
 from matplotlibwidgetFile import matplotlibWidget
@@ -17,7 +17,7 @@ from gui_Layout import *
 
 class FormEvents():
     """
-    This class create answers of buttons of the user interface and checks values that the user typed.
+    This class creates answers of buttons of the user interface and checks values that the user typed.
     """
 
     def __init__(self):
@@ -30,24 +30,13 @@ class FormEvents():
         self.file_dialog = QtGui.QFileDialog()
         self.main_window.setFixedSize(1400, 825)
         self.widget = matplotlibWidget()
-        #self.can_run = True
         self.nb_errors = 0
+        self.slider_value = 0
+        self.ui.show_all_curves.setCheckState(2)
 
-        #-----------------------------------------------------#
-        #The following permit to list CDOM files in a comboBox.
-        #-----------------------------------------------------#
-        #directory = os.path.join(os.path.dirname(__file__),'../inputs/iop_files')
-        #file_table = os.listdir(directory)
-        #files = []
-        # = 0
-        #for my_file in file_table:
-        #    my_file = os.path.splitext(os.path.basename(my_file))[0]
-        #    self.cdom_file = self.ui.cdom_file.addItem(my_file)
-        #   i += 1
-
-        #---------------------------------------------------------------------------------------------#
-        #The following permit to know how many CPU there is in the computer to list them in a comboBox.
-        #---------------------------------------------------------------------------------------------#
+        #----------------------------------------------------------------------------------------------#
+        #The following permits to know how many CPU there is in the computer to list them in a comboBox.
+        #----------------------------------------------------------------------------------------------#
         self.cpu = multiprocessing.cpu_count()
         self.nb_cpu = self.ui.nb_cpu.addItem("-1")
         j = 1
@@ -61,8 +50,6 @@ class FormEvents():
             """
             self.p_values = self.ui.p_values.text()
             self.x_value = self.ui.x_value.text()
-            #check before of after that run button is pressed?
-            #check(self.x_value)
             self.y_value = self.ui.y_value.text()
             self.g_value = self.ui.g_value.text()
             self.s_value = self.ui.s_value.text()
@@ -72,12 +59,11 @@ class FormEvents():
             self.phyto_path = self.ui.phyto_path.text()
             self.bottom_path = self.ui.bottom_path.text()
             self.exec_path = self.ui.exec_path.text()
-            #self.cdom_file = self.ui.cdom_file.currentText()
             self.nb_cpu = self.ui.nb_cpu.currentText()
 
-        #------------------------------------------------------------------------------#
-        #These following functions display a fileDialog to search a file or a directory.
-        #------------------------------------------------------------------------------#
+        #-------------------------------------------------------------------------------#
+        #These following functions displays a fileDialog to search a file or a directory.
+        #-------------------------------------------------------------------------------#
         def search_directory_exec_path(self):
             self.ui.exec_path.setText(self.fileDialog.getExistingDirectory())
 
@@ -87,7 +73,7 @@ class FormEvents():
         def search_file_bottom(self):
             self.ui.bottom_path.setText(self.fileDialog.getOpenFileName())
 
-        #-----------------------------------------------------------------------------#
+        #------------------------------------------------------------------------------#
 
         def check_values():
             """
@@ -96,22 +82,17 @@ class FormEvents():
             and call a function to display a error message.
             """
 
-            #-------------------------------------------#
-            #The following check values containing comas.
-            #-------------------------------------------#
+            #--------------------------------------------#
+            #The following checks values containing comas.
+            #--------------------------------------------#
 
             #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             #Si rien dans le chemin de repertoire, programme freeze
             #a voir si cela fait pareil pour les fichiers
-            #PB avec les chemins !!!! -> FREEZZZZEEEEE
-            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            #PB avec les chemins !!!! -> FREEZE
             # un point peut etre present sans rien apres,
             # espace avant ou apres virgule marche pas
             #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-            #global self.nb_errors
 
             check_num = '(^([0-9]+[.]?[0-9]*[,]?){1,})|(^([0-9]+[,]){1,})'  #regular expression to use
             self.prog = re.compile(check_num)  #analysis object creation
@@ -123,7 +104,7 @@ class FormEvents():
                     self.ui.p_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.p_label.setStyleSheet('color: black')
+                    self.ui.p_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.p_label.setStyleSheet('color: red')
@@ -133,15 +114,15 @@ class FormEvents():
                     self.ui.waveL_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.waveL_label.setStyleSheet('color: black')
+                    self.ui.waveL_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.waveL_label.setStyleSheet('color: red')
                 self.nb_errors += 1
 
-            #--------------------------------------------------#
-            #The following check values containing only numbers.
-            #--------------------------------------------------#
+            #---------------------------------------------------#
+            #The following checks values containing only numbers.
+            #---------------------------------------------------#
             check_num2 = '^([0-9]+[.]?[0-9]*)'
             self.prog2 = re.compile(check_num2)
             x_result = self.prog2.search(self.x_value)
@@ -156,11 +137,11 @@ class FormEvents():
                     self.ui.x_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.particules_label.setStyleSheet('color: black')
-                    self.ui.x_label.setStyleSheet('color: black')
+                    self.ui.particules_label.setStyleSheet('color: 0.75')
+                    self.ui.x_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
-                self.ui.particules_label.setStyleSheet('color: red')
+                self.ui.particules_label.setStyleSheet('color: 0.75')
                 self.ui.x_label.setStyleSheet('color: red')
                 self.nb_errors += 1
             try:
@@ -169,8 +150,8 @@ class FormEvents():
                     self.ui.y_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.particules_label.setStyleSheet('color: black')
-                    self.ui.y_label.setStyleSheet('color: black')
+                    self.ui.particules_label.setStyleSheet('color: 0.75')
+                    self.ui.y_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.particules_label.setStyleSheet('color: red')
@@ -182,8 +163,8 @@ class FormEvents():
                     self.ui.g_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.organic_label.setStyleSheet('color: black')
-                    self.ui.g_label.setStyleSheet('color: black')
+                    self.ui.organic_label.setStyleSheet('color: 0.75')
+                    self.ui.g_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
@@ -195,8 +176,8 @@ class FormEvents():
                     self.ui.s_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.organic_label.setStyleSheet('color: black')
-                    self.ui.s_label.setStyleSheet('color: black')
+                    self.ui.organic_label.setStyleSheet('color: 0.75')
+                    self.ui.s_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
@@ -207,7 +188,7 @@ class FormEvents():
                     self.ui.z_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.z_label.setStyleSheet('color: black')
+                    self.ui.z_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.z_label.setStyleSheet('color: red')
@@ -222,15 +203,15 @@ class FormEvents():
                     self.ui.verbose_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.verbose_label.setStyleSheet('color: black')
+                    self.ui.verbose_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.verbose_label.setStyleSheet('color: red')
                 self.nb_errors += 1
 
-            #--------------------------------------------------#
-            #The following check values containing only numbers.
-            #--------------------------------------------------#
+            #---------------------------------------------------#
+            #The following checks values containing only numbers.
+            #---------------------------------------------------#
             """
             check_num4 = '[/]([A-Za-z]+[/]?)+[A-Za-z]$'
             self.prog4 = re.compile(check_num4)
@@ -243,7 +224,7 @@ class FormEvents():
                     self.ui.phyto_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.phyto_label.setStyleSheet('color: black')
+                    self.ui.phyto_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.phyto_label.setStyleSheet('color: red')
@@ -253,7 +234,7 @@ class FormEvents():
                     self.ui.bottom_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.bottom_label.setStyleSheet('color: black')
+                    self.ui.bottom_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.bottom_label.setStyleSheet('color: red')
@@ -263,7 +244,7 @@ class FormEvents():
                     self.ui.execPath_label.setStyleSheet('color: red')
                     self.nb_errors += 1
                 else:
-                    self.ui.execPath_label.setStyleSheet('color: black')
+                    self.ui.execPath_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
             except AttributeError:
                 self.ui.execPath_label.setStyleSheet('color: red')
@@ -274,61 +255,93 @@ class FormEvents():
 
         def write_to_file():
             """
-            This function call "gui_batch.py" with inputs values to write the batch file.
-            No inputs.
-            No return.
+            This function calls "gui_batch.py" with inputs values to write the batch file.
             """
             bt = BatchFile(self.p_values, self.x_value, self.y_value, self.g_value, self.s_value, self.z_value,
                            self.wavelength_values, self.verbose_value, self.phyto_path, self.bottom_path, self.nb_cpu,
                            self.exec_path)
             bt.write_batch_to_file()
 
-        def display_error_message():
-            """
-            This function display an error message when a wrong value is typed.
-            """
-            self.ui.error_label.setScaledContents(True)
-            self.ui.error_text_label.show()
-            self.ui.error_text_label.setStyleSheet('color: red')
-
-        def hide_error_message(self):
-            """
-            This function hide the error message when all values are correct.
-            """
-            self.ui.error_label.setScaledContents(False)
-            self.ui.error_text_label.hide()
-
-        def execute_planarrad():
-            """
-            This function execute planarrad using the batch file.
-            """
-            #VERIFIER L'AJOUT/SUPPRESSION D'ERREUR CAR FONCTIONNE MAL. DECREMENTE SIMPLEMENT QUAND PAS D'ERREUR (passage negatif)
-            #ET INCREMENTE SIMPLEMENT QUAND ERREUR. NE S'ARRETE PAS A 0 OU 8.
-            if self.nb_errors > 0:
-                display_error_message()
-            elif self.nb_errors == 0:
-                hide_error_message(self)
-                #PLACER ICI,REECRIT LE FICHIER BATCH ou pas? Appeller la fonction seulement plutot?
-                self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), write_to_file)
-                #os.chdir('../')
-                #os.system('./planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt')
-
-        def cancel_planarrad():
-            """
-            This function cancel planarrad.
-            """
-            #raise sys.exit("Not done yet !")
-            print ("Not done yet !")
-
-        def progress_bar():
-            self.timer = QtCore.QBasicTimer()
-            self.timer.start(100, self)
-            self.step = 0
-            while self.step < 100 & self.timer.isActive():
-                self.step += 1
-                self.progressBar.setValue(self.step)
-
         def display_graphic():
+            """
+            This function plots results of a file into a graphic.
+            """
+            self.ui.widget.canvas.picture.clear()
+
+            the_file_name = "./batch_report.txt"
+            the_file = open(the_file_name,'r')
+
+            lines = the_file.readlines()
+
+            lines_array = []
+            for line in lines:
+                line = line.split('\t')
+                lines_array.append(line)
+
+            labels_line = lines_array[0]
+            index = 8
+            for label in labels_line:
+                if label == ".*wave?length[.*]":
+                    index = labels_line.index(label) #Find the index of the value.
+                    break
+                #else:
+                #    raise sys.exit("Warning : There is no value named 'wavelength' in the file used to plot curves. "
+                #                   "So, I can't separate data to plot curves and data about tests linking with these curves.")
+
+            information = []
+            data_wavelength = []
+            l = 0
+            for line in lines_array:
+                c = 0
+                information.append([])
+                data_wavelength.append([])
+                while c != len(line):
+                    if c < index:
+                        information[l].append(line[c])
+                    elif c > index:
+                        data_wavelength[l].append(line[c])
+                    c += 1
+                l += 1
+
+            i = 0
+            for row_data_wavelength in data_wavelength:
+                row_data_wavelength = [float(item) for item in row_data_wavelength]
+                data_wavelength[i] = row_data_wavelength
+                i += 1
+
+            wavelength = data_wavelength[0] #first line contains wavelength
+            data_wanted = data_wavelength[1:]
+
+            self.nb_case = i #This is the number of line, the number of case tested.
+            graphic_slider(self.nb_case) #change values's slider to show or highlight the good curve.
+
+            x = scipy.linspace(wavelength[0],wavelength[-1],len(wavelength))
+
+            n = 0
+            for row_data_wanted in data_wanted:
+                if self.ui.show_all_curves.checkState() == 2:
+                    y = row_data_wanted
+                    if self.slider_value == n:
+                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)),linewidth=4)
+                    else:
+                        self.ui.widget.canvas.picture.plot(x,y,'0.75')
+                else:
+                    if self.slider_value == n:
+                        y = row_data_wanted
+                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)))
+                n += 1
+
+            self.ui.widget.canvas.picture.set_title('Rrs.csv')
+            self.ui.widget.canvas.picture.set_xlabel('Wavelength (${nm}$)')
+            self.ui.widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
+            self.legend = self.ui.widget.canvas.picture.legend() #Display in a legend curves's labels.
+            self.ui.widget.canvas.picture.legend(bbox_to_anchor=(1.1, 1.05))
+
+            the_file.close()
+            self.ui.widget.canvas.draw()
+
+            """"
+########################################################################################
             self.ui.widget.canvas.picture.clear()
             wavelength_min = 410
             wavelength_max = 730
@@ -347,15 +360,16 @@ class FormEvents():
                 data_array.append(data)
                 data = csv_file.readline()
 
-            #To chose one line, put them in an array, and in relation to arguments, chose one line
-
-            #Loop on an array which have the curve(s) wanted (number) and get back each results.
             wavelength_wanted = []
             data_wanted = []
             i = 0
             while i < len(data_array):
                 data_wanted.append([])
                 i += 1
+
+            self.nb_case = i #This is the number of line, the number of case tested.
+
+            graphic_slider(self.nb_case) #change values's slider to show or highlight the good curve.
 
             for value in wavelength: #For each value in the first line (wavelength).
                 if (value > wavelength_min) & (value < wavelength_max): #If the wavelength is between min and max (the part that we want to keep).
@@ -368,43 +382,124 @@ class FormEvents():
 
             x = scipy.linspace(wavelength_min,wavelength_max,len(wavelength_wanted))
 
-            n = 1
+            n = 0
             for row_data_wanted in data_wanted:
-                y = row_data_wanted
-                self.ui.widget.canvas.picture.plot(x,y,label='Case : '+str(n))
+                if self.ui.show_all_curves.checkState() == 2:
+                    y = row_data_wanted
+                    if self.slider_value == n:
+                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)),linewidth=4)
+                    else:
+                        self.ui.widget.canvas.picture.plot(x,y,'0.75')
+                else:
+                    if self.slider_value == n:
+                        y = row_data_wanted
+                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)))
                 n += 1
+
 
             self.ui.widget.canvas.picture.set_xlabel('Wavelength (${nm}$)')
             self.ui.widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
             self.ui.widget.canvas.picture.set_title('Rrs.csv')
-            self.ui.widget.canvas.print_figure('Rrs.png') #Save the graphic in a file in the current repository
-            self.legend = self.ui.widget.canvas.picture.legend() #display in a legend curves's labels.
-            self.legend.figure.canvas.draw()
+            self.legend = self.ui.widget.canvas.picture.legend() #Display in a legend curves's labels.
+            self.ui.widget.canvas.picture.legend(bbox_to_anchor=(1.1, 1.05))
 
             csv_file.close()
             self.ui.widget.canvas.draw()
+"""
+        def graphic_slider(nb_case):
+            """
+            This function scales the slider for curves displayed.
+            Return the value of the slider.
+            """
+            self.ui.sens.setRange(0,int(self.nb_case-1))
+            self.slider_value = self.ui.sens.value()
 
-        #------------------------------------------#
-        #The following connect buttons to an action.
-        #------------------------------------------#
-        hide_error_message(self)
+            return self.slider_value
+
+        def display_error_message():
+            """
+            This function displays an error message when a wrong value is typed.
+            """
+            self.ui.error_label.setScaledContents(True)
+            self.ui.error_text_label.show()
+            self.ui.error_text_label.setStyleSheet('color: red')
+
+        def hide_error_message(self):
+            """
+            This function hides the error message when all values are correct.
+            """
+            self.ui.error_label.setScaledContents(False)
+            self.ui.error_text_label.hide()
+
+        def execute_planarrad():
+            """
+            This function executes planarRad using the batch file.
+            """
+            #VERIFIER L'AJOUT/SUPPRESSION D'ERREUR CAR FONCTIONNE MAL. DECREMENTE SIMPLEMENT QUAND PAS D'ERREUR (passage negatif)
+            #ET INCREMENTE SIMPLEMENT QUAND ERREUR. NE S'ARRETE PAS A 0 OU 8.
+            data()
+            check_values()
+            if self.nb_errors > 0:
+                display_error_message()
+            elif self.nb_errors == 0:
+                hide_error_message(self)
+                #PLACER ICI,REECRIT LE FICHIER BATCH ou pas? Appeller la fonction seulement plutot?
+                self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), write_to_file)
+                progress_bar() #FREEZE, BESOIN D'UN THREAD, LE MEME AUE POUR EXECUTER PANARRAD?
+                #os.chdir('../')
+                #os.system('./planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt')
+
+        def progress_bar():
+            """
+            This function updates the progress bar.
+            """
+            self.step = 0
+            self.ui.progressBar.reset()
+            while self.step < 100:
+                sleep(1)
+                self.step += 1
+                self.ui.progressBar.setValue(self.step)
+
+        def cancel_planarrad():
+            """
+            This function cancels planarRad.
+            """
+            #Besoin de faire deux threads, un pour lancer planaRad, que l'on stoppera avec ce bouton.'
+            #raise sys.exit("Not done yet !")
+            print ("cancel_planarrad Not done yet !")
+            self.ui.progressBar.reset()
+
+        def save_figure():
+            """
+            This function programs the button to save the figure displayed.
+            """
+            self.ui.widget.canvas.print_figure('Rrs.png') #Save the graphic in a file in the current repository
+
+        def prerequisite_actions():
+            """
+            This function do all required actions at the beginning when we run the GUI.
+            """
+            hide_error_message(self)
+            display_graphic()
+            self.ui.progressBar.reset()
+
+        #-------------------------------------------#
+        #The following connects buttons to an action.
+        #-------------------------------------------#
+        prerequisite_actions()
+
         self.ui.phyto_button.connect(self.ui.phyto_button, PyQt4.QtCore.SIGNAL('clicked()'), search_file_phyto)
         self.ui.bottom_button.connect(self.ui.bottom_button, PyQt4.QtCore.SIGNAL('clicked()'), search_file_bottom)
         self.ui.exec_path_button.connect(self.ui.exec_path_button, PyQt4.QtCore.SIGNAL('clicked()'),
                                          search_directory_exec_path)
-        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), data)
-        #self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'),
-        #                    progress_bar)  #A METTRE DANS 'EXECUTE_PLANARRAD' LORSQUE CELA FONCTIONNERA
-        self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), check_values)
+
         self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), execute_planarrad)
-
-        #if self.can_run:
-        #    self.ui.run.connect(self.ui.run,PyQt4.QtCore.SIGNAL('clicked()'),execute_planarrad)
-        #else:
-        #    # do something
-
         self.ui.cancel.connect(self.ui.cancel, PyQt4.QtCore.SIGNAL('clicked()'), cancel_planarrad)
-        self.ui.cancel.connect(self.ui.cancel, PyQt4.QtCore.SIGNAL('clicked()'), display_graphic)
+
+        self.ui.sens.connect(self.ui.sens, QtCore.SIGNAL('valueChanged(int)'), display_graphic)
+        self.ui.show_all_curves.connect(self.ui.show_all_curves, QtCore.SIGNAL('stateChanged(int)'), display_graphic)
+        self.ui.save_figure.connect(self.ui.save_figure, PyQt4.QtCore.SIGNAL('clicked()'), save_figure)
+
         self.ui.quit.connect(self.ui.quit, PyQt4.QtCore.SIGNAL('clicked()'), quit)
 
         self.main_window.show()

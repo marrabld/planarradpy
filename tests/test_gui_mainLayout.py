@@ -20,7 +20,7 @@ class TestFormEvents(unittest.TestCase):
 
     def test_data(self):
         """
-        The foolowing will check if all data filled are get back well.
+        The following will check if all data filled are get back well.
         """
         test = 1
 
@@ -51,7 +51,7 @@ class TestFormEvents(unittest.TestCase):
     def test_write_to_file(self):
         """
         THe following will checks if "gui_batch.py" is called with data
-        and use one ofits function to write the batch file.
+        and use one of its function to write the batch file.
         """
         test = 1
 

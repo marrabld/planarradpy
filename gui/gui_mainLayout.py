@@ -15,6 +15,7 @@ from gui_batch import BatchFile
 from matplotlibwidgetFile import matplotlibWidget
 from gui_Layout import *
 
+
 class FormEvents():
     """
     This class creates answers of buttons of the user interface and checks values that the user typed.
@@ -29,10 +30,12 @@ class FormEvents():
 
         self.file_dialog = QtGui.QFileDialog()
         self.main_window.setFixedSize(1400, 825)
-        self.widget = matplotlibWidget()
+        self.graphic_widget = matplotlibWidget()
         self.nb_errors = 0
         self.slider_value = 0
         self.ui.show_all_curves.setCheckState(2)
+        self.tableWidget = QtGui.QTableWidget()
+        self.tableWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
         #----------------------------------------------------------------------------------------------#
         #The following permits to know how many CPU there is in the computer to list them in a comboBox.
@@ -46,8 +49,9 @@ class FormEvents():
 
         def data():
             """
-            This function get back data that the user typed.
+            This function gets back data that the user typed.
             """
+            self.batch_name_value = self.ui.batch_name_value.text()
             self.p_values = self.ui.p_values.text()
             self.x_value = self.ui.x_value.text()
             self.y_value = self.ui.y_value.text()
@@ -60,39 +64,40 @@ class FormEvents():
             self.bottom_path = self.ui.bottom_path.text()
             self.exec_path = self.ui.exec_path.text()
             self.nb_cpu = self.ui.nb_cpu.currentText()
+            self.report_parameter_value = self.ui.report_parameter_value.text()
 
         #-------------------------------------------------------------------------------#
-        #These following functions displays a fileDialog to search a file or a directory.
+        #These following functions display a fileDialog to search a file or a directory.
         #-------------------------------------------------------------------------------#
-        def search_directory_exec_path(self):
-            self.ui.exec_path.setText(self.fileDialog.getExistingDirectory())
+        def search_directory_exec_path():
+            self.ui.exec_path.setText(self.file_dialog.getExistingDirectory())
 
-        def search_file_phyto(self):
-            self.ui.phyto_path.setText(self.fileDialog.getOpenFileName())
+        def search_file_phyto():
+            self.ui.phyto_path.setText(self.file_dialog.getOpenFileName())
 
-        def search_file_bottom(self):
-            self.ui.bottom_path.setText(self.fileDialog.getOpenFileName())
+        def search_file_bottom():
+            self.ui.bottom_path.setText(self.file_dialog.getOpenFileName())
 
         #------------------------------------------------------------------------------#
 
         def check_values():
             """
-            This function check if there is no problem about values given.
+            This function checks if there is no problem about values given.
             If there is a problem with a or some values, their label's color is changed to red,
             and call a function to display a error message.
+            If there is no problem, their label, if it is necessary, is changed to grey (default color).
             """
 
-            #--------------------------------------------#
-            #The following checks values containing comas.
-            #--------------------------------------------#
+            #--------------------------------------------------------#
+            #The following checks values seperate by containing comas.
+            #--------------------------------------------------------#
 
-            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            #Si rien dans le chemin de repertoire, programme freeze
-            #a voir si cela fait pareil pour les fichiers
-            #PB avec les chemins !!!! -> FREEZE
-            # un point peut etre present sans rien apres,
-            # espace avant ou apres virgule marche pas
-            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            #Syntax test doesn't work for paths!
+            #And problem with number of errors.
+            #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            # No test for "report_parameter_value" !
+            # No test for "batch_name_value" !
 
             check_num = '(^([0-9]+[.]?[0-9]*[,]?){1,})|(^([0-9]+[,]){1,})'  #regular expression to use
             self.prog = re.compile(check_num)  #analysis object creation
@@ -103,22 +108,28 @@ class FormEvents():
                 if p_result.group() != self.ui.p_values.text():
                     self.ui.p_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error1')
                 else:
                     self.ui.p_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 1')
             except AttributeError:
                 self.ui.p_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error1')
             try:
                 if wavelength_result.group() != self.ui.wavelength_values.text():
                     self.ui.waveL_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error2')
                 else:
                     self.ui.waveL_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 2')
             except AttributeError:
                 self.ui.waveL_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error2')
 
             #---------------------------------------------------#
             #The following checks values containing only numbers.
@@ -136,63 +147,78 @@ class FormEvents():
                     self.ui.particules_label.setStyleSheet('color: red')
                     self.ui.x_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error3')
                 else:
                     self.ui.particules_label.setStyleSheet('color: 0.75')
                     self.ui.x_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 3')
             except AttributeError:
                 self.ui.particules_label.setStyleSheet('color: 0.75')
                 self.ui.x_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error3')
             try:
                 if y_result.group() != self.ui.y_value.text():
                     self.ui.particules_label.setStyleSheet('color: red')
                     self.ui.y_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error4')
                 else:
                     self.ui.particules_label.setStyleSheet('color: 0.75')
                     self.ui.y_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 4')
             except AttributeError:
                 self.ui.particules_label.setStyleSheet('color: red')
                 self.ui.y_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error4')
             try:
                 if g_result.group() != self.ui.g_value.text():
                     self.ui.organic_label.setStyleSheet('color: red')
                     self.ui.g_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error5')
                 else:
                     self.ui.organic_label.setStyleSheet('color: 0.75')
                     self.ui.g_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 5')
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
                 self.ui.g_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error5')
             try:
                 if s_result.group() != self.ui.s_value.text():
                     self.ui.organic_label.setStyleSheet('color: red')
                     self.ui.s_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error6')
                 else:
                     self.ui.organic_label.setStyleSheet('color: 0.75')
                     self.ui.s_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 6')
             except AttributeError:
                 self.ui.organic_label.setStyleSheet('color: red')
                 self.ui.s_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error6')
             try:
                 if z_result.group() != self.ui.z_value.text():
                     self.ui.z_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error7')
                 else:
                     self.ui.z_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 7')
             except AttributeError:
                 self.ui.z_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error7')
 
             check_num3 = '[1-6]+'
             self.prog3 = re.compile(check_num3)
@@ -202,18 +228,25 @@ class FormEvents():
                 if verbose_result.group() != self.ui.verbose_value.text():
                     self.ui.verbose_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error8')
                 else:
                     self.ui.verbose_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 8')
             except AttributeError:
                 self.ui.verbose_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error8')
 
-            #---------------------------------------------------#
-            #The following checks values containing only numbers.
-            #---------------------------------------------------#
-            """
-            check_num4 = '[/]([A-Za-z]+[/]?)+[A-Za-z]$'
+            #------------------------------------------------#
+            #The following checks values containing only path.
+            #------------------------------------------------#
+
+            #!!!!!!!!!!!!!!!!!!!!!!!!!!
+            #Syntax test doesn't work ! ->  #check_num4 = '[/]([A-Za-z]+[/]?)+[A-Za-z]$'
+            #!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            check_num4 = '(.*)' #Take all strings possible.
             self.prog4 = re.compile(check_num4)
             phyto_path_result = self.prog4.search(self.phyto_path)
             bottom_path_result = self.prog4.search(self.bottom_path)
@@ -223,33 +256,43 @@ class FormEvents():
                 if phyto_path_result.group() != self.ui.phyto_path.text():
                     self.ui.phyto_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error9')
                 else:
                     self.ui.phyto_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 9')
             except AttributeError:
                 self.ui.phyto_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error9')
             try:
                 if bottom_path_result.group() != self.ui.bottom_path.text():
                     self.ui.bottom_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error10')
                 else:
                     self.ui.bottom_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 10')
             except AttributeError:
                 self.ui.bottom_label.setStyleSheet('color: red')
                 self.nb_errors += 1
+                print('error10')
             try:
                 if exec_path_result.group() != self.ui.exec_path.text():
                     self.ui.execPath_label.setStyleSheet('color: red')
                     self.nb_errors += 1
+                    print('error11')
                 else:
                     self.ui.execPath_label.setStyleSheet('color: 0.75')
                     self.nb_errors -= 1
+                    print('resolved 11')
             except AttributeError:
                 self.ui.execPath_label.setStyleSheet('color: red')
                 self.nb_errors += 1
-            """
+                print('error11')
+
+
             print(self.nb_errors)
             return self.nb_errors
 
@@ -257,39 +300,45 @@ class FormEvents():
             """
             This function calls "gui_batch.py" with inputs values to write the batch file.
             """
-            bt = BatchFile(self.p_values, self.x_value, self.y_value, self.g_value, self.s_value, self.z_value,
+            bt = BatchFile(self.batch_name_value, self.p_values, self.x_value, self.y_value, self.g_value, self.s_value, self.z_value,
                            self.wavelength_values, self.verbose_value, self.phyto_path, self.bottom_path, self.nb_cpu,
-                           self.exec_path)
+                           self.exec_path, self.report_parameter_value)
             bt.write_batch_to_file()
 
         def display_graphic():
             """
             This function plots results of a file into a graphic.
             """
-            self.ui.widget.canvas.picture.clear()
+            self.ui.graphic_widget.canvas.picture.clear()
 
             the_file_name = "./batch_report.txt"
-            the_file = open(the_file_name,'r')
+            the_file = open(the_file_name, 'r')
 
             lines = the_file.readlines()
 
+            #We put all lines in an array and we put each part of the line in a column.
             lines_array = []
             for line in lines:
                 line = line.split('\t')
                 lines_array.append(line)
 
             labels_line = lines_array[0]
-            index = 8
-            for label in labels_line:
-                if label == ".*wave?length[.*]":
-                    index = labels_line.index(label) #Find the index of the value.
-                    break
-                #else:
-                #    raise sys.exit("Warning : There is no value named 'wavelength' in the file used to plot curves. "
-                #                   "So, I can't separate data to plot curves and data about tests linking with these curves.")
+            j = 0
+            flag = True
+            #ICI ON NE FINI PAS A LA FIN DE LA LIGNE, ON CONTINUE APRES VOILA POURQUOI INDEXERROR
+            try:
+                while flag:
+                    if labels_line[j] == '#wave length (nm) ->':
+                        index = labels_line.index(labels_line[j])  #Find the index of the value.
+                        flag = False
+                    else:
+                        j += 1
+            except IndexError:
+                raise sys.exit("Warning : There is no value named 'wavelength' in the file used to plot curves. "
+                               "So, I can't separate data to plot curves and data about tests linking with these curves.")
 
-            information = []
-            data_wavelength = []
+            information = [] #This array will contain the data displayed under the curves.
+            data_wavelength = [] #This array will contain the data to plot curves.
             l = 0
             for line in lines_array:
                 c = 0
@@ -303,115 +352,86 @@ class FormEvents():
                     c += 1
                 l += 1
 
+            #We transform wavelengths from strings to floats.
             i = 0
             for row_data_wavelength in data_wavelength:
                 row_data_wavelength = [float(item) for item in row_data_wavelength]
                 data_wavelength[i] = row_data_wavelength
                 i += 1
 
-            wavelength = data_wavelength[0] #first line contains wavelength
-            data_wanted = data_wavelength[1:]
+            wavelength = data_wavelength[0]  #The first line contains wavelength
+            data_wanted = data_wavelength[1:] #The others contain data useful to plot curves.
 
-            self.nb_case = i #This is the number of line, the number of case tested.
-            graphic_slider(self.nb_case) #change values's slider to show or highlight the good curve.
+            self.nb_case = i-1  #This is the number of line, the number of test.
+            graphic_slider(self.nb_case)  #change value's slider to show or highlight the good curve.
 
-            x = scipy.linspace(wavelength[0],wavelength[-1],len(wavelength))
+            x = scipy.linspace(wavelength[0], wavelength[-1], len(wavelength)) #X-axis
 
             n = 0
             for row_data_wanted in data_wanted:
+                #Following if the checkbox is checked (show all curves) or not.
                 if self.ui.show_all_curves.checkState() == 2:
                     y = row_data_wanted
+                    #Following the curve selected, we draw it differently.
                     if self.slider_value == n:
-                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)),linewidth=4)
+                        self.ui.graphic_widget.canvas.picture.plot(x, y, '-r',
+                                                           label='Case : ' + str(n + 1) + '/' + str(len(data_wanted)),
+                                                           linewidth=4)
+                        show_information_nb = n
                     else:
-                        self.ui.widget.canvas.picture.plot(x,y,'0.75')
+                        self.ui.graphic_widget.canvas.picture.plot(x, y, '0.75')
                 else:
                     if self.slider_value == n:
                         y = row_data_wanted
-                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)))
+                        self.ui.graphic_widget.canvas.picture.plot(x, y, '-r',
+                                                           label='Case : ' + str(n + 1) + '/' + str(len(data_wanted)))
+                        show_information_nb = n
                 n += 1
 
-            self.ui.widget.canvas.picture.set_title('Rrs.csv')
-            self.ui.widget.canvas.picture.set_xlabel('Wavelength (${nm}$)')
-            self.ui.widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
-            self.legend = self.ui.widget.canvas.picture.legend() #Display in a legend curves's labels.
-            self.ui.widget.canvas.picture.legend(bbox_to_anchor=(1.1, 1.05))
+            self.ui.graphic_widget.canvas.picture.set_title('Rrs.csv')
+            self.ui.graphic_widget.canvas.picture.set_xlabel('Wavelength (${nm}$)')
+            self.ui.graphic_widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
+            self.legend = self.ui.graphic_widget.canvas.picture.legend()  #Display in a legend curves's labels.
+            self.ui.graphic_widget.canvas.picture.legend(bbox_to_anchor=(1.1, 1.05))
+
+            label_information = information[0]
+            data_information = information[1:]
+            k = 0
+            #nb_label = len(label_information)
+            #while k <= nb_label:
+            #    self.ui.column1_label.setText(label_information[0])
+            #    self.ui.column2_label.setText(label_information[0])
+            #    self.ui.column3_label.setText(label_information[0])
+            #    self.ui.column4_label.setText(label_information[0])
+            #    self.ui.column5_label.setText(label_information[0])
+            #    self.ui.column6_label.setText(label_information[0])
+            #    self.ui.column7_label.setText(label_information[0])
+            #    self.ui.column8_label.setText(label_information[0])
+            #k += 1
+
+            m = 0
+            while m < len(data_information):
+                if m == show_information_nb:
+                    self.ui.column1_result.setText(data_information[m][0])
+                    self.ui.column2_result.setText(data_information[m][1])
+                    self.ui.column3_result.setText(data_information[m][2])
+                    self.ui.column4_result.setText(data_information[m][3])
+                    self.ui.column5_result.setText(data_information[m][4])
+                    self.ui.column6_result.setText(data_information[m][5])
+                    self.ui.column7_result.setText(data_information[m][6])
+                    self.ui.column8_result.setText(data_information[m][7])
+                m += 1
 
             the_file.close()
-            self.ui.widget.canvas.draw()
+            self.ui.graphic_widget.canvas.draw()
 
-            """"
-########################################################################################
-            self.ui.widget.canvas.picture.clear()
-            wavelength_min = 410
-            wavelength_max = 730
-
-            csv_file_name = "./rrs.csv"
-            csv_file = open (csv_file_name,'r')
-
-            wavelength = csv_file.readline() #Wavelength are the first line of the file.
-            wavelength = wavelength.split('\t')
-            wavelength = map(float,wavelength)
-            data = csv_file.readline() #There is data of 'reflectance' in each line after.
-            data_array = []
-            while data != "":
-                data = data.split('\t')
-                data = map(float,data)
-                data_array.append(data)
-                data = csv_file.readline()
-
-            wavelength_wanted = []
-            data_wanted = []
-            i = 0
-            while i < len(data_array):
-                data_wanted.append([])
-                i += 1
-
-            self.nb_case = i #This is the number of line, the number of case tested.
-
-            graphic_slider(self.nb_case) #change values's slider to show or highlight the good curve.
-
-            for value in wavelength: #For each value in the first line (wavelength).
-                if (value > wavelength_min) & (value < wavelength_max): #If the wavelength is between min and max (the part that we want to keep).
-                    wavelength_wanted.append(value) #We keep the value of the wavelength.
-                    index = wavelength.index(value) #Find the index of the value.
-                    j = 0
-                    for row_data_array in data_array:
-                        data_wanted[j].append(row_data_array[index]) #Thanks to this index, we can find where is the value of reflectance we want to keep.
-                        j += 1
-
-            x = scipy.linspace(wavelength_min,wavelength_max,len(wavelength_wanted))
-
-            n = 0
-            for row_data_wanted in data_wanted:
-                if self.ui.show_all_curves.checkState() == 2:
-                    y = row_data_wanted
-                    if self.slider_value == n:
-                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)),linewidth=4)
-                    else:
-                        self.ui.widget.canvas.picture.plot(x,y,'0.75')
-                else:
-                    if self.slider_value == n:
-                        y = row_data_wanted
-                        self.ui.widget.canvas.picture.plot(x,y,'-r',label='Case : '+str(n+1)+'/'+str(len(data_wanted)))
-                n += 1
-
-
-            self.ui.widget.canvas.picture.set_xlabel('Wavelength (${nm}$)')
-            self.ui.widget.canvas.picture.set_ylabel('Reflectance ($Sr^{-1}$)')
-            self.ui.widget.canvas.picture.set_title('Rrs.csv')
-            self.legend = self.ui.widget.canvas.picture.legend() #Display in a legend curves's labels.
-            self.ui.widget.canvas.picture.legend(bbox_to_anchor=(1.1, 1.05))
-
-            csv_file.close()
-            self.ui.widget.canvas.draw()
-"""
         def graphic_slider(nb_case):
             """
             This function scales the slider for curves displayed.
-            Return the value of the slider.
+            Input : The number of cases (curves).
+            Return ; The slider's value.
             """
-            self.ui.sens.setRange(0,int(self.nb_case-1))
+            self.ui.sens.setRange(0, int(self.nb_case - 1))
             self.slider_value = self.ui.sens.value()
 
             return self.slider_value
@@ -420,32 +440,30 @@ class FormEvents():
             """
             This function displays an error message when a wrong value is typed.
             """
-            self.ui.error_label.setScaledContents(True)
-            self.ui.error_text_label.show()
+            self.ui.error_label.setScaledContents(True) #Warning image
+            self.ui.error_text_label.show() #Warning message
             self.ui.error_text_label.setStyleSheet('color: red')
 
         def hide_error_message(self):
             """
             This function hides the error message when all values are correct.
             """
-            self.ui.error_label.setScaledContents(False)
-            self.ui.error_text_label.hide()
+            self.ui.error_label.setScaledContents(False) #Warning image
+            self.ui.error_text_label.hide() #Warning message
 
         def execute_planarrad():
             """
             This function executes planarRad using the batch file.
             """
-            #VERIFIER L'AJOUT/SUPPRESSION D'ERREUR CAR FONCTIONNE MAL. DECREMENTE SIMPLEMENT QUAND PAS D'ERREUR (passage negatif)
-            #ET INCREMENTE SIMPLEMENT QUAND ERREUR. NE S'ARRETE PAS A 0 OU 8.
             data()
             check_values()
+
             if self.nb_errors > 0:
                 display_error_message()
             elif self.nb_errors == 0:
                 hide_error_message(self)
-                #PLACER ICI,REECRIT LE FICHIER BATCH ou pas? Appeller la fonction seulement plutot?
-                self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), write_to_file)
-                progress_bar() #FREEZE, BESOIN D'UN THREAD, LE MEME AUE POUR EXECUTER PANARRAD?
+                write_to_file()
+                progress_bar()
                 #os.chdir('../')
                 #os.system('./planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt')
 
@@ -464,16 +482,15 @@ class FormEvents():
             """
             This function cancels planarRad.
             """
-            #Besoin de faire deux threads, un pour lancer planaRad, que l'on stoppera avec ce bouton.'
-            #raise sys.exit("Not done yet !")
-            print ("cancel_planarrad Not done yet !")
+            print ("cancel_planarrad not done yet !")
             self.ui.progressBar.reset()
 
         def save_figure():
             """
-            This function programs the button to save the figure displayed.
+            This function programs the button to save the figure displayed
+            and save the graphic in a file in the current repository.
             """
-            self.ui.widget.canvas.print_figure('Rrs.png') #Save the graphic in a file in the current repository
+            self.ui.graphic_widget.canvas.print_figure('Rrs.png')
 
         def prerequisite_actions():
             """
@@ -483,10 +500,26 @@ class FormEvents():
             display_graphic()
             self.ui.progressBar.reset()
 
+        # def context_menu(event):
+        #     context_menu = QtGui.Menu()
+        #     action1 = context_menu.addAction("ssss")
+        #     context_menu.exec_(event.globalPos())
+
+        def onClick(self,e):
+            if e.button == 3:
+                pos = QtGui.QCursor().po()
+                self.open_graphic_context_Menu(pos)
+
+        def open_graphic_context_Menu(pos):
+            graphic_context_menu = QtGui.Menu()
+            save_graphic_action = graphic_context_menu("sss")
+            save_graphic_action = graphic_context_menu.exec_(self.tableWidget.mapFromGlobal(pos))
+
+        prerequisite_actions()
+
         #-------------------------------------------#
         #The following connects buttons to an action.
         #-------------------------------------------#
-        prerequisite_actions()
 
         self.ui.phyto_button.connect(self.ui.phyto_button, PyQt4.QtCore.SIGNAL('clicked()'), search_file_phyto)
         self.ui.bottom_button.connect(self.ui.bottom_button, PyQt4.QtCore.SIGNAL('clicked()'), search_file_bottom)
@@ -498,8 +531,10 @@ class FormEvents():
 
         self.ui.sens.connect(self.ui.sens, QtCore.SIGNAL('valueChanged(int)'), display_graphic)
         self.ui.show_all_curves.connect(self.ui.show_all_curves, QtCore.SIGNAL('stateChanged(int)'), display_graphic)
-        self.ui.save_figure.connect(self.ui.save_figure, PyQt4.QtCore.SIGNAL('clicked()'), save_figure)
 
+        #Save the figure with a right click !
+        #self.graphic_right_click = self.ui.graphic_widget.canvas.mpl_connect('button_press_event',onClick)
+        self.ui.graphic_widget.canvas.connect(self.ui.graphic_widget.canvas, QtCore.SIGNAL('button_press_event'),onClick)
         self.ui.quit.connect(self.ui.quit, PyQt4.QtCore.SIGNAL('clicked()'), quit)
 
         self.main_window.show()

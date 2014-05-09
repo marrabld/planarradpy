@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1397</width>
-    <height>825</height>
+    <width>1427</width>
+    <height>849</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -80,7 +80,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>120</y>
+        <y>70</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -99,7 +99,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>540</y>
+        <y>630</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -112,7 +112,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>500</y>
+        <y>580</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -125,7 +125,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>490</y>
+        <y>580</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -139,7 +139,7 @@
        <rect>
         <x>630</x>
         <y>360</y>
-        <width>621</width>
+        <width>741</width>
         <height>31</height>
        </rect>
       </property>
@@ -195,8 +195,8 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>570</y>
-        <width>471</width>
+        <y>660</y>
+        <width>481</width>
         <height>21</height>
        </rect>
       </property>
@@ -208,8 +208,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>120</y>
-        <width>391</width>
+        <y>70</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -231,7 +231,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>150</y>
+        <y>100</y>
         <width>151</width>
         <height>21</height>
        </rect>
@@ -244,7 +244,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>170</y>
+        <y>120</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -254,7 +254,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>200</y>
+        <y>150</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -264,7 +264,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>170</y>
+        <y>120</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -277,7 +277,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>200</y>
+        <y>150</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -290,7 +290,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>230</y>
+        <y>180</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -303,7 +303,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>280</y>
+        <y>230</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -313,7 +313,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>250</y>
+        <y>200</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -332,7 +332,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>250</y>
+        <y>200</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -345,7 +345,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>280</y>
+        <y>230</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -358,7 +358,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>310</y>
+        <y>260</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -371,7 +371,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>310</y>
+        <y>260</y>
         <width>51</width>
         <height>21</height>
        </rect>
@@ -381,7 +381,7 @@
       <property name="geometry">
        <rect>
         <x>190</x>
-        <y>310</y>
+        <y>260</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -394,7 +394,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>530</y>
+        <y>620</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -407,7 +407,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>420</y>
+        <y>290</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -420,8 +420,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>420</y>
-        <width>391</width>
+        <y>290</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -430,7 +430,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>40</y>
+        <y>420</y>
         <width>191</width>
         <height>21</height>
        </rect>
@@ -446,7 +446,7 @@
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>40</y>
+        <y>410</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -461,9 +461,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>40</x>
-        <y>80</y>
-        <width>471</width>
+        <x>30</x>
+        <y>450</y>
+        <width>491</width>
         <height>21</height>
        </rect>
       </property>
@@ -490,9 +490,9 @@
       </property>
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>380</y>
-        <width>471</width>
+        <width>491</width>
         <height>21</height>
        </rect>
       </property>
@@ -503,7 +503,7 @@
      <widget class="QPushButton" name="bottom_button">
       <property name="geometry">
        <rect>
-        <x>160</x>
+        <x>220</x>
         <y>340</y>
         <width>71</width>
         <height>31</height>
@@ -517,7 +517,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>460</y>
+        <y>550</y>
         <width>66</width>
         <height>17</height>
        </rect>
@@ -529,9 +529,9 @@
      <widget class="QLineEdit" name="verbose_value">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>460</y>
-        <width>31</width>
+        <x>160</x>
+        <y>550</y>
+        <width>71</width>
         <height>21</height>
        </rect>
       </property>
@@ -539,8 +539,8 @@
      <widget class="QLabel" name="label_14">
       <property name="geometry">
        <rect>
-        <x>520</x>
-        <y>420</y>
+        <x>530</x>
+        <y>290</y>
         <width>31</width>
         <height>16</height>
        </rect>
@@ -552,8 +552,8 @@
      <widget class="QLabel" name="label_31">
       <property name="geometry">
        <rect>
-        <x>160</x>
-        <y>460</y>
+        <x>240</x>
+        <y>550</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -566,7 +566,7 @@
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>500</y>
+        <y>590</y>
         <width>251</width>
         <height>16</height>
        </rect>
@@ -585,13 +585,13 @@
        </rect>
       </property>
      </widget>
-     <widget class="matplotlibWidget" name="widget" native="true">
+     <widget class="matplotlibWidget" name="graphic_widget" native="true">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>791</width>
-        <height>351</height>
+        <x>570</x>
+        <y>0</y>
+        <width>811</width>
+        <height>371</height>
        </rect>
       </property>
      </widget>
@@ -697,19 +697,6 @@
       </property>
       <property name="text">
        <string>Show all curves</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="save_figure">
-      <property name="geometry">
-       <rect>
-        <x>1270</x>
-        <y>360</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save figure</string>
       </property>
      </widget>
      <widget class="QLabel" name="column3_label">
@@ -866,6 +853,84 @@
       </property>
       <property name="text">
        <string>column4_label :</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_4">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>320</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="Line" name="line_5">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>480</y>
+        <width>371</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="report_parameter_value">
+      <property name="geometry">
+       <rect>
+        <x>160</x>
+        <y>510</y>
+        <width>71</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="report_parameter_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>510</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Report parameter :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="batch_name_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>40</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>Batch name :</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="batch_name_value">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>40</y>
+        <width>101</width>
+        <height>21</height>
+       </rect>
       </property>
      </widget>
     </widget>
@@ -1183,10 +1248,10 @@
      <widget class="QWidget" name="widget_2" native="true">
       <property name="geometry">
        <rect>
-        <x>580</x>
-        <y>10</y>
-        <width>791</width>
-        <height>351</height>
+        <x>570</x>
+        <y>0</y>
+        <width>811</width>
+        <height>371</height>
        </rect>
       </property>
      </widget>
@@ -1288,32 +1353,13 @@
      <string>Quit</string>
     </property>
    </widget>
-   <widget class="QLabel" name="error_label">
-    <property name="geometry">
-     <rect>
-      <x>800</x>
-      <y>750</y>
-      <width>41</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>../../../.designer/backup/beCareful.png</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>true</bool>
-    </property>
-   </widget>
    <widget class="QLabel" name="error_text_label">
     <property name="geometry">
      <rect>
       <x>850</x>
       <y>760</y>
       <width>241</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -1357,15 +1403,132 @@
     <property name="text">
      <string>You typed wrong values !</string>
     </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
     <property name="wordWrap">
      <bool>false</bool>
     </property>
     <property name="openExternalLinks">
      <bool>false</bool>
     </property>
+    <property name="textInteractionFlags">
+     <set>Qt::LinksAccessibleByMouse</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="error_label">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>750</y>
+      <width>51</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>Icons/beCareful.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1427</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
+   <widget class="QMenu" name="menuEssai">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionRun"/>
+    <addaction name="separator"/>
+    <addaction name="actionQuit"/>
+   </widget>
+   <widget class="QMenu" name="menuFigure">
+    <property name="title">
+     <string>Figure</string>
+    </property>
+    <addaction name="actionSave"/>
+    <addaction name="actionSve_as"/>
+   </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help !</string>
+    </property>
+    <addaction name="actionLog_file"/>
+    <addaction name="actionDocumentation"/>
+   </widget>
+   <addaction name="menuEssai"/>
+   <addaction name="menuFigure"/>
+   <addaction name="menuAbout"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionDd">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionQuit">
+   <property name="text">
+    <string>Quit</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionSve_as">
+   <property name="text">
+    <string>Save As ...</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>Run</string>
+   </property>
+  </action>
+  <action name="actionLog_file">
+   <property name="text">
+    <string>Log file</string>
+   </property>
+  </action>
+  <action name="actionDocumentation">
+   <property name="text">
+    <string>Documentation</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>

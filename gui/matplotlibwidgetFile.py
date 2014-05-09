@@ -2,7 +2,8 @@
 
 from PyQt4 import QtGui
 from matplotlib.backends.backend_qt4agg import FigureCanvasQTAgg as FigureCanvas
-
+import sys
+import scipy
 from matplotlib.figure import Figure
 
 class MplCanvas(FigureCanvas):

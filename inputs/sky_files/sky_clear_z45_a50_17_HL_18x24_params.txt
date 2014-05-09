@@ -1,0 +1,16 @@
+verbose= 6
+band_count= 17
+band_centres_data= 410.0,430.0,450.0,470.0,490.0,510.0,530.0,550.0,570.0,590.0,610.0,630.0,650.0,670.0,690.0,710.0,730.0
+partition= sphere
+vn= 18
+hn= 24
+rdif= 0.3
+theta_points= 0,5,15,25,35,45,55,65,75,85,90,95,105,115,125,135,145,155,165,175,180
+type= hlideal
+azimuth= 50
+zenith= 45
+sky_save_fp= /home/boulefi/PycharmProjects/planarradpy/inputs/sky_files/sky_clear_z45_a50_17_HL_18x24
+sky_image_save_fp= image_/home/boulefi/PycharmProjects/planarradpy/inputs/sky_files/sky_clear_z45_a50_17_HL_18x24.ppm
+sky_image_size= 256
+C= 1
+rdif= 0.3

@@ -1005,13 +1005,11 @@ class ReportTools():
                     report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
                     try:
                         param_val = report[parameter]
+                        param_str = str(param_val)
+                        param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
+                        f.write(param_str + '\n')
                     except:
                         lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
-
-                    param_str = str(param_val)
-                    param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
-                    f.write(param_str + '\n')
-
                 except:
                     lg.warning('Cannot find a report in directory :: ' + dir)
 

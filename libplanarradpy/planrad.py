@@ -948,12 +948,19 @@ class ReportTools():
         #--------------------------------------------------#
         dir_list = os.listdir(input_directory)
 
+        #--------------------------------------------------#
+        # Sometimes the report isn't generated for some reason.
+        # this checks to see if the first file in the dir list exists and skips if it doesn't
+        #--------------------------------------------------#
         read_first_file = True
         i_iter = 0
         while read_first_file:
             if os.path.exists(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt'))):
                 report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt')))
                 read_first_file = False
+            else:
+                lg.warning('Missing report file in' + dir_list[i_iter])
+                i_iter += 1
 
         try:
             wave_val = report['band_centres']

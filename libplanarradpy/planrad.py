@@ -948,7 +948,12 @@ class ReportTools():
         #--------------------------------------------------#
         dir_list = os.listdir(input_directory)
 
-        report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+        read_first_file = True
+        i_iter = 0
+        while read_first_file:
+            if os.path.exists(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt'))):
+                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt')))
+                read_first_file = False
 
         try:
             wave_val = report['band_centres']

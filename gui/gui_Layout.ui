@@ -933,6 +933,19 @@
        </rect>
       </property>
      </widget>
+     <widget class="QPushButton" name="open_result_file_button">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>480</y>
+        <width>121</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Open result file</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="ReverseTab">
      <attribute name="title">

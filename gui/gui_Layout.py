@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui_Layout.ui'
 #
-# Created: Fri May  9 16:46:26 2014
+# Created: Fri May  9 17:01:23 2014
 #      by: PyQt4 UI code generator 4.9.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -270,6 +270,9 @@ class Ui_MainWindow(object):
         self.batch_name_value = QtGui.QLineEdit(self.tab)
         self.batch_name_value.setGeometry(QtCore.QRect(120, 40, 101, 21))
         self.batch_name_value.setObjectName(_fromUtf8("batch_name_value"))
+        self.open_result_file_button = QtGui.QPushButton(self.tab)
+        self.open_result_file_button.setGeometry(QtCore.QRect(600, 480, 121, 31))
+        self.open_result_file_button.setObjectName(_fromUtf8("open_result_file_button"))
         self.tabWidget.addTab(self.tab, _fromUtf8(""))
         self.ReverseTab = QtGui.QWidget()
         self.ReverseTab.setObjectName(_fromUtf8("ReverseTab"))
@@ -522,6 +525,7 @@ class Ui_MainWindow(object):
         self.column4_label.setText(QtGui.QApplication.translate("MainWindow", "column4_label :", None, QtGui.QApplication.UnicodeUTF8))
         self.report_parameter_label.setText(QtGui.QApplication.translate("MainWindow", "Report parameter :", None, QtGui.QApplication.UnicodeUTF8))
         self.batch_name_label.setText(QtGui.QApplication.translate("MainWindow", "Batch name :", None, QtGui.QApplication.UnicodeUTF8))
+        self.open_result_file_button.setText(QtGui.QApplication.translate("MainWindow", "Open result file", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), QtGui.QApplication.translate("MainWindow", "Tab 1", None, QtGui.QApplication.UnicodeUTF8))
         self.label_20.setText(QtGui.QApplication.translate("MainWindow", "Details :", None, QtGui.QApplication.UnicodeUTF8))
         self.McGee_radioButton.setText(QtGui.QApplication.translate("MainWindow", "McGEE 1999", None, QtGui.QApplication.UnicodeUTF8))

@@ -34,6 +34,8 @@ class FormEvents():
         self.nb_errors = 0
         self.slider_value = 0
         self.ui.show_all_curves.setCheckState(2)
+        self.result_file = "./batch_report.txt"
+        # context menu
         self.tableWidget = QtGui.QTableWidget()
         self.tableWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
 
@@ -72,11 +74,16 @@ class FormEvents():
         def search_directory_exec_path():
             self.ui.exec_path.setText(self.file_dialog.getExistingDirectory())
 
+        #Faire appel a la meme fonction?
         def search_file_phyto():
             self.ui.phyto_path.setText(self.file_dialog.getOpenFileName())
 
         def search_file_bottom():
             self.ui.bottom_path.setText(self.file_dialog.getOpenFileName())
+
+        def search_file_result():
+            self.result_file = self.file_dialog.getOpenFileName()
+            return self.result_file
 
         #------------------------------------------------------------------------------#
 
@@ -311,7 +318,8 @@ class FormEvents():
             """
             self.ui.graphic_widget.canvas.picture.clear()
 
-            the_file_name = "./batch_report.txt"
+            #the_file_name = "./batch_report.txt"
+            the_file_name = str(self.result_file)
             the_file = open(the_file_name, 'r')
 
             lines = the_file.readlines()
@@ -525,6 +533,8 @@ class FormEvents():
         self.ui.bottom_button.connect(self.ui.bottom_button, PyQt4.QtCore.SIGNAL('clicked()'), search_file_bottom)
         self.ui.exec_path_button.connect(self.ui.exec_path_button, PyQt4.QtCore.SIGNAL('clicked()'),
                                          search_directory_exec_path)
+        self.ui.open_result_file_button.connect(self.ui.open_result_file_button, PyQt4.QtCore.SIGNAL('clicked()'),
+                                         search_file_result)
 
         self.ui.run.connect(self.ui.run, PyQt4.QtCore.SIGNAL('clicked()'), execute_planarrad)
         self.ui.cancel.connect(self.ui.cancel, PyQt4.QtCore.SIGNAL('clicked()'), cancel_planarrad)

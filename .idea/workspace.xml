@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21081ba5-589b-4464-a09c-83a03ca32a14" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui/gui_Layout.ui" afterPath="$PROJECT_DIR$/gui/gui_Layout.ui" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui/gui_Layout.py" afterPath="$PROJECT_DIR$/gui/gui_Layout.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gui/gui_mainLayout.py" afterPath="$PROJECT_DIR$/gui/gui_mainLayout.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="planarradpy.iws" />
@@ -31,7 +30,7 @@
       <file leaf-file-name="gui_mainLayout.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gui/gui_mainLayout.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="536" column="60" selection-start="23602" selection-end="23602" vertical-scroll-proportion="0.6498054" vertical-offset="7539" max-vertical-offset="8400">
+            <state line="536" column="60" selection-start="23602" selection-end="23602" vertical-scroll-proportion="0.6742934" vertical-offset="7539" max-vertical-offset="8400">
               <folding>
                 <element signature="e#23#35#0" expanded="true" />
               </folding>
@@ -92,9 +91,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="65" />
-    <option name="y" value="24" />
+    <option name="y" value="52" />
     <option name="width" value="1375" />
-    <option name="height" value="876" />
+    <option name="height" value="848" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -397,16 +396,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="24" width="1375" height="876" extended-state="6" />
+    <frame x="65" y="52" width="1375" height="848" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.49963635" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3196005" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14981818" sideWeight="0.65917605" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14981818" sideWeight="0.65976715" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39950064" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14981818" sideWeight="0.33957553" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14981818" sideWeight="0.34023285" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.50036365" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1658031" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32958803" sideWeight="0.49963635" order="7" side_tool="false" content_ui="tabs" />
@@ -746,7 +745,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/gui/gui_mainLayout.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="536" column="60" selection-start="23602" selection-end="23602" vertical-scroll-proportion="0.6498054" vertical-offset="7539" max-vertical-offset="8400">
+        <state line="536" column="60" selection-start="23602" selection-end="23602" vertical-scroll-proportion="0.6742934" vertical-offset="7539" max-vertical-offset="8400">
           <folding>
             <element signature="e#23#35#0" expanded="true" />
           </folding>

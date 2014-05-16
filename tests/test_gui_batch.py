@@ -49,15 +49,16 @@ class TestBatchFile(unittest.TestCase):
 
         #-------------------------------------------------------------------------------#
         #The following will check that the file exists in the place you expect it to be
-        #and I will check the file is correct
+        #and I will check the file's size is correct
         #-------------------------------------------------------------------------------#
         if (os.path.isfile(path)) & (os.path.getsize(path) > 1000):
             res = True
 
         #------------------------------------------------------------------------------------#
         #The following will read the file back in and check the different values are the same.
-        #-------------------------------------------------------------------------------------#
+        #------------------------------------------------------------------------------------#
         self.batch_file = open(path, 'r')
+        self.assertFalse(self.batch_file.closed)
 
         items = ['p_list', 'x_list', 'y_list', 'g_list', 's_list', 'z_list', 'num_cpus', 'verbose']
         for line in self.batch_file:
@@ -65,10 +66,13 @@ class TestBatchFile(unittest.TestCase):
                 key, val = line.split('= ')
                 val = val.rstrip()
                 """
+                #trouver l'index ou est key dans item pour comparer ensuite avec val
+                #surement renomer car nom label dans le fichier ne sont pas les meme aue dans tableau item.
                 if key in items:
                     val = map(float, val.split(','))
                     self.assertEqual(val, self.gui_batch.items)
                 """
+                #ne devrait-je pas controler avec les valeurs de ce fichier?
                 if 'p_list' in key:
                     val = map(float, val.split(','))
                     self.assertSequenceEqual(val, self.gui_batch.p_values)
@@ -109,7 +113,7 @@ class TestBatchFile(unittest.TestCase):
                 continue
 
         self.batch_file.close()
-
+        self.assertTrue(self.batch_file.closed)
 
 def main():
     unittest.main()

@@ -16,13 +16,50 @@ class TestFormEvents(unittest.TestCase):
         """
 
         """
-        test = 1
+        self.batch_name_value = "batch_name"
+        self.p_values = "10, 11, 12"
+        self.x_value = "1"
+        self.y_value = "2"
+        self.g_value = "3"
+        self.s_value = "4"
+        self.z_value = "5"
+        self.wavelength_values = "6, 7, 8, 9"
+        self.verbose_value = "2"
+        self.phyto_path = "gui/file_phyto"
+        self.bottom_path = "gui/file_bottom"
+        self.exec_path = "gui/file_exec"
+        self.nb_cpu = "1"
+        self.report_parameter_value = "Rrs"
+
 
     def test_data(self):
         """
         The following will check if all data filled are get back well.
         """
-        test = 1
+        #envoyer les donnees dans les cases et les recuperer ensuite. Puis comparer le recuperer avec celles declarer.
+        self.ui.batch_name.setText("batch_name")
+        self.ui.p_values.setText("10, 11, 12")
+        self.ui.x_value.setText("1")
+        self.ui.y_value.setText("2")
+        self.ui.g_value.setText("3")
+        self.ui.s_value.setText("4")
+        self.ui.z_value.setText("5")
+        self.ui.wavelength_values.setText("6, 7, 8, 9")
+        self.ui.verbose_value.setText("2")
+        self.ui.phyto_path.setText("gui/file_phyto")
+        self.ui.bottom_path.setText("gui/file_bottom")
+        self.ui.exec_path.setText("gui/file_exec")
+        self.ui.nb_cpu.itemText(0)
+        self.ui.report_parameter_value.setText("Rrs")
+
+        self.assertEqual(self.batch_name, self.gui_mainLayout.report_parameter_value)
+        self.assertEqual(self.p_values, self.gui_mainLayout.p_values)
+        self.assertEqual(self.x_value, self.gui_mainLayout.x_value)
+        self.assertEqual(self.y_value, self.gui_mainLayout.y_value)
+        self.assertEqual(self.g_value, self.gui_mainLayout.g_value)
+        self.assertEqual(self.s_value, self.gui_mainLayout.s_value)
+        self.assertEqual(self.z_value, self.gui_mainLayout.z_value)
+
 
     def test_search_directory_exec_path(self):
         """
@@ -50,7 +87,7 @@ class TestFormEvents(unittest.TestCase):
 
     def test_write_to_file(self):
         """
-        THe following will checks if "gui_batch.py" is called with data
+        The following will checks if "gui_batch.py" is called with data
         and use one of its function to write the batch file.
         """
         test = 1

@@ -9,7 +9,8 @@ class BatchFile():
     The constructor receives data that the user typed and transmitted thanks to files, concerning the environment.
     """
 
-    def __init__(self, batch_name, p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values, verbose_value,
+    def __init__(self, batch_name, p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values,
+                 verbose_value,
                  phyto_path, bottom_path, nb_cpu, exec_path, report_parameter_value):
         self.batch_name = batch_name
         self.p_values = p_values

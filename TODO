@@ -2,12 +2,13 @@ In the code, there is some comments in green about how to improve the GUI.
 
 But some tasks were not done, such as :
 - Display on the graphic the wavelength numbers using in the result file.
+- Change the mouse location on the artist begining from the origin of the graphic and not of the canvas.
 - Check the unit test file for the batch fil because I really not sure that is works well.
 - Create a unit test file for the main file.
 - On the graphic, put the name of the file where data for results come from.
 - Add a dialogBox for when you click on the cross to close the window.
 - For the report parameter, add a list with all available.
-- OPen the documentation adn the log file thanks to the bar menu.
+- Open the documentation adn the log file thanks to the bar menu.
 
 Some ideas from me could be implement :
 - Add an embed python console / terminal in the GUI showing how PlanarRad works.

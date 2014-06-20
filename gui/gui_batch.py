@@ -10,8 +10,8 @@ class BatchFile():
     """
 
     def __init__(self, batch_name, p_values, x_value, y_value, g_value, s_value, z_value, wavelength_values,
-                 verbose_value,
-                 phyto_path, bottom_path, nb_cpu, exec_path, report_parameter_value):
+                 verbose_value, phytoplankton_path, bottom_path, nb_cpu, executive_path, saa_values,
+                 sza_values, report_parameter_value):
         self.batch_name = batch_name
         self.p_values = p_values
         self.x_value = x_value
@@ -21,30 +21,34 @@ class BatchFile():
         self.z_value = z_value
         self.wavelength_values = wavelength_values
         self.verbose_value = verbose_value
-        self.phyto_path = phyto_path
+        self.phytoplankton_path = phytoplankton_path
         self.bottom_path = bottom_path
         self.nb_cpu = nb_cpu
-        self.exec_path = exec_path
+        self.executive_path = executive_path
         self.report_parameter_value = report_parameter_value
+        self.saa_values = saa_values
+        self.sza_values = sza_values
 
-    def write_batch_to_file(self, filename='batch_test_boulefi.txt'):
+    def write_batch_to_file(self, filename='batch_test_default.txt'):
         """
         This function creates a new file if he doesn't exist already, moves it to 'inputs/batch_file' folder
         and writes data and comments associated to them.
-        Inputs: batch_name :
-                p_values :
-                x_value :
-                y_value :
-                g_value :
-                s_value :
-                waveL_values :
-                verbose_value :
-                phyto_path :
-                bottom_path :
-                nb_cpu :
-                exec_path :
+        Inputs: saa_values : <list> Sun Azimuth Angle (deg)
+                sza_values : <list> Sun Zenith Angle (deg)
+                batch_name : Name of the batch file.
+                p_values : <list> Phytoplankton linear scaling factor
+                x_value : <list> Scattering scaling factor
+                y_value : <list> Scattering slope factor
+                g_value : <list> CDOM absorption scaling factor
+                s_value : <list> CDOM absorption slope factor
+                s_value : <list> depth (m)
+                waveL_values : Wavelength values used to test.
+                verbose_value : Number concerning if the software explains a lot or not what it does.
+                phytoplankton_path : The path to the file containing phytoplankton data.
+                bottom_path : The path to the file containing bottom data.
+                nb_cpu : The number of CPU we want to allowed to the software.
+                executive_path : The path to the file where there is executive files using by PlanarRad.
                 report_parameter :
-        No return
         """
 
         #---------------------------------------------------------#
@@ -62,6 +66,12 @@ batch_name = """)
 #----------------------------------------#
 # Bio-optical parameters list
 #----------------------------------------#
+saa_values = """)
+        self.batch_file.write(str(self.saa_values))
+        self.batch_file.write("""
+sza_values = """)
+        self.batch_file.write(str(self.sza_values))
+        self.batch_file.write("""
 p_list = """)
         self.batch_file.write(str(self.p_values))
         self.batch_file.write("""
@@ -102,7 +112,7 @@ num_cpus = """)
 # Path of Planarrad
 #----------------------------------------#
 exec_path = """)
-        self.batch_file.write(self.exec_path)
+        self.batch_file.write(self.executive_path)
         self.batch_file.write("""
 
 #----------------------------------------#
@@ -117,7 +127,7 @@ verbose = """)
 # Using absolute paths
 #----------------------------------------#
 phytoplankton_absorption_file =""")
-        self.batch_file.write(self.phyto_path)
+        self.batch_file.write(self.phytoplankton_path)
         self.batch_file.write("""
 bottom_reflectance_file = """)
         self.batch_file.write(self.bottom_path)
@@ -127,7 +137,7 @@ bottom_reflectance_file = """)
 # Set the parameter to report
 #----------------------------------------#
 report_parameter = """)
-        self.batch_file.write(self.report_parameter_value)
+        self.batch_file.write(str(self.report_parameter_value))
 
         self.batch_file.write("""
 

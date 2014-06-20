@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1427</width>
-    <height>849</height>
+    <width>1207</width>
+    <height>878</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Batch scripts and Reverse</string>
+   <string>PlanarRad</string>
   </property>
   <property name="animated">
    <bool>true</bool>
@@ -27,7 +27,7 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>760</y>
+      <y>790</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -44,8 +44,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1391</width>
-      <height>751</height>
+      <width>1371</width>
+      <height>781</height>
      </rect>
     </property>
     <property name="baseSize">
@@ -72,15 +72,15 @@
     <property name="elideMode">
      <enum>Qt::ElideNone</enum>
     </property>
-    <widget class="QWidget" name="tab">
+    <widget class="QWidget" name="rad_transf_model_tab">
      <attribute name="title">
-      <string>Tab 1</string>
+      <string>Radiative Transfer Model</string>
      </attribute>
      <widget class="QLabel" name="p_label">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>70</y>
+        <y>130</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -99,7 +99,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>630</y>
+        <y>690</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -112,7 +112,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>580</y>
+        <y>650</y>
         <width>111</width>
         <height>16</height>
        </rect>
@@ -125,7 +125,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>580</y>
+        <y>640</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -139,7 +139,7 @@
        <rect>
         <x>630</x>
         <y>360</y>
-        <width>741</width>
+        <width>721</width>
         <height>31</height>
        </rect>
       </property>
@@ -195,7 +195,7 @@
       <property name="geometry">
        <rect>
         <x>40</x>
-        <y>660</y>
+        <y>720</y>
         <width>481</width>
         <height>21</height>
        </rect>
@@ -208,7 +208,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>70</y>
+        <y>130</y>
         <width>401</width>
         <height>21</height>
        </rect>
@@ -227,25 +227,25 @@
        <string>Set the Bio-optical parameters list :</string>
       </property>
      </widget>
-     <widget class="QLabel" name="particules_label">
+     <widget class="QLabel" name="particles_label">
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>100</y>
+        <y>160</y>
         <width>151</width>
         <height>21</height>
        </rect>
       </property>
       <property name="text">
-       <string>Particules scaterring :</string>
+       <string>Particles scaterring :</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="x_value">
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>120</y>
-        <width>51</width>
+        <y>180</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -254,8 +254,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>150</y>
-        <width>51</width>
+        <y>210</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -264,7 +264,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>120</y>
+        <y>180</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -277,7 +277,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>150</y>
+        <y>210</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -290,7 +290,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>180</y>
+        <y>240</y>
         <width>231</width>
         <height>21</height>
        </rect>
@@ -303,8 +303,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>230</y>
-        <width>51</width>
+        <y>290</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -313,8 +313,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>200</y>
-        <width>51</width>
+        <y>260</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -332,7 +332,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>200</y>
+        <y>260</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -345,7 +345,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>230</y>
+        <y>290</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -358,7 +358,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>260</y>
+        <y>320</y>
         <width>71</width>
         <height>16</height>
        </rect>
@@ -371,8 +371,8 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>260</y>
-        <width>51</width>
+        <y>320</y>
+        <width>401</width>
         <height>21</height>
        </rect>
       </property>
@@ -380,8 +380,8 @@
      <widget class="QLabel" name="label_10">
       <property name="geometry">
        <rect>
-        <x>190</x>
-        <y>260</y>
+        <x>530</x>
+        <y>320</y>
         <width>21</width>
         <height>16</height>
        </rect>
@@ -394,7 +394,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>620</y>
+        <y>680</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -407,7 +407,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>290</y>
+        <y>350</y>
         <width>101</width>
         <height>16</height>
        </rect>
@@ -420,7 +420,7 @@
       <property name="geometry">
        <rect>
         <x>120</x>
-        <y>290</y>
+        <y>350</y>
         <width>401</width>
         <height>21</height>
        </rect>
@@ -430,7 +430,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>420</y>
+        <y>480</y>
         <width>191</width>
         <height>21</height>
        </rect>
@@ -446,7 +446,7 @@
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>410</y>
+        <y>470</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -462,7 +462,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>450</y>
+        <y>510</y>
         <width>491</width>
         <height>21</height>
        </rect>
@@ -475,7 +475,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>350</y>
+        <y>410</y>
         <width>141</width>
         <height>16</height>
        </rect>
@@ -491,7 +491,7 @@
       <property name="geometry">
        <rect>
         <x>30</x>
-        <y>380</y>
+        <y>440</y>
         <width>491</width>
         <height>21</height>
        </rect>
@@ -504,7 +504,7 @@
       <property name="geometry">
        <rect>
         <x>220</x>
-        <y>340</y>
+        <y>400</y>
         <width>71</width>
         <height>31</height>
        </rect>
@@ -517,7 +517,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>550</y>
+        <y>610</y>
         <width>66</width>
         <height>17</height>
        </rect>
@@ -530,7 +530,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>550</y>
+        <y>610</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -540,7 +540,7 @@
       <property name="geometry">
        <rect>
         <x>530</x>
-        <y>290</y>
+        <y>350</y>
         <width>31</width>
         <height>16</height>
        </rect>
@@ -553,7 +553,7 @@
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>550</y>
+        <y>610</y>
         <width>51</width>
         <height>16</height>
        </rect>
@@ -566,13 +566,13 @@
       <property name="geometry">
        <rect>
         <x>240</x>
-        <y>590</y>
-        <width>251</width>
+        <y>650</y>
+        <width>131</width>
         <height>16</height>
        </rect>
       </property>
       <property name="text">
-       <string>(-1 means query the number of CPUs)</string>
+       <string>(-1 means all CPUs)</string>
       </property>
      </widget>
      <widget class="QGraphicsView" name="graphicsView_3">
@@ -580,7 +580,7 @@
        <rect>
         <x>580</x>
         <y>10</y>
-        <width>791</width>
+        <width>771</width>
         <height>351</height>
        </rect>
       </property>
@@ -590,7 +590,7 @@
        <rect>
         <x>570</x>
         <y>0</y>
-        <width>811</width>
+        <width>791</width>
         <height>371</height>
        </rect>
       </property>
@@ -696,7 +696,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Show all curves</string>
+       <string>All curves</string>
       </property>
      </widget>
      <widget class="QLabel" name="column3_label">
@@ -852,7 +852,7 @@
       <property name="geometry">
        <rect>
         <x>890</x>
-        <y>526</y>
+        <y>530</y>
         <width>131</width>
         <height>20</height>
        </rect>
@@ -865,7 +865,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>320</y>
+        <y>380</y>
         <width>371</width>
         <height>21</height>
        </rect>
@@ -878,7 +878,7 @@
       <property name="geometry">
        <rect>
         <x>60</x>
-        <y>480</y>
+        <y>540</y>
         <width>371</width>
         <height>21</height>
        </rect>
@@ -891,7 +891,7 @@
       <property name="geometry">
        <rect>
         <x>160</x>
-        <y>510</y>
+        <y>570</y>
         <width>71</width>
         <height>21</height>
        </rect>
@@ -901,7 +901,7 @@
       <property name="geometry">
        <rect>
         <x>20</x>
-        <y>510</y>
+        <y>570</y>
         <width>131</width>
         <height>16</height>
        </rect>
@@ -934,7 +934,7 @@
        <rect>
         <x>120</x>
         <y>40</y>
-        <width>101</width>
+        <width>141</width>
         <height>21</height>
        </rect>
       </property>
@@ -943,7 +943,7 @@
       <property name="geometry">
        <rect>
         <x>600</x>
-        <y>480</y>
+        <y>500</y>
         <width>121</width>
         <height>31</height>
        </rect>
@@ -952,8 +952,105 @@
        <string>Open result file</string>
       </property>
      </widget>
+     <widget class="QLineEdit" name="saa_values">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>70</y>
+        <width>401</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="sza_values">
+      <property name="geometry">
+       <rect>
+        <x>120</x>
+        <y>100</y>
+        <width>401</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="saa_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>70</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>saa values :</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="sza_label">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>100</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text">
+       <string>sza values :</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="show_grid">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>470</y>
+        <width>61</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Grid</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="mouse_coordinate">
+      <property name="geometry">
+       <rect>
+        <x>740</x>
+        <y>550</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>(X,Y)</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>580</x>
+        <y>550</y>
+        <width>141</width>
+        <height>17</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Mouse coordinates :</string>
+      </property>
+     </widget>
     </widget>
-    <widget class="QWidget" name="ReverseTab">
+    <widget class="QWidget" name="reverse_tab">
      <attribute name="title">
       <string>Reverse</string>
      </attribute>
@@ -1328,7 +1425,7 @@
     <property name="geometry">
      <rect>
       <x>110</x>
-      <y>770</y>
+      <y>800</y>
       <width>351</width>
       <height>16</height>
      </rect>
@@ -1350,7 +1447,7 @@
     <property name="geometry">
      <rect>
       <x>470</x>
-      <y>760</y>
+      <y>790</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -1362,8 +1459,8 @@
    <widget class="QPushButton" name="quit">
     <property name="geometry">
      <rect>
-      <x>1290</x>
-      <y>760</y>
+      <x>1270</x>
+      <y>790</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -1376,7 +1473,7 @@
     <property name="geometry">
      <rect>
       <x>850</x>
-      <y>760</y>
+      <y>790</y>
       <width>241</width>
       <height>31</height>
      </rect>
@@ -1439,7 +1536,7 @@
     <property name="geometry">
      <rect>
       <x>800</x>
-      <y>750</y>
+      <y>780</y>
       <width>51</width>
       <height>51</height>
      </rect>
@@ -1464,7 +1561,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1427</width>
+     <width>1207</width>
      <height>25</height>
     </rect>
    </property>
@@ -1489,12 +1586,13 @@
      <string>Figure</string>
     </property>
     <addaction name="actionSave"/>
-    <addaction name="actionSve_as"/>
+    <addaction name="actionSave_as"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
      <string>About</string>
     </property>
+    <addaction name="actionThis_GUI"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1523,7 +1621,7 @@
     <string>Save</string>
    </property>
   </action>
-  <action name="actionSve_as">
+  <action name="actionSave_as">
    <property name="text">
     <string>Save As ...</string>
    </property>
@@ -1548,15 +1646,61 @@
     <string>Documentation</string>
    </property>
   </action>
+  <action name="actionThis_GUI">
+   <property name="text">
+    <string>This GUI !</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
    <class>matplotlibWidget</class>
    <extends>QWidget</extends>
-   <header>matplotlibwidgetFile</header>
+   <header>gui_matplotlibwidgetFile.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>batch_name_value</tabstop>
+  <tabstop>saa_values</tabstop>
+  <tabstop>sza_values</tabstop>
+  <tabstop>p_values</tabstop>
+  <tabstop>x_value</tabstop>
+  <tabstop>y_value</tabstop>
+  <tabstop>g_value</tabstop>
+  <tabstop>s_value</tabstop>
+  <tabstop>z_value</tabstop>
+  <tabstop>wavelength_values</tabstop>
+  <tabstop>report_parameter_value</tabstop>
+  <tabstop>verbose_value</tabstop>
+  <tabstop>nb_cpu</tabstop>
+  <tabstop>show_all_curves</tabstop>
+  <tabstop>show_grid</tabstop>
+  <tabstop>bottom_button</tabstop>
+  <tabstop>phyto_button</tabstop>
+  <tabstop>exec_path_button</tabstop>
+  <tabstop>run</tabstop>
+  <tabstop>cancel</tabstop>
+  <tabstop>open_result_file_button</tabstop>
+  <tabstop>quit</tabstop>
+  <tabstop>bottom_path</tabstop>
+  <tabstop>phyto_path</tabstop>
+  <tabstop>exec_path</tabstop>
+  <tabstop>graphicsView_3</tabstop>
+  <tabstop>radioButton_3</tabstop>
+  <tabstop>x_value_reverse</tabstop>
+  <tabstop>y_value_reverse</tabstop>
+  <tabstop>g_value_reverse</tabstop>
+  <tabstop>p_values_reverse</tabstop>
+  <tabstop>s_value_reverse</tabstop>
+  <tabstop>wavelength_values_reverse</tabstop>
+  <tabstop>z_value_reverse</tabstop>
+  <tabstop>graphicsView_4</tabstop>
+  <tabstop>sens_2</tabstop>
+  <tabstop>radioButton_2</tabstop>
+  <tabstop>McGee_radioButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

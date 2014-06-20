@@ -1,0 +1,52 @@
+#----------------------------------------#
+# Name of the batch run
+#----------------------------------------#
+batch_name = unit_test_4
+
+#----------------------------------------#
+# Bio-optical parameters list
+#----------------------------------------#
+saa_values = Rrs
+sza_values = 12
+p_list = 12
+x_list = 12
+y_list = 12
+g_list = 21
+s_list = 11
+z_list = 21
+
+#----------------------------------------#
+# Wavelengths
+# All IOPs are interpolated to these 
+# Wavelengths
+#----------------------------------------#
+wavelengths = 12
+
+#----------------------------------------#
+# Number of CPUs
+# -1 means query the number of CPUs
+#----------------------------------------#
+num_cpus = -1
+
+#----------------------------------------#
+# Path of Planarrad
+#----------------------------------------#
+exec_path = Decide where will be 'jude2_install/bin'
+
+#----------------------------------------#
+# Logging level
+#----------------------------------------#
+verbose = 6
+
+#----------------------------------------#
+# File paths
+# Using absolute paths
+#----------------------------------------#
+phytoplankton_absorption_file =/home/boulefi/PycharmProjects/planarradpy/inputs/iop_files
+bottom_reflectance_file = /home/boulefi/PycharmProjects/planarradpy/inputs/bottom_files
+
+#----------------------------------------#
+# Set the parameter to report
+#----------------------------------------#
+report_parameter = 12
+

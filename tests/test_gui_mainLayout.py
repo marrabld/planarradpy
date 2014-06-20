@@ -4,19 +4,24 @@ __author__ = 'boulefi'
 
 import sys
 import os
+import unittest
 
 sys.path.append("../gui")
 sys.path.append("../")
 
-import unittest
-import gui.gui_mainLayout
+
+import gui
+from gui.gui_mainLayout import *
 
 class TestFormEvents(unittest.TestCase):
-    def SetUp(self):
+    """
+
+    """
+    def setUp(self):
         """
 
         """
-        self.batch_name_value = "batch_name"
+        self.batch_name_value = "batch_name_test"
         self.p_values = "10, 11, 12"
         self.x_value = "1"
         self.y_value = "2"
@@ -30,42 +35,59 @@ class TestFormEvents(unittest.TestCase):
         self.exec_path = "gui/file_exec"
         self.nb_cpu = "1"
         self.report_parameter_value = "Rrs"
-
+        self.saa_values = '10'
+        self.sza_values = '11'
 
     def test_data(self):
         """
         The following will check if all data filled are get back well.
         """
-        #envoyer les donnees dans les cases et les recuperer ensuite. Puis comparer le recuperer avec celles declarer.
-        self.ui.batch_name.setText("batch_name")
-        self.ui.p_values.setText("10, 11, 12")
-        self.ui.x_value.setText("1")
-        self.ui.y_value.setText("2")
-        self.ui.g_value.setText("3")
-        self.ui.s_value.setText("4")
-        self.ui.z_value.setText("5")
-        self.ui.wavelength_values.setText("6, 7, 8, 9")
-        self.ui.verbose_value.setText("2")
-        self.ui.phyto_path.setText("gui/file_phyto")
-        self.ui.bottom_path.setText("gui/file_bottom")
-        self.ui.exec_path.setText("gui/file_exec")
-        self.ui.nb_cpu.itemText(0)
-        self.ui.report_parameter_value.setText("Rrs")
+        self.FE = gui.gui_mainLayout.FormEvents()
+        self.ui = self.FE.ui
 
-        self.assertEqual(self.batch_name, self.gui_mainLayout.report_parameter_value)
-        self.assertEqual(self.p_values, self.gui_mainLayout.p_values)
-        self.assertEqual(self.x_value, self.gui_mainLayout.x_value)
-        self.assertEqual(self.y_value, self.gui_mainLayout.y_value)
-        self.assertEqual(self.g_value, self.gui_mainLayout.g_value)
-        self.assertEqual(self.s_value, self.gui_mainLayout.s_value)
-        self.assertEqual(self.z_value, self.gui_mainLayout.z_value)
+        # self.ui.batch_name_value.setText(self.batch_name_value)
+        # self.ui.p_values.setText(self.p_values)
+        # self.ui.x_value.setText(self.x_value)
+        # self.ui.y_value.setText(self.y_value)
+        # self.ui.g_value.setText(self.g_value)
+        # self.ui.s_value.setText(self.s_value)
+        # self.ui.z_value.setText(self.z_value)
+        # self.ui.wavelength_values.setText(self.wavelength_values)
+        # self.ui.verbose_value.setText(self.verbose_value)
+        # self.ui.phyto_path.setText(self.phyto_path)
+        # self.ui.bottom_path.setText(self.bottom_path)
+        # self.ui.exec_path.setText(self.exec_path)
+        # self.ui.nb_cpu.itemText(self.nb_cpu)
+        # self.ui.report_parameter_value.setText(self.report_parameter_value)
+        # self.ui.saa_values.text(self.saa_values)
+        # self.ui.sza_values.text(self.sza_values)
 
+        data = self.FE.data()
+
+        self.assertEqual(self.batch_name_value, data.batch_name_value)
+        self.assertEqual(self.p_values, data.p_values)
+        self.assertEqual(self.x_value, data.x_value)
+        self.assertEqual(self.y_value, data.y_value)
+        self.assertEqual(self.g_value, data.g_value)
+        self.assertEqual(self.s_value, data.s_value)
+        self.assertEqual(self.z_value, data.z_value)
+        self.assertEqual(self.wavelength_values, data.wavelength_values)
+        self.assertEqual(self.verbose_value, data.verbose_value)
+        self.assertEqual(self.phyto_path, data.phyto_path)
+        self.assertEqual(self.bottom_path, data.bottom_path)
+        self.assertEqual(self.exec_path, data.exec_path)
+        self.assertEqual(self.nb_cpu, data.nb_cpu)
+        self.assertEqual(self.report_parameter_value, data.report_parameter_value)
+        self.assertEqual(self.saa_values, data.saa_values)
+        self.assertEqual(self.sza_values, data.sza_values)
 
     def test_search_directory_exec_path(self):
         """
-        The following will check if the the fileDialog for the directory works well.
+        The following will check if the fileDialog for the directory works well.
         """
-        test = 1
+        # self.ui = gui.gui_Layout.Ui_MainWindow()
+        # self.FE.search_directory_exec_path()
+        essai = 1
 
     def test_search_file_phyto(self):
         """
@@ -78,6 +100,13 @@ class TestFormEvents(unittest.TestCase):
         The following will check if the the fileDialog for the file about the bottom works well.
         """
         test = 1
+
+    def test_search_file_result(self):
+        """
+
+        """
+        #self.ui = Ui_MainWindow()
+        #self.ui.tabWidget.currentIndex(gui.gui_mainLayout.TabWidget.NORMAL_MODE)
 
     def test_check_values(self):
         """

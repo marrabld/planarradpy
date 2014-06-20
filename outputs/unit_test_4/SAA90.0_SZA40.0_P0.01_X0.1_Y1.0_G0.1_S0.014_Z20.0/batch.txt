@@ -1,0 +1,52 @@
+name = /home/boulefi/PycharmProjects/planarradpy/outputs/unit_test_4/SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0/batch.txt
+band_count = 17
+bs_name = 17 Bands (410.0-730.0 nm) 
+bs_code = 17
+band_centres_data = 410.0,430.0,450.0,470.0,490.0,510.0,530.0,550.0,570.0,590.0,610.0,630.0,650.0,670.0,690.0,710.0,730.0
+
+ds_name = HL Standard
+ds_code = HL_18x24
+partition = sphere
+vn = 18
+hn = 24
+theta_points=0,5,15,25,35,45,55,65,75,85,90,95,105,115,125,135,145,155,165,175,180
+depth = 20.0
+sample_point_distance = 1
+sample_point_delta_distance = 0.01
+
+sky_fp = /home/boulefi/PycharmProjects/planarradpy/inputs/sky_files/sky_clear_z45_a50_17_HL_18x24
+water_surface_fp =/home/boulefi/PycharmProjects/planarradpy/inputs/surface_files/sf_coxmunk_w5_r10_s200_yes_mono_HL_18x24
+atten_fp = /home/boulefi/PycharmProjects/planarradpy/inputs/iop_files/c_SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0
+scat_fp = /home/boulefi/PycharmProjects/planarradpy/inputs/iop_files/b_SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0
+pf_fp = /home/boulefi/PycharmProjects/planarradpy/inputs/phase_files/pf_petzold_mono_HL_18x24
+bottom_reflec_diffuse_fp = /home/boulefi/PycharmProjects/planarradpy/inputs/bottom_files/all_zeros17.txt
+sky_type = hlideal
+sky_azimuth = 90.0
+sky_zenith = 40.0
+sky_C = 1
+sky_rdif = 0.3
+iface_type = coxmunk
+iface_refrac_index_0 = 1.34
+iface_refrac_index_1 = 1.0
+iop_type = petzold
+iop_backscatter_proportion_list = 
+bound_bottom_reflec_diffuse_data = 0
+sky_sub_quad_count = 1E6
+iface_sub_quad_count = 1E6
+pf_sub_quad_count = 1E4
+integrator = runga4
+euler_steps_per_optical_depth = 100
+midpoint_steps_per_optical_depth = 50
+runga4_steps_per_optical_depth = 20
+runga4adap_min_steps_per_optical_depth = 5
+runga4adap_max_steps_per_optical_depth = 40
+runga4adap_min_error = 0.01
+runga4adap_max_error = 0.1
+
+Ld_b_image_save_fp = /home/boulefi/PycharmProjects/planarradpy/outputs/unit_test_4/SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0/image_Ld_b.ppm
+Ld_b_image_sens_k = 0.0008
+
+Ld_b_save_fp = /home/boulefi/PycharmProjects/planarradpy/outputs/unit_test_4/SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0/Ld_b_data
+
+report_save_fp = /home/boulefi/PycharmProjects/planarradpy/outputs/unit_test_4/SAA90.0_SZA40.0_P0.01_X0.1_Y1.0_G0.1_S0.014_Z20.0/report.txt
+verbose = 6

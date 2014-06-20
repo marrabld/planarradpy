@@ -1,0 +1,18 @@
+In the code, there is some comments in green about how to improve the GUI.
+
+But some tasks were not done, such as :
+- Display on the graphic the wavelength numbers using in the result file.
+- Check the unit test file for the batch fil because I really not sure that is works well.
+- Create a unit test file for the main file.
+- On the graphic, put the name of the file where data for results come from.
+- Add a dialogBox for when you click on the cross to close the window.
+- For the report parameter, add a list with all available.
+- OPen the documentation adn the log file thanks to the bar menu.
+
+Some ideas from me could be implement :
+- Add an embed python console / terminal in the GUI showing how PlanarRad works.
+- Programing a dynamic resize
+- Add keyboard shortcuts
+- Give the possibility to the user to change how to display results (curves, dots ...)
+- Become dynamic information about curves and results, about the inputs given to plot results.
+- Create two files when we will program the second tab (one file for each).

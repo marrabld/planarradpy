@@ -31,7 +31,7 @@ class RunParameters():
         lg.info('============')
 
         self.wavelengths = scipy.linspace(410, 730, 17)
-        #print(self.wavelengths.shape)
+        # print(self.wavelengths.shape)
         self.a = scipy.zeros_like(self.wavelengths)  # total absorption
         self.a_phi = scipy.zeros_like(self.wavelengths)
         self.a_water = scipy.zeros_like(self.wavelengths)
@@ -135,7 +135,7 @@ class RunParameters():
         lg.info('Writing Inputs to file : ' + self.project_file)
 
         # First update the file names in case we changed the file values.  the file name includes the file values
-        #self.updateFileNames()
+        # self.updateFileNames()
 
         f = open(self.project_file, 'w')
 
@@ -453,20 +453,20 @@ class BioOpticalParameters():
             f.write(str(i) + '\n')
 
     def build_bb(self):
-        """Calculates the total scattering fro water and particulate scattering
+        """Calculates the total backscattering
 
-        b = bbp + bwater
+
         """
         lg.info('Building bb spectra')
-        self.b_b = self.b_bp + self.b_water
+        self.b_b = self.b_bp  # + b_bphi
 
     def build_b(self, scattering_fraction=0.2):
-        """Calculates the backscattering from total scattering
+        """Calculates the total scattering from back-scattering
 
-        :param scattering_fraction: the fraction of backscattering to total scattering default = 0.2
+        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.2
         """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
-        self.b = self.b_b / scattering_fraction
+        self.b = self.b_b / scattering_fraction + self.b_water
 
     def build_a(self):
         """Calculates the total absorption from water, phytoplankton and CDOM
@@ -544,7 +544,7 @@ class BatchRun():
             self.run_params.num_cpus = os.sysconf("SC_NPROCESSORS_ONLN")
             lg.info('Found ' + str(self.run_params.num_cpus) + ' CPUs')
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # COUNT THE NUMBER OF DIRECTORIES TO ITERATE THROUGH
         #--------------------------------------------------#
         tmp_dir_list = os.listdir(self.batch_output)
@@ -620,7 +620,7 @@ class BatchRun():
 
         # Check to see if the required run_params files exist, if they dont use the tools to generate them
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # HERE WE RECREATE OUR RUN_PARAMS OBJECT FROM
         # THE RUN FILE WE WROTE TO DISK EARLIER
         #--------------------------------------------------#
@@ -727,7 +727,7 @@ class BatchRun():
 
 
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # GENERATE ALL THE IOPS FROM BIOP
         #--------------------------------------------------#
 
@@ -935,7 +935,7 @@ class ReportTools():
         :param parameter: This is the parameter in which to report.
         """
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # we put the batch report one directory up in the tree
         #--------------------------------------------------#
         batch_report_file = 'batch_report.txt'
@@ -956,7 +956,8 @@ class ReportTools():
         i_iter = 0
         while read_first_file:
             if os.path.exists(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt'))):
-                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt')))
+                report = self.read_pr_report(
+                    os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt')))
                 read_first_file = False
             else:
                 lg.warning('Missing report file in' + dir_list[i_iter])
@@ -1006,7 +1007,8 @@ class ReportTools():
                     try:
                         param_val = report[parameter]
                         param_str = str(param_val)
-                        param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
+                        param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ',
+                                                                                                                 '')
                         f.write(param_str + '\n')
                     except:
                         lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')

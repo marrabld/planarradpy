@@ -232,7 +232,7 @@ class RunParameters():
         f.write('azimuth= ' + str(self.sky_azimuth) + '\n')
         f.write('zenith= ' + str(self.sky_zenith) + '\n')
         f.write('sky_save_fp= ' + inp_file.strip('_params.txt') + '\n')
-        f.write('sky_image_save_fp= image_' + self.sky_file + '.ppm' + '\n')
+        f.write('sky_image_save_fp= ' + self.sky_file + '.ppm' + '\n')
         f.write('sky_image_size= 256' + '\n')
         if self.sky_type == 'hlideal':
             f.write('C= ' + str(self.sky_c) + '\n')

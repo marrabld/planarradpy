@@ -37,8 +37,7 @@ def main(argv):
     #--------------------------------------------------#
     # build the required objects
     #--------------------------------------------------#
-    rp = pr.RunParameters()
-
+    rp = pr.RunParameters(input_parameters['wavelengths'])
     rp.verbose = input_parameters['verbose']
     rp.num_cpus = int(input_parameters['num_cpus'])
     rp.exec_path = input_parameters['exec_path']

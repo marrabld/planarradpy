@@ -25,12 +25,16 @@ class RunParameters():
     All parameters are properties of this class
     """
 
-    def __init__(self):
+    def __init__(self, wavelengths):
         lg.info('============')
         lg.info('Initialising')
         lg.info('============')
 
-        self.wavelengths = scipy.linspace(410, 730, 17)
+        if not wavelengths:
+            self.wavelengths = scipy.linspace(410.0, 730.0, 17)
+        else:
+            self.wavelengths = scipy.fromstring(wavelengths, dtype=float, sep=',')
+            print(self.wavelengths)
         # print(self.wavelengths.shape)
         self.a = scipy.zeros_like(self.wavelengths)  # total absorption
         self.a_phi = scipy.zeros_like(self.wavelengths)
@@ -148,7 +152,7 @@ class RunParameters():
         f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
         # f.write('band_widths_data = ')
         # for i in range(0, len(self.wavelengths) - 1):  # Find better way to do this!
-        #     width = self.wavelengths[i + 1] - self.wavelengths[i]
+        # width = self.wavelengths[i + 1] - self.wavelengths[i]
         #     f.write(str(width))
         #     if i < len(self.wavelengths) - 2:
         #         f.write(',')
@@ -546,7 +550,7 @@ class BatchRun():
 
         # --------------------------------------------------#
         # COUNT THE NUMBER OF DIRECTORIES TO ITERATE THROUGH
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         tmp_dir_list = os.listdir(self.batch_output)
         for direc in tmp_dir_list:
             dir_list.append(os.path.join(self.batch_output, direc))
@@ -623,9 +627,12 @@ class BatchRun():
         # --------------------------------------------------#
         # HERE WE RECREATE OUR RUN_PARAMS OBJECT FROM
         # THE RUN FILE WE WROTE TO DISK EARLIER
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         file_tools = FileTools()
         run_dict = file_tools.read_param_file_to_dict(os.path.join(run_dir, 'batch.txt'))
+        #print(run_dict['band_centres_data'])
+
+        #self.run_params.wavelengths = run_dict['wavelengths']
         #run_params = RunParameters()
         #run_params = file_tools.dict_to_object(run_params, run_dict)
         #------------------------------------------------#
@@ -633,7 +640,7 @@ class BatchRun():
         #------------------------------------------------#
         #lg.debug(run_dict.keys())
         #self.run_params.update_filenames()
-        lg.debug('!!!!!!!!!' + run_dict['sky_fp'])
+        #lg.debug('!!!!!!!!!' + run_dict['sky_fp'])
         if os.path.isfile(run_dict['sky_fp']):
             sky_file_exists = True
             lg.info('Found sky_tool generated file' + run_dict['sky_fp'])
@@ -729,7 +736,7 @@ class BatchRun():
 
         # --------------------------------------------------#
         # GENERATE ALL THE IOPS FROM BIOP
-        #--------------------------------------------------#
+        # --------------------------------------------------#
 
         #--------------------------------------------------#
         # WRITE EACH BIOP TO CSV FILE INTO THE INPUT
@@ -937,7 +944,7 @@ class ReportTools():
 
         # --------------------------------------------------#
         # we put the batch report one directory up in the tree
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         batch_report_file = 'batch_report.txt'
         batch_report_file = os.path.join(input_directory, batch_report_file)
         f = open(batch_report_file, 'w')
@@ -1014,7 +1021,3 @@ class ReportTools():
                         lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
                 except:
                     lg.warning('Cannot find a report in directory :: ' + dir)
-
-
-
-

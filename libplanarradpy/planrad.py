@@ -20,13 +20,22 @@ lg.setLevel(DEBUG_LEVEL)
 
 
 class RunParameters():
-    def __init__(self):
+    """Run parameters required by PlanarRad
+
+    All parameters are properties of this class
+    """
+
+    def __init__(self, wavelengths):
         lg.info('============')
         lg.info('Initialising')
         lg.info('============')
 
-        self.wavelengths = scipy.linspace(410, 730, 17)
-        #print(self.wavelengths.shape)
+        if not wavelengths:
+            self.wavelengths = scipy.linspace(410.0, 730.0, 17)
+        else:
+            self.wavelengths = scipy.fromstring(wavelengths, dtype=float, sep=',')
+            print(self.wavelengths)
+        # print(self.wavelengths.shape)
         self.a = scipy.zeros_like(self.wavelengths)  # total absorption
         self.a_phi = scipy.zeros_like(self.wavelengths)
         self.a_water = scipy.zeros_like(self.wavelengths)
@@ -36,7 +45,7 @@ class RunParameters():
         self.b_water = scipy.zeros_like(self.wavelengths)
         self.b = scipy.zeros_like(self.wavelengths)  # scatter
         self.c = scipy.zeros_like(self.wavelengths)  # attenuation
-        self.iop_backscatter_proportion_list = ''  #scipy.asarray([])
+        self.iop_backscatter_proportion_list = ''  # scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
         self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
@@ -119,14 +128,18 @@ class RunParameters():
         self.report_file = os.path.join(self.output_path, 'batch_run_report.txt\n')
 
     def write_run_parameters_to_file(self):
+        """All of the class properties are written to a text file
+
+        Each property is on a new line with the key and value sperated with an equals sign '='
+        This is the mane planarrad properties file used by slabtool
         """
 
-        """
+        self.update_filenames()
 
         lg.info('Writing Inputs to file : ' + self.project_file)
 
         # First update the file names in case we changed the file values.  the file name includes the file values
-        #self.updateFileNames()
+        # self.updateFileNames()
 
         f = open(self.project_file, 'w')
 
@@ -139,7 +152,7 @@ class RunParameters():
         f.write(",".join([str(wave) for wave in self.wavelengths]) + '\n')
         # f.write('band_widths_data = ')
         # for i in range(0, len(self.wavelengths) - 1):  # Find better way to do this!
-        #     width = self.wavelengths[i + 1] - self.wavelengths[i]
+        # width = self.wavelengths[i + 1] - self.wavelengths[i]
         #     f.write(str(width))
         #     if i < len(self.wavelengths) - 2:
         #         f.write(',')
@@ -202,9 +215,7 @@ class RunParameters():
         f.close()
 
     def write_sky_params_to_file(self):
-        """
-        @brief Writes the params to file that skytool_Free needs to generate the sky radiance distribution.
-        """
+        """Writes the params to file that skytool_Free needs to generate the sky radiance distribution."""
 
         inp_file = self.sky_file + '_params.txt'
         lg.info('Writing Inputs to file : ' + inp_file)
@@ -225,7 +236,7 @@ class RunParameters():
         f.write('azimuth= ' + str(self.sky_azimuth) + '\n')
         f.write('zenith= ' + str(self.sky_zenith) + '\n')
         f.write('sky_save_fp= ' + inp_file.strip('_params.txt') + '\n')
-        f.write('sky_image_save_fp= image_' + self.sky_file + '.ppm' + '\n')
+        f.write('sky_image_save_fp= ' + self.sky_file + '.ppm' + '\n')
         f.write('sky_image_size= 256' + '\n')
         if self.sky_type == 'hlideal':
             f.write('C= ' + str(self.sky_c) + '\n')
@@ -234,9 +245,7 @@ class RunParameters():
         f.close()
 
     def write_surf_params_to_file(self):
-        """
-        @brief Writes the params to file that surftool_Free needs to generate the surface facets
-        """
+        """Write the params to file that surftool_Free needs to generate the surface facets"""
 
         inp_file = self.water_surface_file + '_params.txt'
         lg.info('Writing Inputs to file : ' + inp_file)
@@ -272,9 +281,7 @@ class RunParameters():
             f.close()
 
     def write_phase_params_to_file(self):
-        """
-        @brief Writes the params to file that surftool_Free needs to generate the surface facets
-        """
+        """Write the params to file that surftool_Free needs to generate the surface facets"""
         inp_file = os.path.join(os.path.join(self.input_path, 'phase_files'), self.phase_function_file) + '_params.txt'
         lg.info('Writing Inputs to file : ' + inp_file)
 
@@ -297,9 +304,26 @@ class RunParameters():
             f.flush()
             f.close()
 
+    def update_filenames(self):
+        """Does nothing currently.  May not need this method"""
+        self.sky_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'sky_files'),
+                                                     'sky_' + self.sky_state + '_z' + str(
+                                                         self.sky_zenith) + '_a' + str(
+                                                         self.sky_azimuth) + '_' + str(
+                                                         self.num_bands) + '_' + self.ds_code))
+
 
 class BioOpticalParameters():
+    """Contains useful parameters and methods for modelling IOPs using bio-optical models
+
+    Constructor takes wavelengths.  This is a common wavelength that all IOPs will be interpolated to
+    """
+
     def __init__(self, wavelengths):
+        """Constructor
+
+        :param wavelengths: list of wavelengths all IOPs will be interpolated to
+        """
         self.wavelengths = scipy.asarray([wavelengths])
         self.b_bp = scipy.asarray([])
         self.a_cdom = scipy.asarray([])
@@ -314,30 +338,33 @@ class BioOpticalParameters():
 
 
     def build_bbp(self, x, y, wave_const=550):
-        r"""
-        Builds the particle backscattering function  :math:`X(\frac{550}{\lambda})^Y`
-        param: x function coefficient
-        param: y order of the power function
-        param: waveConst wave constant Default 550 nm
-        retval: null
+        """
+        Builds the particle backscattering function  :math:`X(\\frac{550}{\\lambda})^Y`
+
+        :param x: function coefficient
+        :param y: order of the power function
+        :param wave_const: wave constant default 550 (nm)
+        :returns null:
         """
         lg.info('Building b_bp spectra')
         self.b_bp = x * (wave_const / self.wavelengths) ** y
 
     def build_a_cdom(self, g, s, wave_const=400):
-        r"""
+        """
         Builds the CDOM absorption function :: :math:`G \exp (-S(\lambda - 400))`
-        param: g function coefficient
-        param: s slope factor
-        param: wave constant
-        retval null
+
+        :param g: function coefficient
+        :param s: slope factor
+        :param wave_const: wave constant default = 400 (nm)
+        :returns null:
         """
         lg.info('building CDOM absorption')
         self.a_cdom = g * scipy.exp(-s * (self.wavelengths - wave_const))
 
     def read_aphi_from_file(self, file_name):
-        """
+        """Read the phytoplankton absorption file from a csv formatted file
 
+        :param file_name: filename and path of the csv file
         """
         lg.info('Reading ahpi absorption')
         try:
@@ -346,44 +373,47 @@ class BioOpticalParameters():
             lg.exception('Problem reading file :: ' + file_name)
             self.a_phi = -1
 
-    def scale_aphi(self, scale_paraemter):
-        """
+    def scale_aphi(self, scale_parameter):
+        """Scale the spectra by multiplying by linear scaling factor
 
+        :param scale_parameter: Linear scaling factor
         """
-        lg.info('Scaling a_phi by :: ' + str(scale_paraemter))
+        lg.info('Scaling a_phi by :: ' + str(scale_parameter))
         try:
-            self.a_phi = self.a_phi * scale_paraemter
+            self.a_phi = self.a_phi * scale_parameter
         except:
             lg.exception("Can't scale a_phi, check that it has been defined ")
 
     def read_pure_water_absorption_from_file(self, file_name):
-        """
+        """Read the pure water absorption from a csv formatted file
 
+        :param file_name: filename and path of the csv file
         """
         lg.info('Reading water absorption from file')
         try:
             self.a_water = self._read_iop_from_file(file_name)
         except:
             lg.exception('Problem reading file :: ' + file_name)
-            self.a_phi = -1
+
 
     def read_pure_water_scattering_from_file(self, file_name):
-        """
+        """Read the pure water scattering from a csv formatted file
 
+        :param file_name: filename and path of the csv file
         """
         lg.info('Reading water scattering from file')
         try:
             self.b_water = self._read_iop_from_file(file_name)
         except:
             lg.exception('Problem reading file :: ' + file_name)
-            self.b_phi = -1
 
 
     def _read_iop_from_file(self, file_name):
         """
         Generic IOP reader that interpolates the iop to the common wavelengths defined in the constructor
 
-        returns: interpolated iop
+        :param file_name: filename and path of the csv file
+        :returns interpolated iop
         """
         lg.info('Reading :: ' + file_name + ' :: and interpolating to ' + str(self.wavelengths))
 
@@ -402,34 +432,70 @@ class BioOpticalParameters():
             return -1
 
     def write_b_to_file(self, file_name):
+        """Write the total scattering to csv file
+
+        :param file_name: filename and path of the csv file
+        """
         self._write_iop_to_file(self.b, file_name)
 
     def write_c_to_file(self, file_name):
+        """Write the total attentuation to file
+
+        :param file_name: filename and path of the csv file
+        """
         self._write_iop_to_file(self.c, file_name)
 
     def _write_iop_to_file(self, iop, file_name):
+        """Generic iop file writer
+
+        :param iop numpy array to write to file
+        :param file_name the file and path to write the IOP to
+        """
         lg.info('Writing :: ' + file_name)
         f = open(file_name, 'w')
         for i in scipy.nditer(iop):
             f.write(str(i) + '\n')
 
     def build_bb(self):
+        """Calculates the total backscattering
+
+
+        """
         lg.info('Building bb spectra')
-        self.b_b = self.b_bp + self.b_water
+        self.b_b = self.b_bp  # + b_bphi
 
     def build_b(self, scattering_fraction=0.2):
+        """Calculates the total scattering from back-scattering
+
+        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.2
+        """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
-        self.b = self.b_b / scattering_fraction
+        self.b = self.b_b / scattering_fraction + self.b_water
 
     def build_a(self):
+        """Calculates the total absorption from water, phytoplankton and CDOM
+
+        a = awater + acdom + aphi
+        """
         lg.info('Building total absorption')
         self.a = self.a_water + self.a_cdom + self.a_phi
 
     def build_c(self):
+        """Calculates the total attenuation from the total absorption and total scattering
+
+        c = a + b
+        """
         lg.info('Building total attenuation C')
         self.c = self.a + self.b
 
     def build_all_iop(self):
+        """Meta method that calls all of the build methods in the correct order
+
+        self.build_a()
+        self.build_bb()
+        self.build_b()
+        self.build_c()
+        """
         lg.info('Building all b and c from IOPs')
 
         self.build_a()
@@ -439,13 +505,24 @@ class BioOpticalParameters():
 
 
 class BatchRun():
-    """
+    """This class is used for batch running PlanarRad for many different IOPs.
 
+    It will also distribute the work over many CPUs.  It will run an single instance for PlanarRad on each available
+    cores or the number of cores defined in the batchrun file.
+
+    Available 'batchable' parameters are: \n
+    Sun Azimuth Angle (deg) [saa] \n
+    Sun Zenith Angle (deg) [sza] \n
+    Phytoplankton scaling parameter [p] \n
+    particulate scattering parameters [x, y] see BioOpticalParameters \n
+    CDOM absorption parameters [g, s] \n
+    depth (m) [z]
     """
 
     def __init__(self, object, batch_name='batch'):
-        """
+        """Construcuter that sets the up batch run with 'batchable' parameters
 
+        :param batch_name: the name of the project.  All outputs will be put in a directory of the same name
         """
         self.run_params = object
         self.saa_list = []
@@ -461,9 +538,7 @@ class BatchRun():
         self.bio_params = BioOpticalParameters(self.run_params.wavelengths)
 
     def run(self):
-        """
-
-        """
+        """Distributes the work across the CPUs.  It actually uses _run()"""
         done = False
         dir_list = []
         tic = time.clock()
@@ -473,9 +548,9 @@ class BatchRun():
             self.run_params.num_cpus = os.sysconf("SC_NPROCESSORS_ONLN")
             lg.info('Found ' + str(self.run_params.num_cpus) + ' CPUs')
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # COUNT THE NUMBER OF DIRECTORIES TO ITERATE THROUGH
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         tmp_dir_list = os.listdir(self.batch_output)
         for direc in tmp_dir_list:
             dir_list.append(os.path.join(self.batch_output, direc))
@@ -541,28 +616,31 @@ class BatchRun():
         lg.info('Time taken ::' + str(timeTaken))
 
     def _dummy(self, run_dir):
+        """This is just for spoofing the batch.  Doesn't run anything"""
         lg.debug(run_dir)
 
     def _run(self, run_dir):
-        """
-
-        """
+        """Distributed process"""
 
         # Check to see if the required run_params files exist, if they dont use the tools to generate them
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # HERE WE RECREATE OUR RUN_PARAMS OBJECT FROM
         # THE RUN FILE WE WROTE TO DISK EARLIER
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         file_tools = FileTools()
         run_dict = file_tools.read_param_file_to_dict(os.path.join(run_dir, 'batch.txt'))
+        #print(run_dict['band_centres_data'])
+
+        #self.run_params.wavelengths = run_dict['wavelengths']
         #run_params = RunParameters()
         #run_params = file_tools.dict_to_object(run_params, run_dict)
         #------------------------------------------------#
         # Sky inputs
         #------------------------------------------------#
         #lg.debug(run_dict.keys())
-        lg.debug('!!!!!!!!!' + run_dict['sky_fp'])
+        #self.run_params.update_filenames()
+        #lg.debug('!!!!!!!!!' + run_dict['sky_fp'])
         if os.path.isfile(run_dict['sky_fp']):
             sky_file_exists = True
             lg.info('Found sky_tool generated file' + run_dict['sky_fp'])
@@ -629,8 +707,11 @@ class BatchRun():
             lg.exception('Cannot execute PlannarRad, cannot find executable file to slabtool_free')
 
     def generate_directories(self, overwrite=False):
-        """
+        """For all possible combinations of 'batchable' parameters. create a unique directory to story outputs
 
+        Each directory name is unique and contains the run parameters in the directory name
+
+        :param overwrite: If set to True will over write all files default = False
         """
         if not os.path.exists(self.batch_output):
             try:
@@ -653,9 +734,9 @@ class BatchRun():
 
 
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # GENERATE ALL THE IOPS FROM BIOP
-        #--------------------------------------------------#
+        # --------------------------------------------------#
 
         #--------------------------------------------------#
         # WRITE EACH BIOP TO CSV FILE INTO THE INPUT
@@ -678,7 +759,22 @@ class BatchRun():
         self.bio_params.read_aphi_from_file(self.run_params.phytoplankton_absorption_file)
 
         for saa in self.saa_list:
+            # update the saa in the run file & the todo filename!
+            self.run_params.sky_aziumth = saa
+            self.run_params.sky_file = os.path.abspath(
+                os.path.join(os.path.join(self.run_params.input_path, 'sky_files'),
+                             'sky_' + self.run_params.sky_state + '_z' + str(self.run_params.sky_zenith) + '_a' + str(
+                                 self.run_params.sky_azimuth) + '_' + str(
+                                 self.run_params.num_bands) + '_' + self.run_params.ds_code))
+
             for sza in self.sza_list:
+                # update the saz in the run file
+                self.run_params.sky_zenith = sza
+                self.run_params.sky_file = os.path.abspath(
+                    os.path.join(os.path.join(self.run_params.input_path, 'sky_files'),
+                                 'sky_' + self.run_params.sky_state + '_z' + str(
+                                     self.run_params.sky_zenith) + '_a' + str(self.run_params.sky_azimuth) + '_' + str(
+                                     self.run_params.num_bands) + '_' + self.run_params.ds_code))
                 for p in self.p_list:
                     for x in self.x_list:
                         for y in self.y_list:
@@ -697,6 +793,10 @@ class BatchRun():
                                         self.run_params.depth = z
                                         self.bio_params.build_bbp(x, y)  # todo add wave const as a kwarg
                                         self.bio_params.build_a_cdom(g, s)
+                                        # Need to re-read the file as it was scaled in a the other run!
+                                        self.bio_params.read_aphi_from_file(
+                                            self.run_params.phytoplankton_absorption_file)
+                                        self.bio_params.scale_aphi(p)
 
                                         self.bio_params.build_all_iop()
                                         self.run_params.scattering_file = os.path.join(
@@ -709,6 +809,10 @@ class BatchRun():
 
                                         self.run_params.project_file = os.path.join(dir_name, 'batch.txt')
                                         self.run_params.report_file = os.path.join(dir_name, 'report.txt')
+
+                                        self.run_params.write_sky_params_to_file()
+                                        self.run_params.write_surf_params_to_file()
+                                        self.run_params.write_phase_params_to_file()
 
                                         if not os.path.exists(dir_name):
                                             try:
@@ -741,6 +845,16 @@ class BatchRun():
 
 
     def batch_parameters(self, saa, sza, p, x, y, g, s, z):
+        """Takes lists for parameters and saves them as class properties
+
+        :param saa: <list> Sun Azimuth Angle (deg)
+        :param sza: <list> Sun Zenith Angle (deg)
+        :param p: <list> Phytoplankton linear scalling factor
+        :param x: <list> Scattering scaling factor
+        :param y: <list> Scattering slope factor
+        :param g: <list> CDOM absorption scaling factor
+        :param s: <list> CDOM absorption slope factor
+        :param z: <list> depth (m)"""
         self.saa_list = saa
         self.sza_list = sza
         self.p_list = p
@@ -752,17 +866,16 @@ class BatchRun():
 
 
 class FileTools():
-    """
-
-    """
+    """Useful static methods for file mangling"""
 
     def __init__(self):
         pass
 
     @staticmethod
     def read_param_file_to_dict(file_name):
-        """
+        """Loads a text file to a python dictionary using '=' as the delimiter
 
+        :param file_name: the name and path of the text file
         """
         data = loadtxt(file_name, delimiter='=', dtype=scipy.string0)
         data_dict = dict(data)
@@ -775,39 +888,42 @@ class FileTools():
 
     @staticmethod
     def dict_to_object(data_object, data_dict):
-        """
+        """Maps a dictionary to an object.  Variable names become the key in the dict
 
+        :param data_object: Is an instantiated class
+        :param data_dict: is the python dictionary
+        :returns data_object:
         """
         data_object.__dict__ = data_dict
         return data_object
 
 
 class HelperMethods():
-    """
-
-    """
+    """Useful static methods"""
 
     def __init__(self):
         pass
 
     @staticmethod
     def string_to_float_list(string_var):
-        """
-
-        """
+        """Pull comma separated string values out of a text file and converts them to float list"""
         return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
 
 
 class ReportTools():
-    """
-    Load the report in to a dictionary
-
-    """
+    """Load the report in to a dictionary"""
 
     def __init__(self):
         self.data_dictionary = {}
 
     def read_pr_report(self, filename):
+        """Reads in a PlanarRad generated report
+
+        Saves the single line reported parameters as a python dictionary
+
+        :param filename: The name and path of the PlanarRad generated file
+        :returns self.data_dictionary: python dictionary with the key and values from the report
+        """
         for line in open(filename):
             if '#' not in line or not line.strip():
                 element = line.split(',')
@@ -826,9 +942,9 @@ class ReportTools():
         :param parameter: This is the parameter in which to report.
         """
 
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         # we put the batch report one directory up in the tree
-        #--------------------------------------------------#
+        # --------------------------------------------------#
         batch_report_file = 'batch_report.txt'
         batch_report_file = os.path.join(input_directory, batch_report_file)
         f = open(batch_report_file, 'w')
@@ -839,7 +955,20 @@ class ReportTools():
         #--------------------------------------------------#
         dir_list = os.listdir(input_directory)
 
-        report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
+        #--------------------------------------------------#
+        # Sometimes the report isn't generated for some reason.
+        # this checks to see if the first file in the dir list exists and skips if it doesn't
+        #--------------------------------------------------#
+        read_first_file = True
+        i_iter = 0
+        while read_first_file:
+            if os.path.exists(os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt'))):
+                report = self.read_pr_report(
+                    os.path.join(input_directory, os.path.join(dir_list[i_iter], 'report.txt')))
+                read_first_file = False
+            else:
+                lg.warning('Missing report file in' + dir_list[i_iter])
+                i_iter += 1
 
         try:
             wave_val = report['band_centres']
@@ -848,10 +977,12 @@ class ReportTools():
             lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
 
         wave_str = str(wave_val)
-        wave_str = wave_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '').replace(' -,', '').replace(',','\",\"')
+        wave_str = wave_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '').replace(' -,',
+                                                                                                                 '').replace(
+            ',', '\",\"')
 
         f.write(
-                '\"Sun Azimuth (deg)\",\"Sun Zenith (deg)\",\"Phytoplankton\",\"Scattering X\",\"Scattering Y\",\"CDOM G\",\"CDOM S\",\"Depth (m)\",\"#wave length (nm) ->\",\"' + wave_str + '\"\n')
+            '\"Sun Azimuth (deg)\",\"Sun Zenith (deg)\",\"Phytoplankton\",\"Scattering X\",\"Scattering Y\",\"CDOM G\",\"CDOM S\",\"Depth (m)\",\"#wave length (nm) ->\",\"' + wave_str + '\"\n')
 
         #--------------------------------------------------#
         # Get all of the directories under the batch directories
@@ -876,19 +1007,17 @@ class ReportTools():
                 #--------------------------------------------------#
                 # Write the report header and then the values above in the columns
                 #--------------------------------------------------#
-
-                f.write(saa + ',' + sza + ',' + p + ',' + x + ',' + y + ',' + g + ',' + s + ',' + z + ',')
-
-                report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir_list[0], 'report.txt')))
                 try:
-                    param_val = report[parameter]
+                    f.write(saa + ',' + sza + ',' + p + ',' + x + ',' + y + ',' + g + ',' + s + ',' + z + ',')
+
+                    report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
+                    try:
+                        param_val = report[parameter]
+                        param_str = str(param_val)
+                        param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ',
+                                                                                                                 '')
+                        f.write(param_str + '\n')
+                    except:
+                        lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
                 except:
-                    lg.exception('Parameter :: ' + str(parameter) + ' :: Not in report')
-
-                param_str = str(param_val)
-                param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ', '')
-                f.write(param_str + '\n')
-
-
-
-
+                    lg.warning('Cannot find a report in directory :: ' + dir)

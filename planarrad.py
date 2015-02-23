@@ -37,14 +37,20 @@ def main(argv):
     #--------------------------------------------------#
     # build the required objects
     #--------------------------------------------------#
-    rp = pr.RunParameters()
-
+    rp = pr.RunParameters(input_parameters['wavelengths'])
     rp.verbose = input_parameters['verbose']
     rp.num_cpus = int(input_parameters['num_cpus'])
     rp.exec_path = input_parameters['exec_path']
     rp.phytoplankton_absorption_file = input_parameters['phytoplankton_absorption_file']
     rp.bottom_reflectance_file = input_parameters['bottom_reflectance_file']
 
+    #--------------------------------------------------#
+    # update the file names ?
+    #--------------------------------------------------#
+
+    #--------------------------------------------------#
+    # rebuild the iop files ?
+    #--------------------------------------------------#
     saa_list = pr.HelperMethods.string_to_float_list(input_parameters['saa_list'])
     sza_list = pr.HelperMethods.string_to_float_list(input_parameters['sza_list'])
     p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])
@@ -68,6 +74,9 @@ def main(argv):
 
     br.generate_directories()
     br.run()
+
+    rt = pr.ReportTools()
+    rt.write_batch_report(os.path.abspath(os.path.join('../outputs', batch_name)), input_parameters['report_parameter'])
 
 
 if __name__ == "__main__":

@@ -924,10 +924,52 @@ class ReportTools():
         :param filename: The name and path of the PlanarRad generated file
         :returns self.data_dictionary: python dictionary with the key and values from the report
         """
-        for line in open(filename):
-            if '#' not in line or not line.strip():
+        done = False
+        f = open(filename)
+        while f:
+        #for line in open(filename):
+            line = f.readline()
+            if not line:
+                done = True
+                break
+
+            if "# Quad solid angle mean point theta table (rows are horizontal, columns are vertical):" in line.strip():
+                # read in the bunch of lines.
+                tmp = []
+                for i_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                    tmp.append(f.readline())
+
+                self.data_dictionary['Quad_solid_angle_mean_point_theta'] = tmp
+
+            elif '#' not in line or not line.strip():
                 element = line.split(',')
                 self.data_dictionary[element[0]] = element[1:]
+
+            if "# Quad solid angle mean point phi table (rows are horizontal, columns are vertical):" in line.strip():
+                # read in the bunch of lines.
+                tmp = []
+                for i_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                    tmp.append(f.readline())
+
+                self.data_dictionary['Quad_solid_angle_mean_point_phi'] = tmp
+
+            elif '#' not in line or not line.strip():
+                element = line.split(',')
+                self.data_dictionary[element[0]] = element[1:]
+
+            if "L_a band" in line.strip():
+
+                for i_iter in range(0, int(self.data_dictionary['band_count'][1])):
+                    tmp = []
+                    for j_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                        tmp.append(f.readline())
+
+                    self.data_dictionary['L_a_band_' + str(i_iter + 1)] = tmp
+                    f.readline()
+                    f.readline() # skip the next 2 lines
+
+
+
 
         return self.data_dictionary
 

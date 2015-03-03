@@ -1,14 +1,14 @@
 #----------------------------------------#
 # Give the batch run a name
 #----------------------------------------#
-batch_name = bug_test
+batch_name = dan_test_2_delete_me
 
 #----------------------------------------#
 # Set the Bio-optical parameters list
 #----------------------------------------#
 saa_list = 130.0
 sza_list = 40
-p_list = 0.01, 0.1, 1, 10
+p_list = 0.01, 0.02
 x_list = 0.1
 y_list = 1.0
 g_list = 0.1
@@ -31,7 +31,7 @@ num_cpus = 2
 #----------------------------------------#
 # Set the path of Planarrad
 #----------------------------------------#
-exec_path = /home/marrabld/Apps/planarRad/bin
+exec_path = /home/marrabld/Apps/jude2_install/bin
 
 #----------------------------------------#
 # Set the logging level
@@ -42,10 +42,12 @@ verbose = 1
 # Set the file paths
 # Use absolute paths
 #----------------------------------------#
-phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/ger_sand17.txt
+phytoplankton_absorption_file = /home/marrabld/Projects/planarradpy/inputs/iop_files/a_phi.csv
+bottom_reflectance_file = /home/marrabld/Projects/planarradpy/inputs/bottom_files/ger_sand17.txt
 
 #--------------------------------------------------#
 # Set the parameter to report
 #--------------------------------------------------#
-report_parameter = Rrs
+#report_parameter = Rrs
+
+report_parameter = rrs@45

@@ -957,7 +957,7 @@ class ReportTools():
                 element = line.split(',')
                 self.data_dictionary[element[0]] = element[1:]
 
-            if "L_a band" in line.strip():
+            if "L_w band" in line.strip():
 
                 for i_iter in range(0, int(self.data_dictionary['band_count'][1])):
                     tmp = []
@@ -966,7 +966,7 @@ class ReportTools():
 
                     self.data_dictionary['L_a_band_' + str(i_iter + 1)] = tmp
                     f.readline()
-                    f.readline() # skip the next 2 lines
+                    f.readline()  # skip the next 2 lines
 
 
 
@@ -976,6 +976,21 @@ class ReportTools():
     def get_parameter(self, parameter):
         pass
 
+    def calc_directional_aop(self, report, parameter, parameter_dir):
+        """
+        Will calcuate the direcional AOP (only sub-surface rrs for now) if the direction is defined using @
+        e.g. rrs@32.0
+
+        :param report: The planarrad report dictionary.  should include the quadtables and the directional info
+        :param parameter: parameter to calc.  Currently only sub-surface reflectance rrs.
+        :return:
+        """
+        lg.debug('calculating the directional ' + parameter)
+
+        print(parameter)
+
+        return 'dummy'
+
     def write_batch_report(self, input_directory, parameter):
         """
         Collect all of the batch reports and concatenate the results.  The report should be :
@@ -983,6 +998,11 @@ class ReportTools():
         :param input_directory:
         :param parameter: This is the parameter in which to report.
         """
+
+        # Check to see if there is an @ in the parameter.  If there is split
+        if '@' in parameter:
+            parameter_dir = parameter.split('@')[1]
+            parameter = parameter.split('@')[0]
 
         # --------------------------------------------------#
         # we put the batch report one directory up in the tree
@@ -1044,8 +1064,6 @@ class ReportTools():
                 s = ''.join(c for c in tmp_str_list[6] if not c.isalpha())
                 z = ''.join(c for c in tmp_str_list[7] if not c.isalpha())
 
-
-
                 #--------------------------------------------------#
                 # Write the report header and then the values above in the columns
                 #--------------------------------------------------#
@@ -1054,7 +1072,12 @@ class ReportTools():
 
                     report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
                     try:
-                        param_val = report[parameter]
+                        # check to see if the parameter has the @ parameter.  If it does pass to directional calculator
+                        if parameter_dir:
+                            param_val = self.calc_directional_aop(report, parameter, parameter_dir)
+                        else:
+                            param_val = report[parameter]
+
                         param_str = str(param_val)
                         param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ',
                                                                                                                  '')

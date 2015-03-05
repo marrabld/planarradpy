@@ -50,4 +50,4 @@ bottom_reflectance_file = /home/marrabld/Projects/planarradpy/inputs/bottom_file
 #--------------------------------------------------#
 #report_parameter = Rrs
 
-report_parameter = rrs@45
+report_parameter = rrs@16:45

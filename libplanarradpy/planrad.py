@@ -964,7 +964,7 @@ class ReportTools():
                     for j_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
                         tmp.append(f.readline())
 
-                    self.data_dictionary['L_a_band_' + str(i_iter + 1)] = tmp
+                    self.data_dictionary['L_w_band_' + str(i_iter + 1)] = tmp
                     f.readline()
                     f.readline()  # skip the next 2 lines
 
@@ -978,18 +978,71 @@ class ReportTools():
 
     def calc_directional_aop(self, report, parameter, parameter_dir):
         """
-        Will calcuate the direcional AOP (only sub-surface rrs for now) if the direction is defined using @
-        e.g. rrs@32.0
+        Will calcuate the directional AOP (only sub-surface rrs for now) if the direction is defined using @
+        e.g. rrs@32.0:45  where <zenith-theta>:<azimuth-phi>
 
         :param report: The planarrad report dictionary.  should include the quadtables and the directional info
         :param parameter: parameter to calc.  Currently only sub-surface reflectance rrs.
         :return:
         """
         lg.debug('calculating the directional ' + parameter)
+        tmp_zenith = []
 
-        print(parameter)
+        param_zenith = parameter_dir.split(':')[0]
+        param_azimuth = parameter_dir.split(':')[1]
 
-        return 'dummy'
+        # --------------------------------------------------#
+        # find the mean directions values
+        # --------------------------------------------------#
+        for i_iter in range(0, int(report['vn'][1])):
+            tmp_zenith.append(report['Quad_solid_angle_mean_point_theta'][i_iter][:].split(',')[0]) #that was a pain!
+
+        tmp_azimuth = report['Quad_solid_angle_mean_point_phi'][1]
+        zenith = scipy.asarray(tmp_zenith, dtype=float)
+        azimuth = scipy.fromstring(tmp_azimuth, dtype=float, sep=',')
+
+        # --------------------------------------------------#
+        # now grab the min and max index of the closest match
+        # --------------------------------------------------#
+        #min_zenith_idx = (scipy.abs(zenith - param_zenith)).argmin()
+
+        from scipy import interpolate
+
+        lw = scipy.zeros(int(report['band_count'][1]))
+
+        for j_iter in range(0, int(report['band_count'][1])):
+
+            tmp_lw = report['L_w_band_' + str(j_iter + 1)]
+
+            lw_scal = scipy.zeros((int(report['vn'][1]), int(report['hn'][1])))
+
+            # for the fist and last line we have to replicate the top and bottom circle
+            for i_iter in range(0, int(report['hn'][1])):
+                lw_scal[0, i_iter] = tmp_lw[0].split(',')[0]
+                lw_scal[int(report['vn'][1]) - 1, i_iter] = tmp_lw[-1].split(',')[0]
+
+            for i_iter in range(1, int(report['vn'][1]) - 1):
+                lw_scal[i_iter, :] = scipy.asarray(tmp_lw[i_iter].split(','), dtype=float)
+
+            # to do, make an array of zeros and loop over each list an apply to eah line.  bruteforce
+
+            f1 = interpolate.interp2d(zenith, azimuth, lw_scal)
+            lw[j_iter] = f1(float(param_zenith), float(param_azimuth))
+
+        # ----
+        # Now we finally have L_w we calculate the rrs
+        # ----
+
+        tmp_rrs = lw / scipy.asarray(report['Ed_w'], dtype=float)[1:] # ignore the first val as that is depth of val
+        # import pylab
+        # pylab.plot(rrs)
+        # pylab.show()
+
+        # make rrs a string so it can be written to file.
+
+        rrs = ",".join(map(str, tmp_rrs))
+
+        return " ," + rrs
 
     def write_batch_report(self, input_directory, parameter):
         """

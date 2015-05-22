@@ -464,7 +464,7 @@ class BioOpticalParameters():
         lg.info('Building bb spectra')
         self.b_b = self.b_bp  # + b_bphi
 
-    def build_b(self, scattering_fraction=0.2):
+    def build_b(self, scattering_fraction=0.02):
         """Calculates the total scattering from back-scattering
 
         :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.2
@@ -968,6 +968,17 @@ class ReportTools():
                     f.readline()
                     f.readline()  # skip the next 2 lines
 
+            if "L_it band" in line.strip():
+
+                for i_iter in range(0, int(self.data_dictionary['band_count'][1])):
+                    tmp = []
+                    for j_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                        tmp.append(f.readline())
+
+                    self.data_dictionary['L_it_band_' + str(i_iter + 1)] = tmp
+                    f.readline()
+                    f.readline()  # skip the next 2 lines
+
 
 
 
@@ -1008,11 +1019,18 @@ class ReportTools():
 
         from scipy import interpolate
 
+
         lw = scipy.zeros(int(report['band_count'][1]))
 
         for j_iter in range(0, int(report['band_count'][1])):
 
-            tmp_lw = report['L_w_band_' + str(j_iter + 1)]
+            if parameter == 'rrs':
+                lg.info('Calculating directional rrs')
+                tmp_lw = report['L_w_band_' + str(j_iter + 1)]
+            elif parameter == 'Rrs':
+                lg.info('Calculating directional Rrs')
+                print(report.keys())
+                tmp_lw = report['L_it_band_' + str(j_iter + 1)]
 
             lw_scal = scipy.zeros((int(report['vn'][1]), int(report['hn'][1])))
 
@@ -1033,16 +1051,16 @@ class ReportTools():
         # Now we finally have L_w we calculate the rrs
         # ----
 
-        tmp_rrs = lw / scipy.asarray(report['Ed_w'], dtype=float)[1:] # ignore the first val as that is depth of val
-        # import pylab
-        # pylab.plot(rrs)
-        # pylab.show()
+        if parameter == 'rrs':
+            tmp_rrs = lw / scipy.asarray(report['Ed_w'], dtype=float)[1:]  # ignore the first val as that is depth of val
+        elif parameter == 'Rrs':
+            tmp_rrs = lw / scipy.asarray(report['Ed_a'], dtype=float)[1:]  # ignore the first val as that is depth of val
 
         # make rrs a string so it can be written to file.
 
         rrs = ",".join(map(str, tmp_rrs))
 
-        return " ," + rrs
+        return " ," + rrs  # Note could be rrs or Rrs
 
     def write_batch_report(self, input_directory, parameter):
         """
@@ -1126,7 +1144,7 @@ class ReportTools():
                     report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
                     try:
                         # check to see if the parameter has the @ parameter.  If it does pass to directional calculator
-                        if parameter_dir:
+                        if 'parameter_dir' in locals():
                             param_val = self.calc_directional_aop(report, parameter, parameter_dir)
                         else:
                             param_val = report[parameter]

@@ -1,14 +1,14 @@
 #----------------------------------------#
 # Give the batch run a name
 #----------------------------------------#
-batch_name = dan_test_2_delete_me
+batch_name = DirectionalRrsTest
 
 #----------------------------------------#
 # Set the Bio-optical parameters list
 #----------------------------------------#
-saa_list = 130.0
-sza_list = 40
-p_list = 0.01, 0.02
+saa_list = 90.0
+sza_list = 0.0
+p_list = 0.01
 x_list = 0.1
 y_list = 1.0
 g_list = 0.1
@@ -26,7 +26,7 @@ wavelengths = 410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590
 # Choose the number of CPUs
 # -1 means query the number of CPUs
 #----------------------------------------#
-num_cpus = 2
+num_cpus = 1
 
 #----------------------------------------#
 # Set the path of Planarrad
@@ -43,11 +43,11 @@ verbose = 1
 # Use absolute paths
 #----------------------------------------#
 phytoplankton_absorption_file = /home/marrabld/Projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/Projects/planarradpy/inputs/bottom_files/ger_sand17.txt
+bottom_reflectance_file = /home/marrabld/Projects/planarradpy/inputs/bottom_files/all_zeros17.txt
 
 #--------------------------------------------------#
 # Set the parameter to report
 #--------------------------------------------------#
 #report_parameter = Rrs
 
-report_parameter = rrs@16:45
+report_parameter = Rrs@16:45

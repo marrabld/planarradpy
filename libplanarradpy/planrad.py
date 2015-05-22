@@ -464,13 +464,13 @@ class BioOpticalParameters():
         lg.info('Building bb spectra')
         self.b_b = self.b_bp  # + b_bphi
 
-    def build_b(self, scattering_fraction=0.02):
+    def build_b(self, scattering_fraction=0.01833):
         """Calculates the total scattering from back-scattering
 
-        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.2
+        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.01833
         """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
-        self.b = self.b_b / scattering_fraction + self.b_water
+        self.b = (self.b_b + self.b_water / 2.0)  / scattering_fraction
 
     def build_a(self):
         """Calculates the total absorption from water, phytoplankton and CDOM

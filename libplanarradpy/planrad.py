@@ -464,13 +464,13 @@ class BioOpticalParameters():
         lg.info('Building bb spectra')
         self.b_b = self.b_bp  # + b_bphi
 
-    def build_b(self, scattering_fraction=0.2):
+    def build_b(self, scattering_fraction=0.01833):
         """Calculates the total scattering from back-scattering
 
-        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.2
+        :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.01833
         """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
-        self.b = self.b_b / scattering_fraction + self.b_water
+        self.b = (self.b_b + self.b_water / 2.0) / scattering_fraction
 
     def build_a(self):
         """Calculates the total absorption from water, phytoplankton and CDOM
@@ -924,15 +924,143 @@ class ReportTools():
         :param filename: The name and path of the PlanarRad generated file
         :returns self.data_dictionary: python dictionary with the key and values from the report
         """
-        for line in open(filename):
-            if '#' not in line or not line.strip():
+        done = False
+        f = open(filename)
+        while f:
+        #for line in open(filename):
+            line = f.readline()
+            if not line:
+                done = True
+                break
+
+            if "# Quad solid angle mean point theta table (rows are horizontal, columns are vertical):" in line.strip():
+                # read in the bunch of lines.
+                tmp = []
+                for i_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                    tmp.append(f.readline())
+
+                self.data_dictionary['Quad_solid_angle_mean_point_theta'] = tmp
+
+            elif '#' not in line or not line.strip():
                 element = line.split(',')
                 self.data_dictionary[element[0]] = element[1:]
+
+            if "# Quad solid angle mean point phi table (rows are horizontal, columns are vertical):" in line.strip():
+                # read in the bunch of lines.
+                tmp = []
+                for i_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                    tmp.append(f.readline())
+
+                self.data_dictionary['Quad_solid_angle_mean_point_phi'] = tmp
+
+            elif '#' not in line or not line.strip():
+                element = line.split(',')
+                self.data_dictionary[element[0]] = element[1:]
+
+            if "L_w band" in line.strip():
+
+                for i_iter in range(0, int(self.data_dictionary['band_count'][1])):
+                    tmp = []
+                    for j_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                        tmp.append(f.readline())
+
+                    self.data_dictionary['L_w_band_' + str(i_iter + 1)] = tmp
+                    f.readline()
+                    f.readline()  # skip the next 2 lines
+
+            if "L_it band" in line.strip():
+
+                for i_iter in range(0, int(self.data_dictionary['band_count'][1])):
+                    tmp = []
+                    for j_iter in range(0, len(self.data_dictionary['theta_points_deg']) - 2):
+                        tmp.append(f.readline())
+
+                    self.data_dictionary['L_it_band_' + str(i_iter + 1)] = tmp
+                    f.readline()
+                    f.readline()  # skip the next 2 lines
+
+
+
 
         return self.data_dictionary
 
     def get_parameter(self, parameter):
         pass
+
+    def calc_directional_aop(self, report, parameter, parameter_dir):
+        """
+        Will calcuate the directional AOP (only sub-surface rrs for now) if the direction is defined using @
+        e.g. rrs@32.0:45  where <zenith-theta>:<azimuth-phi>
+
+        :param report: The planarrad report dictionary.  should include the quadtables and the directional info
+        :param parameter: parameter to calc.  Currently only sub-surface reflectance rrs.
+        :return:
+        """
+        lg.debug('calculating the directional ' + parameter)
+        tmp_zenith = []
+
+        param_zenith = parameter_dir.split(':')[0]
+        param_azimuth = parameter_dir.split(':')[1]
+
+        # --------------------------------------------------#
+        # find the mean directions values
+        # --------------------------------------------------#
+        for i_iter in range(0, int(report['vn'][1])):
+            tmp_zenith.append(report['Quad_solid_angle_mean_point_theta'][i_iter][:].split(',')[0]) #that was a pain!
+
+        tmp_azimuth = report['Quad_solid_angle_mean_point_phi'][1]
+        zenith = scipy.asarray(tmp_zenith, dtype=float)
+        azimuth = scipy.fromstring(tmp_azimuth, dtype=float, sep=',')
+
+        # --------------------------------------------------#
+        # now grab the min and max index of the closest match
+        # --------------------------------------------------#
+        #min_zenith_idx = (scipy.abs(zenith - param_zenith)).argmin()
+
+        from scipy import interpolate
+
+
+        lw = scipy.zeros(int(report['band_count'][1]))
+
+        for j_iter in range(0, int(report['band_count'][1])):
+
+            if parameter == 'rrs':
+                lg.info('Calculating directional rrs')
+                tmp_lw = report['L_w_band_' + str(j_iter + 1)]
+            elif parameter == 'Rrs':
+                lg.info('Calculating directional Rrs')
+                print(report.keys())
+                tmp_lw = report['L_it_band_' + str(j_iter + 1)]
+
+            lw_scal = scipy.zeros((int(report['vn'][1]), int(report['hn'][1])))
+
+            # for the fist and last line we have to replicate the top and bottom circle
+            for i_iter in range(0, int(report['hn'][1])):
+                lw_scal[0, i_iter] = tmp_lw[0].split(',')[0]
+                lw_scal[int(report['vn'][1]) - 1, i_iter] = tmp_lw[-1].split(',')[0]
+
+            for i_iter in range(1, int(report['vn'][1]) - 1):
+                lw_scal[i_iter, :] = scipy.asarray(tmp_lw[i_iter].split(','), dtype=float)
+
+            # to do, make an array of zeros and loop over each list an apply to eah line.  bruteforce
+
+            f1 = interpolate.interp2d(zenith, azimuth, lw_scal)
+            lw[j_iter] = f1(float(param_zenith), float(param_azimuth))
+
+        # ----
+        # Now we finally have L_w we calculate the rrs
+        # ----
+
+        if parameter == 'rrs':
+            tmp_rrs = lw / scipy.asarray(report['Ed_w'], dtype=float)[1:]  # ignore the first val as that is depth of val
+        elif parameter == 'Rrs':
+            tmp_rrs = lw / scipy.asarray(report['Ed_a'], dtype=float)[1:]  # ignore the first val as that is depth of val
+
+        # make rrs a string so it can be written to file.
+
+        rrs = ",".join(map(str, tmp_rrs))
+
+        return " ," + rrs  # Note could be rrs or Rrs
 
     def write_batch_report(self, input_directory, parameter):
         """
@@ -941,6 +1069,11 @@ class ReportTools():
         :param input_directory:
         :param parameter: This is the parameter in which to report.
         """
+
+        # Check to see if there is an @ in the parameter.  If there is split
+        if '@' in parameter:
+            parameter_dir = parameter.split('@')[1]
+            parameter = parameter.split('@')[0]
 
         # --------------------------------------------------#
         # we put the batch report one directory up in the tree
@@ -1002,8 +1135,6 @@ class ReportTools():
                 s = ''.join(c for c in tmp_str_list[6] if not c.isalpha())
                 z = ''.join(c for c in tmp_str_list[7] if not c.isalpha())
 
-
-
                 #--------------------------------------------------#
                 # Write the report header and then the values above in the columns
                 #--------------------------------------------------#
@@ -1012,7 +1143,12 @@ class ReportTools():
 
                     report = self.read_pr_report(os.path.join(input_directory, os.path.join(dir, 'report.txt')))
                     try:
-                        param_val = report[parameter]
+                        # check to see if the parameter has the @ parameter.  If it does pass to directional calculator
+                        if 'parameter_dir' in locals():
+                            param_val = self.calc_directional_aop(report, parameter, parameter_dir)
+                        else:
+                            param_val = report[parameter]
+
                         param_str = str(param_val)
                         param_str = param_str.strip('[').strip(']').replace('\'', '').replace('\\n', '').replace('  ',
                                                                                                                  '')

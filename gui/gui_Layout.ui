@@ -138,7 +138,7 @@
       <property name="geometry">
        <rect>
         <x>630</x>
-        <y>360</y>
+        <y>370</y>
         <width>721</width>
         <height>31</height>
        </rect>
@@ -160,7 +160,7 @@
       <property name="geometry">
        <rect>
         <x>580</x>
-        <y>370</y>
+        <y>380</y>
         <width>41</width>
         <height>16</height>
        </rect>
@@ -1052,7 +1052,7 @@
     </widget>
     <widget class="QWidget" name="reverse_tab">
      <attribute name="title">
-      <string>Reverse</string>
+      <string>Inverse</string>
      </attribute>
      <widget class="Line" name="line_2">
       <property name="geometry">
@@ -1103,7 +1103,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>RadioButton</string>
+       <string>HOPE (1999)</string>
       </property>
      </widget>
      <widget class="QRadioButton" name="radioButton_3">

@@ -5,7 +5,7 @@ __author__ = 'marrabld'
 import os
 print(os.getcwd())
 #os.chdir(os.path.join(os.getcwd(),  'libplanarradpy'))
-
+import subprocess
 import getopt
 import sys
 import libplanarradpy.planrad as pr
@@ -29,6 +29,8 @@ def main(argv):
             input_file = arg
         elif opt in ("-o", "--ofile"):
             output_file = arg
+        elif opt == '':
+            p = subprocess.Popen("./gui/gui_mainLayout.py")
 
     print('Input file is :: ', input_file)
     print('Report file is :: ', output_file)

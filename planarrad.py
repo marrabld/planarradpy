@@ -19,8 +19,10 @@ def main(argv):
     try:
         opts, args = getopt.getopt(argv, "hi:o:", ["ifile=", "ofile="])
     except getopt.GetoptError:
-        print('test.py -i <input_file> -o <output_file>')
+        print('Launching GUI')
+        p = subprocess.Popen("./gui/gui_mainLayout.py", shell=True)
         sys.exit(2)
+
     for opt, arg in opts:
         if opt == '-h':
             print('planarrad.py -i <input_file> -o <output_file>')
@@ -29,11 +31,13 @@ def main(argv):
             input_file = arg
         elif opt in ("-o", "--ofile"):
             output_file = arg
-        elif opt == '':
+        elif opt in ("-g", "--gui"):
+            print('Launching GUI -g')
             p = subprocess.Popen("./gui/gui_mainLayout.py")
+            sys.exit()
 
-    print('Input file is :: ', input_file)
-    print('Report file is :: ', output_file)
+    #print('Input file is :: ', input_file)
+    #print('Report file is :: ', output_file)
 
     input_parameters = pr.FileTools.read_param_file_to_dict(input_file)
     #--------------------------------------------------#

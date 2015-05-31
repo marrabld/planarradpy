@@ -15,7 +15,7 @@ setup(
     author="Frédéric Boulé",
     author_email="frederic_boule@hotmail.fr",
     description=(
-        "A GUI for DeconvolutionofSpecificInherentOpticalProperties(SIOPS)from hyperspectralremote sensing reflectance"),
+        "A GUI for DeconvolutionofSpecificInherentOpticalProperties(SIOPS)from hyperspectral remote sensing reflectance"),
     license="GNU General Public License Version 2 (GPLv2)",
     keywords="Second GUI PlanarRad",
     url="https://marrabld.github.io/planarradpy/",

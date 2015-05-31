@@ -2,7 +2,6 @@
 
 import os
 
-
 class BatchFile():
     """
     This class creates the batch file which will be used by planarRad.
@@ -66,10 +65,10 @@ batch_name = """)
 #----------------------------------------#
 # Bio-optical parameters list
 #----------------------------------------#
-saa_values = """)
+saa_list = """)
         self.batch_file.write(str(self.saa_values))
         self.batch_file.write("""
-sza_values = """)
+sza_list = """)
         self.batch_file.write(str(self.sza_values))
         self.batch_file.write("""
 p_list = """)
@@ -149,6 +148,7 @@ report_parameter = """)
         # The following is the action to move the file to the good directory.
         #-------------------------------------------------------------------#
         src = './' + filename
-        dst = '../inputs/batch_files'
+        dst = './inputs/batch_files'
         os.system("mv" + " " + src + " " + dst)
+
 

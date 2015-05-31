@@ -4,27 +4,7 @@
     <option name="myLocal" value="false" />
     <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredIdentifiers">
-        <value>
-          <list size="17">
-            <item index="0" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.exec_path" />
-            <item index="1" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.bottom_path" />
-            <item index="2" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.phyto_path" />
-            <item index="3" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.verbose_value" />
-            <item index="4" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.waveL_values" />
-            <item index="5" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.z_value" />
-            <item index="6" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.s_value" />
-            <item index="7" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.g_value" />
-            <item index="8" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.y_value" />
-            <item index="9" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.x_value" />
-            <item index="10" class="java.lang.String" itemvalue="gui.gui_mainLayout.FormEvents.p_values" />
-            <item index="11" class="java.lang.String" itemvalue="gui.gui_mainLayout.NB_ERRORS" />
-            <item index="12" class="java.lang.String" itemvalue="gui.gui_mainLayout.Ui_MainWindow" />
-            <item index="13" class="java.lang.String" itemvalue="gui.gui_mainLayout.gui_Layout" />
-            <item index="14" class="java.lang.String" itemvalue="gui.gui_mainLayout.gui_batch" />
-            <item index="15" class="java.lang.String" itemvalue="gui.gui_mainLayout.PyQt4" />
-            <item index="16" class="java.lang.String" itemvalue="PyQt4" />
-          </list>
-        </value>
+        <list />
       </option>
     </inspection_tool>
   </profile>

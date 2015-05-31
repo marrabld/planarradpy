@@ -37,9 +37,11 @@ class FormEvents():
         self.ui.setupUi(self.main_window)
 
         self.file_dialog = QtGui.QFileDialog()
-        self.main_window.setFixedSize(1372, 845)
+        self.main_window.setFixedSize(1372, 890)
         self.graphic_widget = gui_matplotlibwidgetFile.matplotlibWidget()
         self.mpl_canvas = gui_matplotlibwidgetFile.MplCanvas()
+        self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
+        self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
 
         self.without_error = True
         self.slider_value = 0
@@ -134,7 +136,7 @@ class FormEvents():
         self.bottom_path = self.ui.bottom_path.text()
         self.executive_path = self.ui.exec_path.text()
         self.nb_cpu = self.ui.nb_cpu.currentText()
-        self.report_parameter_value = self.ui.report_parameter_value.text()
+        self.report_parameter_value = str(self.ui.report_parameter_value.text())
 
     #-------------------------------------------------------------------------------#
     #These following functions display a fileDialog to search a file or a directory.
@@ -148,13 +150,13 @@ class FormEvents():
 
     def search_file_phytoplankton(self):
         self.phytoplankton_file = self.file_dialog.getOpenFileName(caption=str("Phytoplankton File"),
-                                                                   directory="../inputs/iop_files")
+                                                                   directory="./inputs/iop_files")
         if not self.phytoplankton_file == '':
             self.ui.phytoplankton_path.setText(self.phytoplankton_file)
 
     def search_file_bottom(self):
         self.bottom_file = self.file_dialog.getOpenFileName(caption=str("Bottom File"),
-                                                            directory="../inputs/bottom_files")
+                                                            directory="./inputs/bottom_files")
         if not self.bottom_file == '':
             self.ui.bottom_path.setText(self.bottom_file)
 
@@ -163,7 +165,7 @@ class FormEvents():
         This function once the file found, display data's file and the graphic associated.
         """
         if self.ui.tabWidget.currentIndex() == TabWidget.NORMAL_MODE:
-            self.result_file = self.file_dialog.getOpenFileName(caption=str("Open result file"), directory="../outputs")
+            self.result_file = self.file_dialog.getOpenFileName(caption=str("Open result file"), directory="./outputs")
             if not self.result_file == '':
                 self.ui.show_all_curves.setDisabled(False)
                 self.ui.show_grid.setDisabled(False)
@@ -245,10 +247,14 @@ class FormEvents():
 
             check_num_1 = '(^([0-9]+[.]?[0-9]*[,]?){0,}[^,])|(^([0-9]*[,]){1,}[^,])'  # Regular expression to use
             self.prog_1 = re.compile(check_num_1)  # Analysis object creation
+            self.wavelength_values = str(self.wavelength_values).translate(None, ' ').strip(' ')
+            print(self.wavelength_values)
             p_result = self.prog_1.search(self.p_values)  # String retrieval thanks to the regular expression
             saa_result = self.prog_1.search(self.saa_values)
             sza_result = self.prog_1.search(self.sza_values)
             wavelength_result = self.prog_1.search(self.wavelength_values)
+            print(wavelength_result.group())
+
             try:
 
                 if saa_result.group() != self.ui.saa_values.text():
@@ -281,7 +287,7 @@ class FormEvents():
                 self.ui.p_label.setStyleSheet(error_color)
                 self.error_p_result = True
             try:
-                if wavelength_result.group() != self.ui.wavelength_values.text():
+                if wavelength_result.group() != str(self.ui.wavelength_values.text()).translate(None, ' ').strip(' '):
                     self.ui.waveL_label.setStyleSheet(error_color)
                     self.error_wavelength_result = True
                 else:
@@ -445,9 +451,9 @@ class FormEvents():
         """
         bt = BatchFile(self.batch_name_value, self.p_values, self.x_value, self.y_value, self.g_value, self.s_value,
                        self.z_value, self.wavelength_values, self.verbose_value, self.phytoplankton_path,
-                       self.bottom_path, self.nb_cpu, self.executive_path, self.report_parameter_value, self.saa_values,
-                       self.sza_values)
-        bt.write_batch_to_file()
+                       self.bottom_path, self.nb_cpu, self.executive_path,  self.saa_values,
+                       self.sza_values, self.report_parameter_value)
+        bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
 
     def data_processing(self):
         """
@@ -626,7 +632,7 @@ class FormEvents():
         """
         Error when planarRad start : /bin/sh: 1: ../planarrad.py: not found
         """
-
+        print('Executing planarrad')
         # If we are not in the reverse_mode :
         if self.ui.tabWidget.currentIndex() == TabWidget.NORMAL_MODE:
             self.data()
@@ -638,10 +644,13 @@ class FormEvents():
                 self.is_running = True
                 self.hide_error_message()
                 self.write_to_file()
-                os.chdir('../')
+                os.chdir('./')
                 self.progress_bar()
+                this_dir = os.path.dirname(os.path.realpath(__file__)).rstrip('gui/')
+                batch_file = os.path.join(this_dir, "inputs/batch_files/" + str(self.batch_name_value) + "_batch.txt")
+                print(batch_file)
                 self.p = subprocess.Popen(
-                    ["../planarrad.py -i /home/boulefi/PycharmProjects/planarradpy/inputs/batch_files/batch.txt"],
+                    ["./planarrad.py -i " + batch_file],
                     shell=True)
                 if self.ui.progressBar.value() == 100:
                     self.display_the_graphic(self.num_line, self.wavelength, self.data_wanted, self.information)
@@ -654,24 +663,24 @@ class FormEvents():
         """
         Because PlanarRad doesn't lunch, no file created and no possible update of the progress bar.
         """
-
-        no_empty = 0
-        number_of_percent = 0
-        result_folders = (os.listdir('outputs/' + self.batch_name_value))
-        nb_folders = len(result_folders)
-        nb_checked_folder = 1
-        for folder in result_folders:
-            if self.is_running == True:
-                if os.path.isfile("outputs/" + self.batch_name_value + "/" + folder + "/report.txt") & (
-                            self.is_running == True):
-                    nb_checked_folder += 1
-                    if (os.path.getsize("outputs/" + self.batch_name_value + "/" + folder + "/report.txt") > 0) & (
-                                self.is_running == True):
-                        no_empty += 1
-            else:
-                break
-            number_of_percent = (no_empty * 100 ) / nb_checked_folder
-            self.ui.progressBar.setValue(number_of_percent)
+        #print('update')
+        # no_empty = 0
+        # number_of_percent = 0
+        # result_folders = (os.listdir('outputs/' + self.batch_name_value))
+        # nb_folders = len(result_folders)
+        # nb_checked_folder = 1
+        # for folder in result_folders:
+        #     if self.is_running == True:
+        #         if os.path.isfile("outputs/" + self.batch_name_value + "/" + folder + "/report.txt") & (
+        #                     self.is_running == True):
+        #             nb_checked_folder += 1
+        #             if (os.path.getsize("outputs/" + self.batch_name_value + "/" + folder + "/report.txt") > 0) & (
+        #                         self.is_running == True):
+        #                 no_empty += 1
+        #     else:
+        #         break
+        #     number_of_percent = (no_empty * 100 ) / nb_checked_folder
+        #     self.ui.progressBar.setValue(number_of_percent)
 
     def total(self, total):
         """
@@ -744,7 +753,7 @@ class FormEvents():
         self.ui.graphic_widget.canvas.print_figure(default_name)
 
         src = './' + default_name
-        dst = '../Artists_saved'
+        dst = './Artists_saved'
         os.system("mv" + " " + src + " " + dst)
 
     def save_figure_as(self):
@@ -792,9 +801,9 @@ class FormEvents():
 
         pathname = os.path.dirname(sys.argv[0])
         path = os.path.abspath(pathname)
-        self.phytoplankton_path = self.ui.phyto_path.setText(path.replace('gui', 'inputs/iop_files'))
-        self.bottom_path = self.ui.bottom_path.setText(path.replace('gui', 'inputs/bottom_files'))
-        self.executive_path = self.ui.exec_path.setText("Decide where will be 'jude2_install/bin'")
+        #self.phytoplankton_path = self.ui.phyto_path.setText(path.replace('gui', 'inputs/iop_files'))
+        #self.bottom_path = self.ui.bottom_path.setText(path.replace('gui', 'inputs/bottom_files'))
+        #self.executive_path = self.ui.exec_path.setText("Decide where will be 'jude2_install/bin'")
         self.verbose_value = self.ui.verbose_value.setText("6")
         self.report_parameter_value = self.ui.report_parameter_value.setText("Rrs")
 

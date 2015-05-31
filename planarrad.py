@@ -3,7 +3,7 @@
 __author__ = 'marrabld'
 
 import os
-print(os.getcwd())
+#print(os.getcwd())
 #os.chdir(os.path.join(os.getcwd(),  'libplanarradpy'))
 import subprocess
 import getopt
@@ -82,7 +82,7 @@ def main(argv):
     br.run()
 
     rt = pr.ReportTools()
-    rt.write_batch_report(os.path.abspath(os.path.join('../outputs', batch_name)), input_parameters['report_parameter'])
+    rt.write_batch_report(os.path.abspath(os.path.join('./outputs', batch_name)), input_parameters['report_parameter'])
 
 
 if __name__ == "__main__":

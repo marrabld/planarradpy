@@ -51,6 +51,9 @@ class MplCanvas(FigureCanvas):
 
         ui.graphic_widget.canvas.picture.clear()
 
+        #print(self.x_data)
+
+
         x = scipy.linspace(self.x_data[0], self.x_data[-1], len(self.x_data))  # X-axis
 
         # Display grid

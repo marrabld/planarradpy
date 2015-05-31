@@ -48,8 +48,10 @@ class RunParameters():
         self.iop_backscatter_proportion_list = ''  # scipy.asarray([])
         self.depth = 5
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
-        self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
-        self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
+        #self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
+        #self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
+        self.input_path = os.path.abspath(os.path.join('.', 'inputs'))
+        self.output_path = os.path.abspath(os.path.join('.', 'outputs'))
         self.pure_water_absorption_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'a_water.csv'))
         self.pure_water_scattering_file = os.path.abspath(
@@ -907,7 +909,10 @@ class HelperMethods():
     @staticmethod
     def string_to_float_list(string_var):
         """Pull comma separated string values out of a text file and converts them to float list"""
-        return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
+        try:
+            return [float(s) for s in string_var.strip('[').strip(']').split(', ')]
+        except:
+            return [float(s) for s in string_var.strip('[').strip(']').split(',')]
 
 
 class ReportTools():

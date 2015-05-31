@@ -40,8 +40,8 @@ class FormEvents():
         self.main_window.setFixedSize(1372, 890)
         self.graphic_widget = gui_matplotlibwidgetFile.matplotlibWidget()
         self.mpl_canvas = gui_matplotlibwidgetFile.MplCanvas()
-        self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
-        self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        #self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
+        #self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
 
         self.without_error = True
         self.slider_value = 0
@@ -453,6 +453,7 @@ class FormEvents():
                        self.z_value, self.wavelength_values, self.verbose_value, self.phytoplankton_path,
                        self.bottom_path, self.nb_cpu, self.executive_path,  self.saa_values,
                        self.sza_values, self.report_parameter_value)
+        #bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
         bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
 
     def data_processing(self):
@@ -467,7 +468,7 @@ class FormEvents():
         #We put all lines in an array and we put each cell of the line in a column.
         lines_array = []
         for line in lines:
-            line = line.split('\t')  # Each time there is a tabulation, there is a new cell
+            line = line.split(',')  # Each time there is a tabulation, there is a new cell
             lines_array.append(line)
 
         labels_line = lines_array[0]
@@ -505,7 +506,7 @@ class FormEvents():
         # We transform wavelengths from strings to floats.
         line_wavelength = 0  # Iterator on each line of data_wavelength
         for row_data_wavelength in data_wavelength:
-            row_data_wavelength = [float(item) for item in row_data_wavelength]
+            row_data_wavelength = [float(item.strip('\n').strip('\"')) for item in row_data_wavelength]
             data_wavelength[line_wavelength] = row_data_wavelength
             line_wavelength += 1
 

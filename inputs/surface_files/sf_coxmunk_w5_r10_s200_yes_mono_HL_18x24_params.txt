@@ -18,4 +18,4 @@ target_size= 0.2
 rays_per_quad= 10
 surface_count= 200
 azimuthally_average= yes
-surface_save_fp= /home/boulefi/PycharmProjects/planarradpy/inputs/surface_files/sf_coxmunk_w5_r10_s200_yes_mono_HL_18x24
+surface_save_fp= /home/marrabld/Projects/planarradpy/inputs/surface_files/sf_coxmunk_w5_r10_s200_yes_mono_HL_18x24

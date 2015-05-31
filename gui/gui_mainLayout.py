@@ -5,6 +5,7 @@ from PyQt4 import QtGui
 import subprocess
 from time import sleep
 from timeit import Timer
+from gui_About import *
 import PyQt4.QtCore
 import sys
 import os
@@ -42,6 +43,13 @@ class FormEvents():
         self.mpl_canvas = gui_matplotlibwidgetFile.MplCanvas()
         #self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
         #self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+
+        # ==================================================#
+        # The about window
+        # ==================================================#
+        self.aboutWindow = QtGui.QDialog()
+        self.uiAbout = Ui_win_about()
+        self.uiAbout.setupUi(self.aboutWindow)
 
         self.without_error = True
         self.slider_value = 0
@@ -97,8 +105,8 @@ class FormEvents():
         self.ui.actionSave.connect(self.ui.actionSave, QtCore.SIGNAL('triggered()'), self.save_figure)
         self.ui.actionSave_as.connect(self.ui.actionSave_as, QtCore.SIGNAL('triggered()'), self.save_figure_as)
         self.ui.actionThis_GUI.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_about)
-        self.ui.actionLog_file.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_log_file)
-        self.ui.actionDocumentation.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_documentation)
+        #self.ui.actionLog_file.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_log_file)
+        #self.ui.actionDocumentation.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_documentation)
 
         self.ui.actionRun.connect(self.ui.actionRun, PyQt4.QtCore.SIGNAL('triggered()'), self.run)
         self.ui.actionOpen.connect(self.ui.actionOpen, PyQt4.QtCore.SIGNAL('triggered()'), self.search_file_result)
@@ -770,7 +778,10 @@ class FormEvents():
         """
         This function opens the default browser and go on the web page about planarRad and its GUI.
         """
-        webbrowser.open('https://marrabld.github.io/planarradpy/')
+        self.aboutWindow.show()
+
+
+
 
     def open_log_file(self):
         """
@@ -779,7 +790,7 @@ class FormEvents():
         """
         TO DO.
         """
-        pass
+        webbrowser.open('https://marrabld.github.io/planarradpy/')
 
     def open_documentation(self):
         """

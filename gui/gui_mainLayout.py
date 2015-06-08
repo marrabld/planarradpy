@@ -12,7 +12,7 @@ import os
 import multiprocessing
 import re
 import webbrowser
-from PyQt4.QtGui import QContextMenuEvent, QMessageBox
+from PyQt4.QtGui import QContextMenuEvent, QMessageBox, QApplication, QWidget, QVBoxLayout
 import subprocess
 import signal
 from threading import Thread
@@ -23,6 +23,8 @@ import time
 from gui_batch import BatchFile
 from gui_Layout import *
 import gui_matplotlibwidgetFile
+from gui_log import *
+from PyQt4.QtWebKit import *
 
 
 class FormEvents():
@@ -41,8 +43,8 @@ class FormEvents():
         self.main_window.setFixedSize(1372, 890)
         self.graphic_widget = gui_matplotlibwidgetFile.matplotlibWidget()
         self.mpl_canvas = gui_matplotlibwidgetFile.MplCanvas()
-        #self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
-        #self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
+        # self.ui.actionSave.setIcon(QtGui.QIcon('/home/marrabld/Projects/planarradpy/gui/icons/i_document-save.png'))
+        # self.ui.toolBar.setToolButtonStyle(QtCore.Qt.ToolButtonIconOnly)
 
         # ==================================================#
         # The about window
@@ -50,6 +52,13 @@ class FormEvents():
         self.aboutWindow = QtGui.QDialog()
         self.uiAbout = Ui_win_about()
         self.uiAbout.setupUi(self.aboutWindow)
+
+        # ==================================================#
+        # The log window
+        # ==================================================#
+        self.log_window = QtGui.QDialog()
+        self.uiLog = Ui_win_log_reader()
+        self.uiLog.setupUi(self.log_window)
 
         self.without_error = True
         self.slider_value = 0
@@ -63,8 +72,8 @@ class FormEvents():
         self.ui.show_all_curves.setCheckState(2)
         self.ui.show_grid.setCheckState(2)
         self.p = None  # Variable for subprocess to run PlanarRad.
-        #self.result_path = '../outputs'
-        #self.result_file = os.path.join(self.result_path, "batch_report.txt")
+        # self.result_path = '../outputs'
+        # self.result_file = os.path.join(self.result_path, "batch_report.txt")
         self.result_file = ''
         self.is_running = False
         self.table_widget = QtGui.QTableWidget()
@@ -72,9 +81,9 @@ class FormEvents():
         self.t = GuiThread(self, 100)  # Thread for the progress bar.
         self.n = 0
 
-        #----------------------------------------------------------------------------------------------#
-        #The following permits to know how many CPU there is in the computer to list them in a comboBox.
-        #----------------------------------------------------------------------------------------------#
+        # ----------------------------------------------------------------------------------------------#
+        # The following permits to know how many CPU there is in the computer to list them in a comboBox.
+        # ----------------------------------------------------------------------------------------------#
         self.cpu = multiprocessing.cpu_count()
         self.nb_cpu = self.ui.nb_cpu.addItem("-1")
         count_cpu = 1  # Iterator on the number of cpu.
@@ -84,9 +93,9 @@ class FormEvents():
 
         self.prerequisite_actions()  # Initialise the GUI.
 
-        #-------------------------------------------#
-        #The following connects buttons to an action.
-        #-------------------------------------------#
+        # -------------------------------------------#
+        # The following connects buttons to an action.
+        # -------------------------------------------#
 
         self.ui.phyto_button.connect(self.ui.phyto_button, PyQt4.QtCore.SIGNAL('clicked()'),
                                      self.search_file_phytoplankton)
@@ -105,8 +114,9 @@ class FormEvents():
         self.ui.actionSave.connect(self.ui.actionSave, QtCore.SIGNAL('triggered()'), self.save_figure)
         self.ui.actionSave_as.connect(self.ui.actionSave_as, QtCore.SIGNAL('triggered()'), self.save_figure_as)
         self.ui.actionThis_GUI.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_about)
-        #self.ui.actionLog_file.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_log_file)
-        #self.ui.actionDocumentation.connect(self.ui.actionThis_GUI, QtCore.SIGNAL('triggered()'), self.open_documentation)
+        self.ui.actionLog_file.connect(self.ui.actionLog_file, QtCore.SIGNAL('triggered()'), self.open_log_file)
+        self.ui.actionDocumentation.connect(self.ui.actionDocumentation, QtCore.SIGNAL('triggered()'),
+                                            self.open_documentation)
 
         self.ui.actionRun.connect(self.ui.actionRun, PyQt4.QtCore.SIGNAL('triggered()'), self.run)
         self.ui.actionOpen.connect(self.ui.actionOpen, PyQt4.QtCore.SIGNAL('triggered()'), self.search_file_result)
@@ -146,24 +156,24 @@ class FormEvents():
         self.nb_cpu = self.ui.nb_cpu.currentText()
         self.report_parameter_value = str(self.ui.report_parameter_value.text())
 
-    #-------------------------------------------------------------------------------#
-    #These following functions display a fileDialog to search a file or a directory.
-    #-------------------------------------------------------------------------------#
+    # -------------------------------------------------------------------------------#
+    # These following functions display a fileDialog to search a file or a directory.
+    # -------------------------------------------------------------------------------#
 
     def search_directory_executive_path(self):
-        self.executive_file = self.file_dialog.getExistingDirectory(caption=str("Executive Files Directory"),
+        self.executive_file = self.file_dialog.getExistingDirectory(caption=str("Planarrad Directory"),
                                                                     directory="..")
         if not self.executive_file == '':
             self.ui.exec_path.setText(self.executive_file)
 
     def search_file_phytoplankton(self):
-        self.phytoplankton_file = self.file_dialog.getOpenFileName(caption=str("Phytoplankton File"),
+        self.phytoplankton_file = self.file_dialog.getOpenFileName(caption=str("Phytoplankton Absorption File"),
                                                                    directory="./inputs/iop_files")
         if not self.phytoplankton_file == '':
             self.ui.phytoplankton_path.setText(self.phytoplankton_file)
 
     def search_file_bottom(self):
-        self.bottom_file = self.file_dialog.getOpenFileName(caption=str("Bottom File"),
+        self.bottom_file = self.file_dialog.getOpenFileName(caption=str("Bottom Reflectance File"),
                                                             directory="./inputs/bottom_files")
         if not self.bottom_file == '':
             self.ui.bottom_path.setText(self.bottom_file)
@@ -173,7 +183,7 @@ class FormEvents():
         This function once the file found, display data's file and the graphic associated.
         """
         if self.ui.tabWidget.currentIndex() == TabWidget.NORMAL_MODE:
-            self.result_file = self.file_dialog.getOpenFileName(caption=str("Open result file"), directory="./outputs")
+            self.result_file = self.file_dialog.getOpenFileName(caption=str("Open Report File"), directory="./outputs")
             if not self.result_file == '':
                 self.ui.show_all_curves.setDisabled(False)
                 self.ui.show_grid.setDisabled(False)
@@ -181,7 +191,7 @@ class FormEvents():
                 self.display_the_graphic(self.num_line, self.wavelength, self.data_wanted, self.information)
                 self.authorized_display = True
 
-    #------------------------------------------------------------------------------#
+    # ------------------------------------------------------------------------------#
 
     def check_values(self):
         """
@@ -245,9 +255,9 @@ class FormEvents():
                 self.ui.report_parameter_label.setStyleSheet(error_color)
                 self.error_report_parameter = True
 
-            #-----------------------------------------------------------#
-            #The following checks values separate by comas without space.
-            #-----------------------------------------------------------#
+            # -----------------------------------------------------------#
+            # The following checks values separate by comas without space.
+            # -----------------------------------------------------------#
 
             """
             Problem : The user can write just one letter or starts with a dot or finishes the list with a dot.
@@ -256,12 +266,12 @@ class FormEvents():
             check_num_1 = '(^([0-9]+[.]?[0-9]*[,]?){0,}[^,])|(^([0-9]*[,]){1,}[^,])'  # Regular expression to use
             self.prog_1 = re.compile(check_num_1)  # Analysis object creation
             self.wavelength_values = str(self.wavelength_values).translate(None, ' ').strip(' ')
-            print(self.wavelength_values)
+            # print(self.wavelength_values)
             p_result = self.prog_1.search(self.p_values)  # String retrieval thanks to the regular expression
             saa_result = self.prog_1.search(self.saa_values)
             sza_result = self.prog_1.search(self.sza_values)
             wavelength_result = self.prog_1.search(self.wavelength_values)
-            print(wavelength_result.group())
+            # print(wavelength_result.group())
 
             try:
 
@@ -305,9 +315,9 @@ class FormEvents():
                 self.ui.waveL_label.setStyleSheet(error_color)
                 self.error_wavelength_result = True
 
-            #---------------------------------------------------#
-            #The following checks values containing only numbers.
-            #---------------------------------------------------#
+            # ---------------------------------------------------#
+            # The following checks values containing only numbers.
+            # ---------------------------------------------------#
             check_num_2 = '(^([0-9]+[.]?[0-9]*[,]?){0,}[^,])|(^([0-9]+[,]){1,}[^,])'
             self.prog_2 = re.compile(check_num_2)
             x_result = self.prog_2.search(self.x_value)
@@ -394,9 +404,9 @@ class FormEvents():
                 self.ui.verbose_label.setStyleSheet(error_color)
                 self.error_verbose_result = True
 
-            #------------------------------------------------#
-            #The following checks values containing only path.
-            #------------------------------------------------#
+            # ------------------------------------------------#
+            # The following checks values containing only path.
+            # ------------------------------------------------#
 
             """
             #!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -404,7 +414,7 @@ class FormEvents():
             #!!!!!!!!!!!!!!!!!!!!!!!!!!
             """
 
-            check_num_4 = '(.*)'  #Take all strings possible.
+            check_num_4 = '(.*)'  # Take all strings possible.
             self.prog_4 = re.compile(check_num_4)
             phytoplankton_path_result = self.prog_4.search(self.phytoplankton_path)
             bottom_path_result = self.prog_4.search(self.bottom_path)
@@ -459,9 +469,9 @@ class FormEvents():
         """
         bt = BatchFile(self.batch_name_value, self.p_values, self.x_value, self.y_value, self.g_value, self.s_value,
                        self.z_value, self.wavelength_values, self.verbose_value, self.phytoplankton_path,
-                       self.bottom_path, self.nb_cpu, self.executive_path,  self.saa_values,
+                       self.bottom_path, self.nb_cpu, self.executive_path, self.saa_values,
                        self.sza_values, self.report_parameter_value)
-        #bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
+        # bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
         bt.write_batch_to_file(str(self.batch_name_value + "_batch.txt"))
 
     def data_processing(self):
@@ -473,7 +483,7 @@ class FormEvents():
 
         lines = the_file.readlines()
 
-        #We put all lines in an array and we put each cell of the line in a column.
+        # We put all lines in an array and we put each cell of the line in a column.
         lines_array = []
         for line in lines:
             line = line.split(',')  # Each time there is a tabulation, there is a new cell
@@ -486,7 +496,6 @@ class FormEvents():
         try:
             while flag:  # While it is TRUE, so if the word doesn't match, it's an infinite loop,
                 if "wave length (nm)" in labels_line[cell_labels_line]:
-                    print("ici3")
                     index = labels_line.index(labels_line[cell_labels_line])  # Find the index of the string searched.
                     flag = False
                 else:
@@ -578,14 +587,14 @@ class FormEvents():
         count_nb_label = 0  # Iterator on all labels of label_information
         nb_label = len(label_information)
         while count_nb_label <= nb_label:
-            self.ui.column1_label.setText(label_information[0])
-            self.ui.column2_label.setText(label_information[1])
-            self.ui.column3_label.setText(label_information[2])
-            self.ui.column4_label.setText(label_information[3])
-            self.ui.column5_label.setText(label_information[4])
-            self.ui.column6_label.setText(label_information[5])
-            self.ui.column7_label.setText(label_information[6])
-            self.ui.column8_label.setText(label_information[7])
+            self.ui.column1_label.setText(label_information[0].strip('\"'))
+            self.ui.column2_label.setText(label_information[1].strip('\"'))
+            self.ui.column3_label.setText(label_information[2].strip('\"'))
+            self.ui.column4_label.setText(label_information[3].strip('\"'))
+            self.ui.column5_label.setText(label_information[4].strip('\"'))
+            self.ui.column6_label.setText(label_information[5].strip('\"'))
+            self.ui.column7_label.setText(label_information[6].strip('\"'))
+            self.ui.column8_label.setText(label_information[7].strip('\"'))
             count_nb_label += 1
 
         line_of_data = 0  # Iterator on each line of data_information.
@@ -672,7 +681,7 @@ class FormEvents():
         """
         Because PlanarRad doesn't lunch, no file created and no possible update of the progress bar.
         """
-        #print('update')
+        # print('update')
         # no_empty = 0
         # number_of_percent = 0
         # result_folders = (os.listdir('outputs/' + self.batch_name_value))
@@ -780,9 +789,6 @@ class FormEvents():
         """
         self.aboutWindow.show()
 
-
-
-
     def open_log_file(self):
         """
         The following opens the log file of PlanarRad.
@@ -790,7 +796,11 @@ class FormEvents():
         """
         TO DO.
         """
-        webbrowser.open('https://marrabld.github.io/planarradpy/')
+        # webbrowser.open('https://marrabld.github.io/planarradpy/')
+        f = open('log/libplanarradpy.log')
+        # self.uiLog.textEdit.setText(str(f.readlines()))
+        self.uiLog.textEdit.setPlainText(str(f.read()))
+        self.log_window.show()
 
     def open_documentation(self):
         """
@@ -799,7 +809,15 @@ class FormEvents():
         """
         TO DO.
         """
-        pass
+        # webbrowser.open('https://marrabld.github.io/planarradpy/')
+
+        window = Window()
+        html = QtCore.QUrl.fromLocalFile(os.path.join(os.getcwd(), './docs/_build/html/index.html')) #open('./docs/_build/html/index.html').read()
+        #window.show()
+        window.view.load(html)
+        window.show()
+        window.exec_()
+
 
     def prerequisite_actions(self):
         """
@@ -813,9 +831,9 @@ class FormEvents():
 
         pathname = os.path.dirname(sys.argv[0])
         path = os.path.abspath(pathname)
-        #self.phytoplankton_path = self.ui.phyto_path.setText(path.replace('gui', 'inputs/iop_files'))
-        #self.bottom_path = self.ui.bottom_path.setText(path.replace('gui', 'inputs/bottom_files'))
-        #self.executive_path = self.ui.exec_path.setText("Decide where will be 'jude2_install/bin'")
+        # self.phytoplankton_path = self.ui.phyto_path.setText(path.replace('gui', 'inputs/iop_files'))
+        # self.bottom_path = self.ui.bottom_path.setText(path.replace('gui', 'inputs/bottom_files'))
+        # self.executive_path = self.ui.exec_path.setText("Decide where will be 'jude2_install/bin'")
         self.verbose_value = self.ui.verbose_value.setText("6")
         self.report_parameter_value = self.ui.report_parameter_value.setText("Rrs")
 
@@ -875,7 +893,7 @@ class FormEvents():
             self.ui.mouse_coordinate.setText("(%0.0f,%0.0f)" % (x, y))
 
 
-#fileName = self.dalecFileName=QtGui.QFileDialog.getSaveFileName(parent=None, caption='Save Figure',filter ='*.jpg *.bmp *.png *.pdf *.ps *.eps')
+# fileName = self.dalecFileName=QtGui.QFileDialog.getSaveFileName(parent=None, caption='Save Figure',filter ='*.jpg *.bmp *.png *.pdf *.ps *.eps')
 
 class GuiThread(QtCore.QThread):
     def __init__(self, parent, n):
@@ -888,7 +906,7 @@ class GuiThread(QtCore.QThread):
         while i < self.n:
             if (time.time() % 1 == 0):
                 i += 1
-                #print str(i)
+                # print str(i)
                 self.emit(QtCore.SIGNAL("update()"))
 
 
@@ -899,6 +917,14 @@ class TabWidget():
     NORMAL_MODE = 0
     REVERSE_MODE = 1
 
+class Window(QWidget):
+    def __init__(self):
+        super(Window, self).__init__()
+        self.view = QWebView(self)
+
+        layout = QVBoxLayout(self)
+        layout.setMargin(0)
+        layout.addWidget(self.view)
 
 if __name__ == "__main__":
     FE = FormEvents()

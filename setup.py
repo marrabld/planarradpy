@@ -9,5 +9,5 @@ setup(
     license='GPL',
     author='Dan Marrable',
     author_email='marrabld+planarradpy@gmail.com',
-    description='Tool for batch running PlanarRad across multiple CPUs'
+    description='Tool for batch running PlanarRad across multiple CPUs', requires=['PyQt4']
 )

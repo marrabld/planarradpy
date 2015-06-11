@@ -1,8 +1,22 @@
 import os
 import sys
 import time
+from os.path import expanduser
 
 sys.path.append("../..")
+try:
+    log_dir = expanduser('~/.planarradpy')
+    if not os.path.exists(log_dir):
+        os.mkdir(log_dir)
+except:
+    print("Can't create log dir " + log_dir + " : it may exist")
+
+try:
+    if not os.path.exists(os.path.join(log_dir, 'log')):
+        os.mkdir(os.path.join(log_dir, 'log'))
+except:
+    print("Can't create log directory " + log_dir + '/log' + " : it may exist")
+
 
 import logger as log
 import scipy
@@ -34,8 +48,7 @@ class RunParameters():
             self.wavelengths = scipy.linspace(410.0, 730.0, 17)
         else:
             self.wavelengths = scipy.fromstring(wavelengths, dtype=float, sep=',')
-            print(self.wavelengths)
-        # print(self.wavelengths.shape)
+
         self.a = scipy.zeros_like(self.wavelengths)  # total absorption
         self.a_phi = scipy.zeros_like(self.wavelengths)
         self.a_water = scipy.zeros_like(self.wavelengths)
@@ -50,14 +63,16 @@ class RunParameters():
         self.theta_points = [0, 5, 15, 25, 35, 45, 55, 65, 75, 85, 90, 95, 105, 115, 125, 135, 145, 155, 165, 175, 180]
         #self.input_path = os.path.abspath(os.path.join('..', 'inputs'))
         #self.output_path = os.path.abspath(os.path.join('..', 'outputs'))
-        self.input_path = os.path.abspath(os.path.join('.', 'inputs'))
-        self.output_path = os.path.abspath(os.path.join('.', 'outputs'))
+        self.input_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../inputs'))
+        #print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111" + os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../inputs')))
+        self.output_path = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../outputs'))
         self.pure_water_absorption_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'a_water.csv'))
         self.pure_water_scattering_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'b_water.csv'))
         self.phytoplankton_absorption_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'a_phi.csv'))
+        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ' + self.phytoplankton_absorption_file)
         self.project_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'batch_files'), 'batch_run.txt'))
         self.attenuation_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_c17.txt'))
@@ -132,7 +147,7 @@ class RunParameters():
     def write_run_parameters_to_file(self):
         """All of the class properties are written to a text file
 
-        Each property is on a new line with the key and value sperated with an equals sign '='
+        Each property is on a new line with the key and value seperated with an equals sign '='
         This is the mane planarrad properties file used by slabtool
         """
 

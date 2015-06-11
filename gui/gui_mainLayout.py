@@ -797,7 +797,7 @@ class FormEvents():
         TO DO.
         """
         # webbrowser.open('https://marrabld.github.io/planarradpy/')
-        f = open('log/libplanarradpy.log')
+        f = open(os.path.expanduser('~/.planarradpy/log/libplanarradpy.log'))
         # self.uiLog.textEdit.setText(str(f.readlines()))
         self.uiLog.textEdit.setPlainText(str(f.read()))
         self.log_window.show()
@@ -865,8 +865,9 @@ class FormEvents():
         The following gets back coordinates of the mouse on the canvas.
         """
         if (self.ui.tabWidget.currentIndex() == TabWidget.NORMAL_MODE):
-            self.posX = event.x
-            self.posY = event.y
+            self.posX = event.xdata
+            self.posY = event.ydata
+
             self.graphic_target(self.posX, self.posY)
 
     def graphic_context_menu(self, pos):
@@ -888,9 +889,13 @@ class FormEvents():
         """
         The following update labels about mouse coordinates.
         """
+
         if self.authorized_display == True:
-            self.display_the_graphic(self.num_line, self.wavelength, self.data_wanted, self.information)
-            self.ui.mouse_coordinate.setText("(%0.0f,%0.0f)" % (x, y))
+            try:
+                self.display_the_graphic(self.num_line, self.wavelength, self.data_wanted, self.information)
+                self.ui.mouse_coordinate.setText("(%0.3f, %0.3f)" % (x, y))
+            except:
+                pass
 
 
 # fileName = self.dalecFileName=QtGui.QFileDialog.getSaveFileName(parent=None, caption='Save Figure',filter ='*.jpg *.bmp *.png *.pdf *.ps *.eps')

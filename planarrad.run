@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /usr/local/lib/python2.7/dist-packages/planarradpy
+python planarrad.py -g

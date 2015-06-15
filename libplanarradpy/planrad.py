@@ -485,9 +485,11 @@ class BioOpticalParameters():
         """Calculates the total scattering from back-scattering
 
         :param scattering_fraction: the fraction of back-scattering to total scattering default = 0.01833
+
+        b = ( bb[sea water] + bb[p] ) /0.01833
         """
         lg.info('Building b with scattering fraction of :: ' + str(scattering_fraction))
-        self.b = (self.b_b + self.b_water / 2.0) / scattering_fraction
+        self.b = (self.b_b + self.b_water / 2.0) / scattering_fraction  # this is a work around until fix in Planarrad
 
     def build_a(self):
         """Calculates the total absorption from water, phytoplankton and CDOM

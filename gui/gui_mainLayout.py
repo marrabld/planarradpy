@@ -170,7 +170,7 @@ class FormEvents():
         self.phytoplankton_file = self.file_dialog.getOpenFileName(caption=str("Phytoplankton Absorption File"),
                                                                    directory="./inputs/iop_files")
         if not self.phytoplankton_file == '':
-            self.ui.phytoplankton_path.setText(self.phytoplankton_file)
+            self.ui.phyto_path.setText(self.phytoplankton_file)
 
     def search_file_bottom(self):
         self.bottom_file = self.file_dialog.getOpenFileName(caption=str("Bottom Reflectance File"),

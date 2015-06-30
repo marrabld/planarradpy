@@ -56,59 +56,65 @@
 <h1>Planarradpy<a class="headerlink" href="#planarradpy" title="Permalink to this headline">¶</a></h1>
 <p>Planarradpy is a tool written in python that can execute <a class="reference external" href="http://www.planarrad.com/index.php?title=PlanarRad">Planarrad</a></p>
 <img alt="./images/1_main_screen.png" src="./images/1_main_screen.png" />
-<div class="section" id="example-use">
-<h2>Example Use<a class="headerlink" href="#example-use" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="example-use-command-line">
+<h2>Example Use [command line]<a class="headerlink" href="#example-use-command-line" title="Permalink to this headline">¶</a></h2>
 <p>python planarradpy.py -i &lt;input_parameter_file&gt;</p>
 </div>
 <div class="section" id="example-input-parameters-file">
 <h2>Example input parameters file<a class="headerlink" href="#example-input-parameters-file" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre>
+<div class="highlight-python"><div class="highlight"><pre><span class="c">#----------------------------------------#</span>
+<span class="c"># Name of the batch run</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">batch_name</span> <span class="o">=</span> <span class="n">P_VARY_HOPE_2</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Bio-optical parameters list</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">saa_list</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">sza_list</span> <span class="o">=</span> <span class="mf">130.0</span>
+<span class="n">p_list</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">0.2</span>
+<span class="n">x_list</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">y_list</span> <span class="o">=</span> <span class="mf">1.0</span>
+<span class="n">g_list</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">s_list</span> <span class="o">=</span> <span class="mf">0.015</span>
+<span class="n">z_list</span> <span class="o">=</span> <span class="mf">30.0</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Wavelengths</span>
+<span class="c"># All IOPs are interpolated to these</span>
+<span class="c"># Wavelengths</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">wavelengths</span> <span class="o">=</span> <span class="mf">410.0</span><span class="p">,</span><span class="mf">430.0</span><span class="p">,</span><span class="mf">450.0</span><span class="p">,</span><span class="mf">470.0</span><span class="p">,</span><span class="mf">490.0</span><span class="p">,</span><span class="mf">510.0</span><span class="p">,</span><span class="mf">530.0</span><span class="p">,</span><span class="mf">550.0</span><span class="p">,</span><span class="mf">570.0</span><span class="p">,</span><span class="mf">590.0</span><span class="p">,</span><span class="mf">610.0</span><span class="p">,</span><span class="mf">630.0</span><span class="p">,</span><span class="mf">650.0</span><span class="p">,</span><span class="mf">670.0</span><span class="p">,</span><span class="mf">690.0</span><span class="p">,</span><span class="mf">710.0</span><span class="p">,</span><span class="mf">730.0</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Number of CPUs</span>
+<span class="c"># -1 means query the number of CPUs</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">num_cpus</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Path of Planarrad</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">exec_path</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">marrabld</span><span class="o">/</span><span class="n">Apps</span><span class="o">/</span><span class="n">jude2_install</span><span class="o">/</span><span class="nb">bin</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Logging level</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">verbose</span> <span class="o">=</span> <span class="mi">6</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># File paths</span>
+<span class="c"># Using absolute paths</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">phytoplankton_absorption_file</span> <span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">marrabld</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">planarradpy</span><span class="o">/</span><span class="n">inputs</span><span class="o">/</span><span class="n">iop_files</span><span class="o">/</span><span class="n">a_phi</span><span class="o">.</span><span class="n">csv</span>
+<span class="n">bottom_reflectance_file</span> <span class="o">=</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">marrabld</span><span class="o">/</span><span class="n">Projects</span><span class="o">/</span><span class="n">hope_test</span><span class="o">/</span><span class="n">RodFiles</span><span class="o">/</span><span class="n">Refl_BenthicMixture_1_17Bands</span><span class="o">.</span><span class="n">txt</span>
+
+<span class="c">#----------------------------------------#</span>
+<span class="c"># Set the parameter to report</span>
+<span class="c">#----------------------------------------#</span>
+<span class="n">report_parameter</span> <span class="o">=</span> <span class="n">Rrs</span><span class="nd">@6.0</span><span class="p">:</span><span class="mf">135.0</span>
 </pre></div>
 </div>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Name of the batch run
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-batch_name = P_VARY_HOPE_2</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Bio-optical parameters list
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-saa_list = 0.0
-sza_list = 130.0
-p_list = 0.01,0.05,0.1,0.2
-x_list = 0.01
-y_list = 1.0
-g_list = 0.1
-s_list = 0.015
-z_list = 30.0</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Wavelengths
-# All IOPs are interpolated to these
-# Wavelengths
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-wavelengths = 410.0,430.0,450.0,470.0,490.0,510.0,530.0,550.0,570.0,590.0,610.0,630.0,650.0,670.0,690.0,710.0,730.0</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Number of CPUs
-# -1 means query the number of CPUs
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-num_cpus = 1</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Path of Planarrad
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-exec_path = /home/marrabld/Apps/jude2_install/bin</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Logging level
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-verbose = 6</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# File paths
-# Using absolute paths
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-phytoplankton_absorption_file =/home/marrabld/Projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/Projects/hope_test/RodFiles/Refl_BenthicMixture_1_17Bands.txt</p>
-<p>#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-# Set the parameter to report
-#&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-#
-report_parameter = <a class="reference external" href="mailto:Rrs&#37;&#52;&#48;6&#46;0">Rrs<span>&#64;</span>6<span>&#46;</span>0</a>:135.0</p>
 </div>
 <div class="section" id="source-code">
 <h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
@@ -535,7 +541,7 @@ This is the mane planarrad properties file used by slabtool</p>
   <ul>
 <li><a class="reference internal" href="#">Welcome to Planarradpy&#8217;s documentation!</a></li>
 <li><a class="reference internal" href="#planarradpy">Planarradpy</a><ul>
-<li><a class="reference internal" href="#example-use">Example Use</a></li>
+<li><a class="reference internal" href="#example-use-command-line">Example Use [command line]</a></li>
 <li><a class="reference internal" href="#example-input-parameters-file">Example input parameters file</a></li>
 <li><a class="reference internal" href="#source-code">Source code</a></li>
 <li><a class="reference internal" href="#contents">Contents:</a></li>

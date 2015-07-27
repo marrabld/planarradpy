@@ -15,8 +15,8 @@ Planarradpy is a tool written in python that can execute `Planarrad <http://www.
 
 .. image:: ./images/1_main_screen.png
 
-Example Use
------------
+Example Use [command line]
+--------------------------
 
 python planarradpy.py -i <input_parameter_file>
 
@@ -25,57 +25,57 @@ Example input parameters file
 
 .. code-block:: python
 
-#----------------------------------------#
-# Give the batch run a name
-#----------------------------------------#
-batch_name = bug_test
+  #----------------------------------------#
+  # Name of the batch run
+  #----------------------------------------#
+  batch_name = P_VARY_HOPE_2
 
-#----------------------------------------#
-# Set the Bio-optical parameters list
-#----------------------------------------#
-saa_list = 130.0
-sza_list = 40
-p_list = 0.01, 0.1, 1, 10
-x_list = 0.1
-y_list = 1.0
-g_list = 0.1
-s_list = 0.014
-z_list = 10
+  #----------------------------------------#
+  # Bio-optical parameters list
+  #----------------------------------------#
+  saa_list = 0.0
+  sza_list = 130.0
+  p_list = 0.01,0.05,0.1,0.2
+  x_list = 0.01
+  y_list = 1.0
+  g_list = 0.1
+  s_list = 0.015
+  z_list = 30.0
 
-#----------------------------------------#
-# Wavelengths must be defined
-# All IOPs are interpolated to these
-# Wavelengths
-#----------------------------------------#
-wavelengths = 410.0, 430.0, 450.0, 470.0, 490.0, 510.0, 530.0, 550.0, 570.0, 590.0, 610.0, 630.0, 650.0, 670.0, 690.0, 710.0, 730.0
+  #----------------------------------------#
+  # Wavelengths
+  # All IOPs are interpolated to these
+  # Wavelengths
+  #----------------------------------------#
+  wavelengths = 410.0,430.0,450.0,470.0,490.0,510.0,530.0,550.0,570.0,590.0,610.0,630.0,650.0,670.0,690.0,710.0,730.0
 
-#----------------------------------------#
-# Choose the number of CPUs
-# -1 means query the number of CPUs
-#----------------------------------------#
-num_cpus = 2
+  #----------------------------------------#
+  # Number of CPUs
+  # -1 means query the number of CPUs
+  #----------------------------------------#
+  num_cpus = 1
 
-#----------------------------------------#
-# Set the path of Planarrad
-#----------------------------------------#
-exec_path = /home/marrabld/Apps/planarRad/bin
+  #----------------------------------------#
+  # Path of Planarrad
+  #----------------------------------------#
+  exec_path = /home/marrabld/Apps/jude2_install/bin
 
-#----------------------------------------#
-# Set the logging level
-#----------------------------------------#
-verbose = 1
+  #----------------------------------------#
+  # Logging level
+  #----------------------------------------#
+  verbose = 6
 
-#----------------------------------------#
-# Set the file paths
-# Use absolute paths
-#----------------------------------------#
-phytoplankton_absorption_file = /home/marrabld/projects/planarradpy/inputs/iop_files/a_phi.csv
-bottom_reflectance_file = /home/marrabld/projects/planarradpy/inputs/bottom_files/ger_sand17.txt
+  #----------------------------------------#
+  # File paths
+  # Using absolute paths
+  #----------------------------------------#
+  phytoplankton_absorption_file =/home/marrabld/Projects/planarradpy/inputs/iop_files/a_phi.csv
+  bottom_reflectance_file = /home/marrabld/Projects/hope_test/RodFiles/Refl_BenthicMixture_1_17Bands.txt
 
-#--------------------------------------------------#
-# Set the parameter to report
-#--------------------------------------------------#
-report_parameter = Rrs
+  #----------------------------------------#
+  # Set the parameter to report
+  #----------------------------------------#
+  report_parameter = Rrs@6.0:135.0
 
 Source code
 -----------
@@ -101,4 +101,3 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
-

@@ -1,4 +1,4 @@
-verbose = 6
+verbose = 1
 band_count = 17
 band_centres_data = 410.0,430.0,450.0,470.0,490.0,510.0,530.0,550.0,570.0,590.0,610.0,630.0,650.0,670.0,690.0,710.0,730.0
 partition = sphere
@@ -6,4 +6,4 @@ vn = 18
 hn = 24
 theta_points = 0,5,15,25,35,45,55,65,75,85,90,95,105,115,125,135,145,155,165,175,180
 type = petzold
-phase_func_save_fp = /home/marrabld/Projects/planarradpy/inputs/phase_files/pf_petzold_mono_HL_18x24
+phase_func_save_fp = /home/marrabld/Projects/planarradpy/planarradpy/inputs/phase_files/pf_petzold_mono_HL_18x24

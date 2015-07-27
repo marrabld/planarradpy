@@ -72,7 +72,7 @@ class RunParameters():
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'b_water.csv'))
         self.phytoplankton_absorption_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'a_phi.csv'))
-        print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ' + self.phytoplankton_absorption_file)
+        #print('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! ' + self.phytoplankton_absorption_file)
         self.project_file = os.path.abspath(os.path.join(os.path.join(self.input_path, 'batch_files'), 'batch_run.txt'))
         self.attenuation_file = os.path.abspath(
             os.path.join(os.path.join(self.input_path, 'iop_files'), 'bz052_c17.txt'))

@@ -263,57 +263,57 @@ class FormEvents():
             Problem : The user can write just one letter or starts with a dot or finishes the list with a dot.
             """
 
-            check_num_1 = '(^([0-9]+[.]?[0-9]*[,]?){0,}[^,])|(^([0-9]*[,]){1,}[^,])'  # Regular expression to use
-            self.prog_1 = re.compile(check_num_1)  # Analysis object creation
-            self.wavelength_values = str(self.wavelength_values).translate(None, ' ').strip(' ')
-            # print(self.wavelength_values)
-            p_result = self.prog_1.search(self.p_values)  # String retrieval thanks to the regular expression
-            saa_result = self.prog_1.search(self.saa_values)
-            sza_result = self.prog_1.search(self.sza_values)
-            wavelength_result = self.prog_1.search(self.wavelength_values)
-            # print(wavelength_result.group())
-
-            try:
-
-                if saa_result.group() != self.ui.saa_values.text():
-                    self.ui.saa_label.setStyleSheet(error_color)
-                    self.error_sza_result = True
-                else:
-                    self.ui.saa_label.setStyleSheet(no_error_color)
-                    self.error_sza_result = False
-            except AttributeError:
-                self.ui.saa_label.setStyleSheet(error_color)
-                self.error_sza_result = True
-            try:
-                if sza_result.group() != self.ui.sza_values.text():
-                    self.ui.sza_label.setStyleSheet(error_color)
-                    self.error_saa_result = True
-                else:
-                    self.ui.sza_label.setStyleSheet(no_error_color)
-                    self.error_saa_result = False
-            except AttributeError:
-                self.ui.sza_label.setStyleSheet(error_color)
-                self.error_saa_result = True
-            try:
-                if p_result.group() != self.ui.p_values.text():
-                    self.ui.p_label.setStyleSheet(error_color)
-                    self.error_p_result = True
-                else:
-                    self.ui.p_label.setStyleSheet(no_error_color)
-                    self.error_p_result = False
-            except AttributeError:
-                self.ui.p_label.setStyleSheet(error_color)
-                self.error_p_result = True
-            try:
-                if wavelength_result.group() != str(self.ui.wavelength_values.text()).translate(None, ' ').strip(' '):
-                    self.ui.waveL_label.setStyleSheet(error_color)
-                    self.error_wavelength_result = True
-                else:
-                    self.ui.waveL_label.setStyleSheet(no_error_color)
-                    self.error_wavelength_result = False
-            except AttributeError:
-                self.ui.waveL_label.setStyleSheet(error_color)
-                self.error_wavelength_result = True
+            # check_num_1 = '(^([0-9]+[.]?[0-9]*[,]?){0,}[^,])|(^([0-9]*[,]){1,}[^,])'  # Regular expression to use
+            # self.prog_1 = re.compile(check_num_1)  # Analysis object creation
+            # self.wavelength_values = str(self.wavelength_values).translate(None, ' ').strip(' ')
+            # # print(self.wavelength_values)
+            # p_result = self.prog_1.search(self.p_values)  # String retrieval thanks to the regular expression
+            # saa_result = self.prog_1.search(self.saa_values)
+            # sza_result = self.prog_1.search(self.sza_values)
+            # wavelength_result = self.prog_1.search(self.wavelength_values)
+            # # print(wavelength_result.group())
+            #
+            # try:
+            #
+            #     if saa_result.group() != self.ui.saa_values.text():
+            #         self.ui.saa_label.setStyleSheet(error_color)
+            #         self.error_sza_result = True
+            #     else:
+            #         self.ui.saa_label.setStyleSheet(no_error_color)
+            #         self.error_sza_result = False
+            # except AttributeError:
+            #     self.ui.saa_label.setStyleSheet(error_color)
+            #     self.error_sza_result = True
+            # try:
+            #     if sza_result.group() != self.ui.sza_values.text():
+            #         self.ui.sza_label.setStyleSheet(error_color)
+            #         self.error_saa_result = True
+            #     else:
+            #         self.ui.sza_label.setStyleSheet(no_error_color)
+            #         self.error_saa_result = False
+            # except AttributeError:
+            #     self.ui.sza_label.setStyleSheet(error_color)
+            #     self.error_saa_result = True
+            # try:
+            #     if p_result.group() != self.ui.p_values.text():
+            #         self.ui.p_label.setStyleSheet(error_color)
+            #         self.error_p_result = True
+            #     else:
+            #         self.ui.p_label.setStyleSheet(no_error_color)
+            #         self.error_p_result = False
+            # except AttributeError:
+            #     self.ui.p_label.setStyleSheet(error_color)
+            #     self.error_p_result = True
+            # try:
+            #     if wavelength_result.group() != str(self.ui.wavelength_values.text()).translate(None, ' ').strip(' '):
+            #         self.ui.waveL_label.setStyleSheet(error_color)
+            #         self.error_wavelength_result = True
+            #     else:
+            #         self.ui.waveL_label.setStyleSheet(no_error_color)
+            #         self.error_wavelength_result = False
+            # except AttributeError:
+            #     self.ui.waveL_label.setStyleSheet(error_color)
+            #     self.error_wavelength_result = True
 
             # ---------------------------------------------------#
             # The following checks values containing only numbers.

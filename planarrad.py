@@ -10,6 +10,7 @@ import subprocess
 import getopt
 import sys
 import libplanarradpy.planrad as pr
+import numpy as np
 
 #sys.path.append("../")
 
@@ -58,6 +59,37 @@ def main(argv):
     #--------------------------------------------------#
     # rebuild the iop files ?
     #--------------------------------------------------#
+
+    # --------------------------------------------------#
+    # Check to see if the new syntax of <start>:<stop>:<increment>
+    # Is being used.  If it is mangle the string in to place
+    # --------------------------------------------------#
+
+    input_param_list = ['saa_list', 'sza_list', 'p_list', 'x_list', 'y_list', 'g_list', 's_list', 'z_list']
+
+    for param in input_param_list:
+        if ':' in input_parameters[param]:
+            try:
+                sub_string = input_parameters[param].split(':')
+                param_start = float(sub_string[0])
+                param_stop = float(sub_string[1])
+                param_inc = int(sub_string[2])
+
+                tmp_param =  str(np.linspace(param_start, param_stop, param_inc))
+                tmp_param = ' '.join(tmp_param.split(None))
+                tmp_param = str(tmp_param).replace(' ', ',')
+                tmp_param = tmp_param.replace('[,', '[')
+                tmp_param = tmp_param.replace(',]', ']')
+
+                #myList = ','.join(map(str, myList))
+
+                input_parameters[param] = tmp_param
+
+            except:
+                print('error')
+                raise
+
+
     saa_list = pr.HelperMethods.string_to_float_list(input_parameters['saa_list'])
     sza_list = pr.HelperMethods.string_to_float_list(input_parameters['sza_list'])
     p_list = pr.HelperMethods.string_to_float_list(input_parameters['p_list'])

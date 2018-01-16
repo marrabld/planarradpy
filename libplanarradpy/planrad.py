@@ -443,6 +443,8 @@ class BioOpticalParameters():
             raise IOError
 
         try:
+            wave = map(float, wave)
+            iop = map(float, iop)
             return scipy.interp(self.wavelengths, wave, iop)
         except IOError:
             lg.exception('Error interpolating IOP to common wavelength')
